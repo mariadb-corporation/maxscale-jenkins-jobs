@@ -1,0 +1,96 @@
+- job:
+    name: Run_test_matrix_jjb
+    description: 'This job perform synchronization between yaml jobs at @REPO@ and this jenkins instance'
+    project-type: matrix
+    execution-strategy:
+      sequential: false
+    axes:
+      - axis:
+          type: user-defined
+          name: box
+          values:
+            !include: './maxscale_jobs/include/boxes_for_regular.yaml'
+      - axis:
+          type: user-defined
+          name: backend
+          values:
+           - mariadb-5.5
+           - mariadb-10.0
+           - mariadb-10.1
+    parameters:
+        - choice:
+            name: maxscale_restart
+            choices:
+                - 'yes'
+                - 'no'
+        - choice:
+            name: do_not_destroy
+            choices:
+                - 'no'
+                - 'yes'
+        - string:
+             name: name
+             default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+        - string:
+            name: target
+            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - string:
+            name: test_set
+            default: !include: './maxscale_jobs/include/default_test_set.yaml'
+        - string:
+            name: ci_url
+            default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - choice:
+            name: smoke
+            choices:
+                - 'yes'
+                - 'no'
+        - choice:
+            name: big
+            choices:
+                - 'no'
+                - 'yes'
+        - choice:
+            name: ci_release
+            choices:
+                - ci
+                - release
+    scm:
+        - git:
+            # TODO parametrize this url
+            url: https://github.com/mariadb-corporation/maxscale-system-test.git
+            branches:
+                - master
+    builders:
+        - shell: !include-raw: "./maxscale_jobs/include/matrix_test_script"
+        - inject:
+            properties-content: BUILD_LOG_PARSING_RESULT="Build log parsing finished with an error"
+        - shell:
+            '~/mdbci/scripts/build_parser/parse_ctest_log.rb  -l $WORKSPACE/build_log_$BUILD_ID -o $WORKSPACE/results_$BUILD_ID -r -f'
+        - inject:
+            properties-file: $WORKSPACE/results_$BUILD_ID
+    publishers:
+      - email-ext:
+          recipients: $DEFAULT_RECIPIENTS
+          reply-to: $DEFAULT_REPLYTO
+          content-type: default
+          subject: $DEFAULT_SUBJECT
+          body: !include-raw: "./maxscale_jobs/include/build_parser_email_body" 
+          attach-build-log: false
+          always: true
+          aborted: true
+          failure: true
+          still-failing: true
+          success: true
+          fixed: true
+          send-to:
+            - recipients
+            - developers
+#!include: './maxscale_jobs/include/mail.yaml'
+    wrappers:
+      - workspace-cleanup:
+          include:
+            - "*.*"
+          dirmatch: true
+    concurrent: true
+

@@ -1,0 +1,6 @@
+choice:
+  name: source
+  choices:
+    - BRANCH
+    - TAG
+    - COMMIT

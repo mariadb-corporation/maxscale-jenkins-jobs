@@ -1,0 +1,4 @@
+$DEFAULT_CONTENT 
+Rebuild here: $BUILD_URL/rebuild
+
+Result: $BUILD_LOG_PARSING_RESULT

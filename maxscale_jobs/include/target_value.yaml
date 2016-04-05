@@ -1,0 +1,9 @@
+- choice:
+    name: source
+    choices:
+      - BRANCH
+      - TAG
+      - COMMIT
+- string:
+    name: value
+    default: !include: './maxscale_jobs/include/default_branch.yaml'

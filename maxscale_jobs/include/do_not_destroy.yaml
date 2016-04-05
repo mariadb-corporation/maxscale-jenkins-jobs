@@ -1,0 +1,6 @@
+- choice:
+     name: do_not_destroy
+     choices:
+         - 'no'
+         - 'yes'
+

@@ -1,0 +1,3 @@
+string:
+  name: value
+  default: !include: './maxscale_jobs/include/default_branch.yaml'

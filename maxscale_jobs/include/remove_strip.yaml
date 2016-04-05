@@ -1,0 +1,5 @@
+choice:
+  name: remove_strip
+  choices:
+    - 'yes'
+    - 'no'

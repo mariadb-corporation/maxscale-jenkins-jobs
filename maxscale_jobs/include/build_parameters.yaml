@@ -1,0 +1,12 @@
+- string:
+    name: target
+    default: !include: './maxscale_jobs/include/default_target.yaml'
+#!include: './maxscale_jobs/include/do_no_destroy.yaml'
+- choice:
+    name: remove_strip
+    choices:
+       - yes
+       - no
+- string:
+    name: cmake_flags
+    default: !include: './maxscale_jobs/include/default_cmake_debug.yaml'

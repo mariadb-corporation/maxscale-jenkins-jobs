@@ -1,0 +1,3 @@
+string:
+  name: cmake_flags
+  default: !include: './maxscale_jobs/include/default_cmake_debug.yaml'
