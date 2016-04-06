@@ -63,6 +63,8 @@
             branches:
                 - master
     builders:
+        - shell: 
+            'export BUILD_TIMESTAMP=$(date +%Y-%m-%d\ %H-%M-%S)'
         - shell:
             export box="predefined_template"
         - shell:

@@ -64,6 +64,8 @@
                 - master
     builders:
         - shell: 
+            'export BUILD_TIMESTAMP=$(date +%Y-%m-%d\ %H-%M-%S)'
+        - shell: 
             '~/build-scripts/test/run_test.sh | tee $WORKSPACE/build_log_$BUILD_ID'
         - inject:
             properties-content: BUILD_LOG_PARSING_RESULT="Build log parsing finished with an error"
