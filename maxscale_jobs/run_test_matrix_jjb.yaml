@@ -62,6 +62,8 @@
             branches:
                 - master
     builders:
+        - shell: 
+            'export BUILD_TIMESTAMP=$(date +%Y-%m-%d\ %H-%M-%S)'
         - shell: !include-raw: "./maxscale_jobs/include/matrix_test_script"
         - inject:
             properties-content: BUILD_LOG_PARSING_RESULT="Build log parsing finished with an error"
