@@ -63,40 +63,16 @@
             branches:
                 - master
     builders:
-        - shell: 
-            'export BUILD_TIMESTAMP=$(date +%Y-%m-%d\ %H-%M-%S)'
-        - shell: 
-            '~/build-scripts/test/run_test.sh | tee $WORKSPACE/build_log_$BUILD_ID'
-        - inject:
-            properties-content: BUILD_LOG_PARSING_RESULT="Build log parsing finished with an error"
-        - shell:
-            '~/mdbci/scripts/build_parser/parse_ctest_log.rb  -l $WORKSPACE/build_log_$BUILD_ID -o $WORKSPACE/results_$BUILD_ID -r -f -j $WORKSPACE/json_$BUILD_ID'
-        - shell:
-            '~/mdbci/scripts/build_parser/write_build_results.rb -f $WORKSPACE/json_$BUILD_ID'
-        - inject:
-            properties-file: $WORKSPACE/results_$BUILD_ID
+        - !include: './maxscale_jobs/include/build_parser/setup_build_timestamp.yaml'
+        - !include: './maxscale_jobs/include/build_parser/setup_default_error.yaml'
+        - !include: './maxscale_jobs/include/build_parser/run_test_and_collect.yaml'
+        - !include: './maxscale_jobs/include/build_parser/parse_build_log.yaml'
+        - !include: './maxscale_jobs/include/build_parser/write_build_results.yaml'
+        - !include: './maxscale_jobs/include/build_parser/inject_build_results.yaml'
     publishers:
-      - email-ext:
-          recipients: $DEFAULT_RECIPIENTS
-          reply-to: $DEFAULT_REPLYTO
-          content-type: default
-          subject: $DEFAULT_SUBJECT
-          body: !include-raw: "./maxscale_jobs/include/build_parser_email_body" 
-          attach-build-log: false
-          always: true
-          aborted: true
-          failure: true
-          still-failing: true
-          success: true
-          fixed: true
-          send-to:
-            - recipients
-            - developers
+      - !include: './maxscale_jobs/include/build_parser_mail.yaml'
 #!include: './maxscale_jobs/include/mail.yaml'
     wrappers:
-      - workspace-cleanup:
-          include:
-            - "*.*"
-          dirmatch: true
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
 

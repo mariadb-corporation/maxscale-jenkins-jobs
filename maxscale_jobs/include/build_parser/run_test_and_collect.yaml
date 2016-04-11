@@ -1,0 +1,2 @@
+shell: 
+  '~/build-scripts/test/run_test.sh | tee $WORKSPACE/build_log_$BUILD_ID'

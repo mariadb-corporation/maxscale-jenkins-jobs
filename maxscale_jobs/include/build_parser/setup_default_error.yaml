@@ -1,0 +1,2 @@
+inject:
+  properties-content: BUILD_LOG_PARSING_RESULT="Build log parsing finished with an error"
