@@ -1,0 +1,2 @@
+shell:
+  !include-raw: './maxscale_jobs/include/run_test_pre_def_templates/setup_env.sh'
