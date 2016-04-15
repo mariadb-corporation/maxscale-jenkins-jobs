@@ -1,6 +1,6 @@
-export box="predefined_template"
-export version="5.5"
-export name=$template_name-$target
-export ci_release="ci"
-export big="no"
-export maxscale_restart="yes"
+echo box="predefined_template" >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo version="5.5" >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo name=$template_name-$target >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo ci_release="ci" >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo big="no" >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo maxscale_restart="yes" >> $WORKSPACE/initial_env_vars_$BUILD_ID

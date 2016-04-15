@@ -69,8 +69,8 @@
             branches:
                 - master
     builders:
-        - !include: './maxscale_jobs/include/build_parser/setup_build_timestamp.yaml'
-        - !include: './maxscale_jobs/include/build_parser/setup_default_error.yaml'
+        - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
+        - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'
         - !include: './maxscale_jobs/include/build_parser/run_test_and_collect.yaml'
         - !include: './maxscale_jobs/include/build_parser/parse_build_log.yaml'
         - !include: './maxscale_jobs/include/build_parser/write_build_results.yaml'
