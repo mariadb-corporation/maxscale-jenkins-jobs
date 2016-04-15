@@ -1,2 +1,0 @@
-shell: 
-  'export BUILD_TIMESTAMP=$(date +%Y-%m-%d\ %H-%M-%S)'

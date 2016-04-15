@@ -1,6 +1,6 @@
-export product=`echo $backend | cut -d'-' -f1 `
-export version=`echo $backend | cut -d'-' -f2 `
-export name=$backend-$box-$target
-export ci_release="ci"
-export big="no"
-export maxscale_restart="yes"
+echo product=`echo $backend | cut -d'-' -f1 ` >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo version=`echo $backend | cut -d'-' -f2 ` >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo name=$backend-$box-$target >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo ci_release="ci" >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo big="no" >> $WORKSPACE/initial_env_vars_$BUILD_ID
+echo maxscale_restart="yes" >> $WORKSPACE/initial_env_vars_$BUILD_ID
