@@ -51,6 +51,12 @@
             choices:
                 - ci
                 - release
+        - string:
+            name: repo_user
+            default: ''
+        - string:
+            name: repo_password
+            default: ''
     scm:
         - git:
             # TODO parametrize this url

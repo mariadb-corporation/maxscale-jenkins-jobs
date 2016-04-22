@@ -1,0 +1,36 @@
+- job:
+    name: create_env
+    description: 'This job creates test environment, puts Maxscale source to VM and builds it'
+    parameters: 
+      - !include: './maxscale_jobs/include/value.yaml'
+      - !include: './maxscale_jobs/include/source.yaml'
+      - choice:
+          name: box
+          choices:
+            !include: './maxscale_jobs/include/boxes.yaml'
+      - !include: './maxscale_jobs/include/remove_strip.yaml'
+      - !include: './maxscale_jobs/include/cmake_flags.yaml'
+      - choice:
+          name: product
+          choices:
+              !include: './maxscale_jobs/include/products.yaml'
+      - choice:
+          name: version
+          choices:
+              !include: './maxscale_jobs/include/versions.yaml'
+    scm:
+      - git:
+          url: !include './maxscale_jobs/include/maxscale_repo.yaml'
+          branches:
+            - master
+    builders:
+      - shell: 
+          '~/build-scripts/create_env.sh'
+    publishers:
+      !include: './maxscale_jobs/include/mail.yaml'
+    wrappers:
+      - workspace-cleanup:
+          include:
+            - "*.*"
+          dirmatch: true
+    concurrent: true

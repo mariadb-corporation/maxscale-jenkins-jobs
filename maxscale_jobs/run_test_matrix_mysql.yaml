@@ -1,24 +1,22 @@
 - job:
-    name: run_test_pre_def_templates
-    description: 'This job executes run_test for pre-defined template'
+    name: run_test_matrix_mysql
+    description: 'This job executes run_test for several combinations of OS and MariaDB versions'
     project-type: matrix
     execution-strategy:
       sequential: false
     axes:
       - axis:
           type: user-defined
-          name: template_name
+          name: box
           values:
-            !include: './maxscale_jobs/include/pre_def_templates.yaml'
+            !include: './maxscale_jobs/include/boxes_for_regular.yaml'
+      - axis:
+          type: user-defined
+          name: backend
+          values:
+           - mysql-5.6
+           - mysql-5.7
     parameters:
-        - choice:
-            name: product
-            choices:
-                !include: './maxscale_jobs/include/products.yaml'
-        - choice:
-            name: version
-            choices:
-                !include: './maxscale_jobs/include/versions.yaml'
         - choice:
             name: maxscale_restart
             choices:
@@ -52,6 +50,12 @@
             choices:
                 - ci
                 - release
+        - string:
+            name: repo_user
+            default: ''
+        - string:
+            name: repo_password
+            default: ''
     scm:
         - git:
             # TODO parametrize this url
@@ -60,7 +64,7 @@
                 - master
     builders:
         - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
-        - !include: './maxscale_jobs/include/run_test_pre_def_templates/setup_env.yaml'
+        - !include: './maxscale_jobs/include/run_test_matrix_jjb/setup_env.yaml'
         - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'
         - !include: './maxscale_jobs/include/build_parser/run_test_and_collect.yaml'
         - !include: './maxscale_jobs/include/build_parser/parse_build_log.yaml'

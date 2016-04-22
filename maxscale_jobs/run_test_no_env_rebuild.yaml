@@ -1,25 +1,12 @@
 - job:
-    name: run_test
-    description: 'This job perform integration testing of maxscale'
+    name: run_test_no_env_rebuild
+    description: 'This job perform integration testing of maxscale using existing test VMs'
     parameters:
-        - choice:
-            name: box
-            choices:
-                !include: './maxscale_jobs/include/boxes.yaml'
-        - choice:
-            name: product
-            choices:
-                !include: './maxscale_jobs/include/products.yaml'
-        - choice:
-            name: version
-            choices:
-                !include: './maxscale_jobs/include/versions.yaml'
         - choice:
             name: maxscale_restart
             choices:
                 - 'yes'
                 - 'no'
-        - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - choice:
             name: smoke
             choices:
@@ -29,30 +16,8 @@
              name: name
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
         - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
-        - string:
             name: test_set
             default: !include: './maxscale_jobs/include/default_test_set.yaml'
-        - string:
-            name: ci_url
-            default: !include: './maxscale_jobs/include/default_ci_url.yaml'
-        - string:
-            name: repo_user
-            default: ''
-        - string:
-            name: repo_password
-            default: ''
-        - choice:
-            name: big
-            choices:
-                - 'no'
-                - 'yes'
-        - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
     scm:
         - git:
             # TODO parametrize this url
@@ -62,7 +27,7 @@
     builders:
         - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
         - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'
-        - !include: './maxscale_jobs/include/build_parser/run_test_and_collect.yaml'
+        - !include: './maxscale_jobs/include/build_parser/run_test_and_collect_existing_vm.yaml'
         - !include: './maxscale_jobs/include/build_parser/parse_build_log.yaml'
         - !include: './maxscale_jobs/include/build_parser/write_build_results.yaml'
         - !include: './maxscale_jobs/include/build_parser/inject_build_results.yaml'

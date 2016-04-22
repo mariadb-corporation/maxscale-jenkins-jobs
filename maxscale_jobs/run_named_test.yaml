@@ -1,6 +1,6 @@
 - job:
-    name: run_test
-    description: 'This job perform integration testing of maxscale'
+    name: run_named_test
+    description: 'This job executed one test from integration testing of maxscale (by name)'
     parameters:
         - choice:
             name: box
@@ -32,9 +32,6 @@
             name: target
             default: !include: './maxscale_jobs/include/default_target.yaml'
         - string:
-            name: test_set
-            default: !include: './maxscale_jobs/include/default_test_set.yaml'
-        - string:
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
         - string:
@@ -53,6 +50,10 @@
             choices:
                 - ci
                 - release
+        - choice:
+            name: named_test
+            choices:
+                !include: './maxscale_jobs/include/named_tests.yaml'
     scm:
         - git:
             # TODO parametrize this url
