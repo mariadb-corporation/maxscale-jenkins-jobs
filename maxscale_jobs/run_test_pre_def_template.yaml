@@ -41,10 +41,10 @@
                 - release
         - string:
             name: repo_user
-            default: ''
+            default: !include: './maxscale_jobs/include/default_repo_user.yaml'
         - string:
             name: repo_password
-            default: ''
+            default: !include: './maxscale_jobs/include/default_repo_password.yaml'
     scm:
         - git:
             # TODO parametrize this url

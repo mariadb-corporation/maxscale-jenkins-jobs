@@ -1,3 +1,11 @@
+#!/bin/bash
+
+# $1 - repo_user
+# $2 - repo_password
+
+echo \'$1\' > maxscale_jobs/include/default_repo_user.yaml
+echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
+
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/build.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/build_all.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/build_and_test.yaml
@@ -19,3 +27,6 @@
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/upgrade_test_all.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/run_test_no_env_rebuild.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/run_named_test.yaml
+
+echo \'\' > maxscale_jobs/include/default_repo_user.yaml
+echo \'\' > maxscale_jobs/include/default_repo_password.yaml
