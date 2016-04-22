@@ -19,11 +19,7 @@
             choices:
                 - 'yes'
                 - 'no'
-        - choice:
-            name: do_not_destroy
-            choices:
-                - 'no'
-                - 'yes'
+        - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - choice:
             name: smoke
             choices:
@@ -77,7 +73,6 @@
         - !include: './maxscale_jobs/include/build_parser/inject_build_results.yaml'
     publishers:
       - !include: './maxscale_jobs/include/build_parser_mail.yaml'
-#!include: './maxscale_jobs/include/mail.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true

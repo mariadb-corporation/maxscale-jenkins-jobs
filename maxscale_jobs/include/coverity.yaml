@@ -1,0 +1,5 @@
+choice:
+  name: Coverity
+  choices:
+      - 'no'
+      - 'yes'

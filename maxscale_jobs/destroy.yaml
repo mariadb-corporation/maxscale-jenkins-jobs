@@ -1,0 +1,14 @@
+- job:
+    name: destroy
+    description: 'This job perform integration testing of maxscale'
+    parameters:
+        - string:
+             name: name
+             default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+    builders:
+      - shell:
+          'cd ~/mdbci/$name; vagrant destroy -f'
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+    concurrent: true
+

@@ -1,6 +1,6 @@
 - job:
-    name: Run_test_pre_def_templates_jjb
-    description: 'This job perform synchronization between yaml jobs at @REPO@ and this jenkins instance'
+    name: run_test_pre_def_templates
+    description: 'This job executes run_test for pre-defined template'
     project-type: matrix
     execution-strategy:
       sequential: false
@@ -24,11 +24,7 @@
             choices:
                 - 'yes'
                 - 'no'
-        - choice:
-            name: do_not_destroy
-            choices:
-                - 'no'
-                - 'yes'
+        - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - string:
              name: name
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'

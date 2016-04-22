@@ -1,26 +1,20 @@
 - job:
-    name: Build_all_jjb
+    name: build_ppc_open
     description: 'This job builds Maxscale'
-    project-type: matrix
-    execution-strategy:
-      sequential: false
-    axes:
-      - axis:
-          type: user-defined
-          name: box
-          values:
-            !include: './maxscale_jobs/include/boxes.yaml'
     parameters: 
       - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
+      - choice:
+          name: box
+          choices:
+            !include: './maxscale_jobs/include/ppc_boxes.yaml'
       - !include: './maxscale_jobs/include/target.yaml'
       - !include: './maxscale_jobs/include/remove_strip.yaml'
       - !include: './maxscale_jobs/include/cmake_flags.yaml'
       - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
-#      !include: './maxscale_jobs/include/build_parameters.yaml'
     scm:
       - git:
-          url: git@github.com:mariadb-corporation/maxscale-bsl.git
+          url: !include './maxscale_jobs/include/maxscale_repo_open.yaml'
           branches:
             - master
     builders:
