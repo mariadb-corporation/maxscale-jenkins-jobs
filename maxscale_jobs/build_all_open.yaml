@@ -1,0 +1,35 @@
+- job:
+    name: build_all_open
+    description: 'This job builds Maxscale'
+    project-type: matrix
+    execution-strategy:
+      sequential: false
+    axes:
+      - axis:
+          type: user-defined
+          name: box
+          values:
+            !include: './maxscale_jobs/include/boxes.yaml'
+    parameters: 
+      - !include: './maxscale_jobs/include/value.yaml'
+      - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/target.yaml'
+      - !include: './maxscale_jobs/include/remove_strip.yaml'
+      - !include: './maxscale_jobs/include/cmake_flags.yaml'
+      - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+    scm:
+      - git:
+          url: !include './maxscale_jobs/include/maxscale_repo_open.yaml'
+          branches:
+            - master
+    builders:
+      - shell: 
+          '~/build-scripts/prepare_and_build.sh'
+    publishers:
+      !include: './maxscale_jobs/include/mail.yaml'
+    wrappers:
+      - workspace-cleanup:
+          include:
+            - "*.*"
+          dirmatch: true
+    concurrent: true
