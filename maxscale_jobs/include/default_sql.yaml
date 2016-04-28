@@ -1,0 +1,1 @@
+'select test,result,jenkins_id,start_time,maxscale_commit_id,target,box from results JOIN (test_run) ON results.id = test_run.id WHERE test="sql_queries" AND product="mariadb" AND mariadb_version="10.0";'

@@ -1,0 +1,3 @@
+string:
+  name: sql
+  default: !include: './maxscale_jobs/include/default_sql.yaml'

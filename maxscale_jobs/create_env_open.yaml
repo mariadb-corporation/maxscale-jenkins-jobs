@@ -1,5 +1,5 @@
 - job:
-    name: create_env
+    name: create_env_open
     description: 'This job creates test environment, puts Maxscale source to VM and builds it'
     parameters: 
       - !include: './maxscale_jobs/include/value.yaml'
@@ -26,7 +26,7 @@
           default: !include: './maxscale_jobs/include/default_repo_password.yaml'
     scm:
       - git:
-          url: !include './maxscale_jobs/include/maxscale_repo.yaml'
+          url: !include './maxscale_jobs/include/maxscale_repo_open.yaml'
           branches:
             - master
     builders:

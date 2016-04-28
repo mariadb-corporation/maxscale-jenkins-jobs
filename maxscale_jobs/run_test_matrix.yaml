@@ -25,7 +25,7 @@
                 - 'no'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - string:
-             name: name
+             name: name1
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
         - string:
             name: target
