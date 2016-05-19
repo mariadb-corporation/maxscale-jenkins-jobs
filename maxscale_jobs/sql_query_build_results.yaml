@@ -1,0 +1,11 @@
+- job:
+    name: sql_query_build_results
+    description: 'This job allows to run sql query in DB with run_test* results. Available tables: test_run, results (schema at https://github.com/OSLL/mdbci/blob/master/scripts/db/test_results_db.sql).'
+    parameters:
+        - string:
+            name: sql_query
+    builders:
+      shell: |
+        echo ${sql_query} | mysql --database=test_results_db -u test_bot -p`cat /home/vagrant/build_parser_db_password`
+    publishers:
+      - !include: './maxscale_jobs/include/build_parser_mail.yaml'
