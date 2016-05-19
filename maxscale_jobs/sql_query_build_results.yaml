@@ -5,7 +5,7 @@
         - string:
             name: sql_query
     builders:
-      shell: |
-        echo ${sql_query} | mysql --database=test_results_db -u test_bot -p`cat /home/vagrant/build_parser_db_password`
+      - shell: 
+          'echo ${sql_query} | mysql --database=test_results_db -u test_bot -p`cat /home/vagrant/build_parser_db_password`'
     publishers:
       - !include: './maxscale_jobs/include/build_parser_mail.yaml'
