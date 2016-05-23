@@ -1,0 +1,5 @@
+- job:
+    name: monitor_maxscale_bsl
+    description: 'This job run build_and_test by commits to maxscale_bsl '
+    publishers:
+      !include: './maxscale_jobs/include/mail.yaml'
