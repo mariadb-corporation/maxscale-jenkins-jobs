@@ -1,2 +1,2 @@
 shell: 
-  '~/build-scripts/test/run_test_no_env_rebuild.sh | tee $WORKSPACE/build_log_$BUILD_ID'
+  '~/build-scripts/test/run_test_no_env_rebuild.sh | tee $WORKSPACE/build_log_$BUILD_ID; exit ${PIPESTATUS[0]}'
