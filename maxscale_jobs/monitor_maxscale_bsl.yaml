@@ -12,6 +12,6 @@
       - trigger-builds:
           - project: 'report_sql'
             predefined-parameters:
-              sql="select * from test_run ;"
+              sql=select * from test_run;
     publishers:
       !include: './maxscale_jobs/include/mail.yaml'
