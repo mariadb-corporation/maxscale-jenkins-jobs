@@ -1,0 +1,20 @@
+- job:
+    name: build_and_test_by_maxscale_bsl_push
+    description: 'This job run build_and_test by commits to maxscale_bsl '
+    triggers:
+      - github
+    scm:
+      - git:
+          # TODO replace repo url
+          url: 'git@github.com:mariadb-corporation/maxscale-jenkins-jobs.git'
+          branches:
+            - *
+    builders:
+      - trigger-builds:
+          # TODO replace report_sql with build_and_test
+          - project: 'report_sql'
+            predefined-parameters:
+              # TODO replace key=value below to needed params
+              sql=select * from test_run;
+    publishers:
+      !include: './maxscale_jobs/include/mail.yaml'
