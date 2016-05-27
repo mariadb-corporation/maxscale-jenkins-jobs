@@ -1,5 +1,17 @@
 - job:
-    name: monitor_maxscale_bsl
+    name: build_and_test_by_maxscale_bsl_push
     description: 'This job run build_and_test by commits to maxscale_bsl '
+    triggers:
+      - github
+    scm:
+      - git:
+          url: 'git@github.com:mariadb-corporation/maxscale-jenkins-jobs.git'
+          branches:
+            - master
+    builders:
+      - trigger-builds:
+          - project: 'report_sql'
+            predefined-parameters:
+              sql="select * from test_run ;"
     publishers:
       !include: './maxscale_jobs/include/mail.yaml'
