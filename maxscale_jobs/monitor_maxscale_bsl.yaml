@@ -11,7 +11,7 @@
             - '*'
     builders:
       - trigger-builds:
-          # TODO replace report_sql with build_and_test
+          # TODO replace report_sql with build_and_test#
           - project: 'report_sql'
             predefined-parameters: | 
               test_set='-I 1,5'
