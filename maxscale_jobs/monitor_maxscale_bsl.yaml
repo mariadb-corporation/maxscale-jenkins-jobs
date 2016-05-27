@@ -6,15 +6,15 @@
     scm:
       - git:
           # TODO replace repo url
-          url: 'git@github.com:mariadb-corporation/maxscale-jenkins-jobs.git'
+          url: !include: './maxscale_jobs/include/maxscale_bsl_url.yaml'
           branches:
-            - *
+            - '*'
     builders:
       - trigger-builds:
           # TODO replace report_sql with build_and_test
           - project: 'report_sql'
-            predefined-parameters:
-              # TODO replace key=value below to needed params
-              sql=select * from test_run;
+            predefined-parameters: | 
+              test_set='-I 1,5'
+              name=pushtest-$BUILD_ID
     publishers:
       !include: './maxscale_jobs/include/mail.yaml'
