@@ -19,7 +19,7 @@
               value=develop
               box=centos_7_libvirt
               remove_strip=yes
-              test_set='-I 1,5'
+              test_set='-LE HEAVY'
               smoke=yes
               name=pushtest-$BUILD_ID
     publishers:
