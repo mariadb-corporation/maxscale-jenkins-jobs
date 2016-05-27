@@ -6,10 +6,9 @@
     scm:
       - git:
           # TODO replace repo url
-
           url: 'git@github.com:mariadb-corporation/maxscale-jenkins-jobs.git'
           branches:
-            - master
+            - *
     builders:
       - trigger-builds:
           # TODO replace report_sql with build_and_test
