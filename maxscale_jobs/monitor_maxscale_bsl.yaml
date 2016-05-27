@@ -6,7 +6,7 @@
     scm:
       - git:
           # TODO replace repo url
-          url: !include: './maxscale_jobs/include/maxscale_bsl_url.yaml'
+          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
             - develop
     builders:
