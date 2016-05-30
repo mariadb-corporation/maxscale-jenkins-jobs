@@ -8,6 +8,7 @@
           default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
       - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/target.yaml'
       - choice:
           name: box
           choices:
