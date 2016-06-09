@@ -25,6 +25,11 @@
             choices:
                 - 'yes'
                 - 'no'
+        - choice:
+            name: backend_ssl
+            choices:
+                - 'no'
+                - 'yes'
         - string:
              name: name
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
