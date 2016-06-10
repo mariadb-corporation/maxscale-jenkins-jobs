@@ -1,0 +1,11 @@
+- job:
+    name: restore_snapshot
+    description: 'This job restores a snapshot'
+    parameters:
+        - string:
+             name: environment_name
+        - string:
+             name: snapshot_name
+    builders:
+      - shell:
+          '~/mdbci snapshot revert --path-to-nodes $environment_name --snapshot-name $snapshot_name'
