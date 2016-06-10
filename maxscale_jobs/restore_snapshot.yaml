@@ -7,5 +7,7 @@
         - string:
              name: snapshot_name
     builders:
-      - shell:
-          '~/mdbci snapshot revert --path-to-nodes $environment_name --snapshot-name $snapshot_name'
+      - shell: |
+            if [[ -z $(cat $environment_name/provider | grep aws) ]]; then
+              ~/mdbci snapshot revert --path-to-nodes $environment_name --snapshot-name $snapshot_name
+            fi
