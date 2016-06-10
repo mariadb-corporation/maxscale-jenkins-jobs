@@ -1,0 +1,11 @@
+- job:
+    name: create_snapshot
+    description: 'This job creates a snapshot'
+    parameters:
+        - string:
+             name: environment_name
+        - string:
+             name: snapshot_name
+    builders:
+      - shell:
+          '~/mdbci snapshot take --path-to-nodes $environment_name --snapshot-name $snapshot_name'
