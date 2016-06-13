@@ -1,0 +1,8 @@
+- string:
+    name: environment_name
+    default: "example"
+    description: "Relative path in ~/mdbci folder"
+- string:
+    name: snapshot_name
+    default: "example_with_failed_tests"
+    description: "Name of the snapshot that exists for current environment"
