@@ -1,13 +1,6 @@
 - job:
     name: create_snapshot
     description: 'This job creates a snapshot'
-    parameters:
-        - string:
-             name: environment_name
-        - string:
-             name: snapshot_name
+    parameters: !include: './maxscale_jobs/include/snapshot/snapshot_parameters.yaml'
     builders:
-      - shell: |
-            if [[ -z $(cat $environment_name/provider | grep aws) ]]; then
-              ~/mdbci snapshot take --path-to-nodes $environment_name --snapshot-name $snapshot_name
-            fi
+        - !include: './maxscale_jobs/include/snapshot/create_snapshot_shell.yaml'
