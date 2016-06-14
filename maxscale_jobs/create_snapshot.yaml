@@ -1,0 +1,6 @@
+- job:
+    name: create_snapshot
+    description: 'This job creates a snapshot'
+    parameters: !include: './maxscale_jobs/include/snapshot/snapshot_parameters.yaml'
+    builders:
+        - !include: './maxscale_jobs/include/snapshot/create_snapshot_shell.yaml'
