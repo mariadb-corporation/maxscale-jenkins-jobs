@@ -5,4 +5,5 @@
 - string:
     name: snapshot_name
     default: "example_with_failed_tests"
-    description: "Name of the snapshot that exists for current environment"
+    description: "Name that consists of some information about snapshot (snapshot name should not contain words like 'snapshot' and 'mdbci')"
+
