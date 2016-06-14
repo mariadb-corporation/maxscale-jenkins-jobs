@@ -1,0 +1,4 @@
+- string:
+    name: environment_name
+    default: "example"
+    description: "Relative path in ~/mdbci folder"
