@@ -1,4 +1,4 @@
-- string:
-    name: snapshot_name
-    default: "example_with_failed_tests"
-    description: "Name that consists of some information about snapshot (snapshot name should not contain words like 'snapshot' and 'mdbci')"
+string:
+  name: snapshot_name
+  default: "maxscale_test_run_with_failed_tests"
+  description: "Name that consists of some information about snapshot (snapshot name should not contain words like 'snapshot' and 'mdbci')"
