@@ -1,11 +1,3 @@
 shell: |
-  if [[ -z $(cat $environment_name/provider | grep aws) ]]; then
-    dir="$(pwd)"
-    cd "~/mdbci"
-    ./mdbci snapshot revert --path-to-nodes $environment_name --snapshot-name $snapshot_name
-    cd "${dir}"
-    exit 0
-  else
-    echo "Currently mdbci does not supports aws snapshot"
-    exit 1
-  fi
+  cd "/home/vagrant/mdbci"
+  ./mdbci snapshot revert --path-to-nodes $environment_name --snapshot-name $snapshot_name
