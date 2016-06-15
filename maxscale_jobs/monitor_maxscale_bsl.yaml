@@ -9,12 +9,12 @@
           url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
             - develop
-    parameters:
+    properties:
       - raw:
           xml: |
              <jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl plugin="branch-api@1.6">
                <durationName>day</durationName>
-               <count>4</count>
+               <count>2</count>
              </jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl>
     builders:
       - trigger-builds:
