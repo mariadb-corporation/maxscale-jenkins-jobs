@@ -18,7 +18,7 @@
              </jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl>
 #    builders:
 #      - trigger-builds:
-#          # TODO replace report_sql with build_and_test
+##          # TODO replace report_sql with build_and_test
 #          - project: 'build_and_test'
 #            predefined-parameters: |
 #              # TODO replace key=value below to needed params
