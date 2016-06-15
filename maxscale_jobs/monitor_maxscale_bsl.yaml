@@ -16,19 +16,19 @@
                <durationName>day</durationName>
                <count>2</count>
              </jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl>
-    builders:
-      - trigger-builds:
+#    builders:
+#      - trigger-builds:
           # TODO replace report_sql with build_and_test
-          - project: 'build_and_test'
-            predefined-parameters: |
-              # TODO replace key=value below to needed params
-              source=BRANCH
-              value=develop
-              box=centos_7_libvirt
-              remove_strip=yes
-              test_set=-LE HEAVY
-              smoke=yes
-              name=pushtest-$BUILD_ID
-              target=pushtest-$BUILD_ID 
+#          - project: 'build_and_test'
+#            predefined-parameters: |
+#              # TODO replace key=value below to needed params
+#              source=BRANCH
+#              value=develop
+#              box=centos_7_libvirt
+#              remove_strip=yes
+#              test_set=-LE HEAVY
+#              smoke=yes
+#              name=pushtest-$BUILD_ID
+#              target=pushtest-$BUILD_ID 
     publishers:
       !include: './maxscale_jobs/include/mail.yaml'
