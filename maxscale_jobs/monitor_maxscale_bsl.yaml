@@ -1,12 +1,12 @@
 - job:
-    name: build_and_test_by_maxscale_bsl_push
+    name: Marksbuild_and_test_by_maxscale_bsl_push
     description: 'This job run build_and_test by commits to maxscale_bsl '
     triggers:
       - github
     scm:
       - git:
           # TODO replace repo url
-          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+          url: git@github.com:mariadb-corporation/maxscale-jenkins-jobs.git #!include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
             - develop
     properties:
@@ -14,7 +14,7 @@
           xml: |
              <jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl plugin="branch-api@1.6">
                <durationName>day</durationName>
-               <count>4</count>
+               <count>2</count>
              </jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl>
     builders:
       - trigger-builds:
