@@ -1,0 +1,4 @@
+string:
+  name: environment_name
+  default: "maxscale_test_run"
+  description: "Relative path in ~/mdbci folder"

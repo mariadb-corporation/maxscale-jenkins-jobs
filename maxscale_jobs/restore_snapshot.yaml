@@ -1,8 +1,8 @@
 - job:
-    name: create_snapshot
-    description: 'This job creates a snapshot'
+    name: restore_snapshot
+    description: 'This job restores a snapshot'
     parameters: 
       - !include: './maxscale_jobs/include/snapshot/environment_name.yaml'
       - !include: './maxscale_jobs/include/snapshot/snapshot_name.yaml'
     builders:
-      - !include: './maxscale_jobs/include/snapshot/create_snapshot_shell.yaml'
+      - !include: './maxscale_jobs/include/snapshot/restore_snapshot_shell.yaml'
