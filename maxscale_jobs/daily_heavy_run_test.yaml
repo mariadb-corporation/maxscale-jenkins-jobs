@@ -5,11 +5,12 @@
       - timed: "H 3 * * *"
     builders:
       - trigger-builds:
-          - project: 'run_test'
+          - project: 'build_and_test'
             predefined-parameters: |
               test_set=
               smoke=yes
-              name=daily_heavy-$BUILD_ID
-              target=daily_heavy-$BUILD_ID 
+              name=daily_all-$BUILD_ID
+              target=daily_all-$BUILD_ID 
+              box=centos_7_libvirt
     publishers:
       !include: './maxscale_jobs/include/mail.yaml'
