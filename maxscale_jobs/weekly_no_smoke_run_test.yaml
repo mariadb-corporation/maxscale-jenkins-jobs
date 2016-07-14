@@ -1,0 +1,14 @@
+- job:
+    name: weekly_no_smoke_run_test
+    description: 'Weekly build (at ~3 am Friday) of run_test with smoke=no'
+    triggers:
+      - timed: "H 3 * * 5"
+    builders:
+      - trigger-builds:
+          - project: 'run_test'
+            predefined-parameters: |
+              smoke=no
+              name=weekly_no_smoke_run_test_build-$BUILD_ID
+              target=weekly_no_smoke_run_test_build-$BUILD_ID 
+    publishers:
+      !include: './maxscale_jobs/include/mail.yaml'
