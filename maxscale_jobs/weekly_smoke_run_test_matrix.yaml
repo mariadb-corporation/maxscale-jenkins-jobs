@@ -5,10 +5,15 @@
       - timed: "H 3 * * 6"
     builders:
       - trigger-builds:
+          - project: 'build_regular'
+            predefined-parameters: |
+              target=weekly_matrix_$BUILD_ID
+            block: true
           - project: 'run_test_matrix'
             predefined-parameters: |
               smoke=yes
-              name=weekly_smoke_run_test_matrix_build-$BUILD_ID
-              target=weekly_smoke_run_test_matrix_build-$BUILD_ID 
+              name=weekly_matrix_$BUILD_ID
+              target=weekly_matrix-$BUILD_ID 
+            block: true
     publishers:
       !include: './maxscale_jobs/include/mail.yaml'
