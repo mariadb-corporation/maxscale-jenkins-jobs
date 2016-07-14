@@ -1,0 +1,15 @@
+- job:
+    name: daily_heavy_run_test
+    description: 'Daily build (at ~3 am) of run_test with le-heavy enabled '
+    triggers:
+      - timed: "H 3 * * *"
+    builders:
+      - trigger-builds:
+          - project: 'run_test'
+            predefined-parameters: |
+              test_set=
+              smoke=yes
+              name=daily_heavy-$BUILD_ID
+              target=daily_heavy-$BUILD_ID 
+    publishers:
+      !include: './maxscale_jobs/include/mail.yaml'
