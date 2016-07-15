@@ -1,0 +1,15 @@
+- job:
+    name: weekly_no_smoke_run_test
+    description: 'Weekly build (at ~3 am Friday) of run_test with smoke=no'
+    triggers:
+      - timed: "H 3 * * 5"
+    builders:
+      - trigger-builds:
+          - project: 'build_and_test'
+            predefined-parameters: |
+              smoke=no
+              name=weekly_no_smoke-$BUILD_ID
+              box=centos_7_libvirt
+              test_set=
+    publishers:
+      !include: './maxscale_jobs/include/mail.yaml'
