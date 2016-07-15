@@ -2,13 +2,16 @@
     name: collect_coredumps_for_build
     description: 'This job executes collect all coredumps from given build and store them at '
     parameters: 
-      - !include: './maxscale_jobs/include/'
+      - string
+          name: "CONFIGURATION_NAME"
+          description: "Relative path (in ~/mdbci directory) of stopped configuration."
+      - string
+          name: "BUILD_TO_PROCESS"
+          description: "Build name-number, for example run_test-9, run_test_matrix-6"
+          default: "run_test-187"
     builders:
-      - shell: 
-          'echo $sql | mysql --defaults-file=/home/vagrant/build_parser_db_password --database=test_results_db'
-    wrappers:
-      - workspace-cleanup:
-          include:
-            - "*.*"
-          dirmatch: true
-    concurrent: true
+      - shell: |
+          cd ~/mdbci
+          ./mdbci up $CONFIGURATION_NAME/maxscale
+      - shell: |
+          cp `~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file` ~/mdbci/$CONFIGURATION_NAME/maxscale 

@@ -1,5 +1,5 @@
 shell: |
-  coredumps=$(~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_NUMBER url)
+  coredumps=$(~/mdbci/scripts/build_parser/coredump_finder.sh $JOB_NAME-$BUILD_NUMBER url)
   echo "COREDUMPS \\" > $WORKSPACE/coredumps_$BUILD_ID
   if [[ -z $coredumps ]]; then
           echo "Coredumps was not found for build $BUILD_NUMBER" >> $WORKSPACE/coredumps_$BUILD_ID
