@@ -1,0 +1,16 @@
+- job:
+    name: daily_heavy_run_test
+    description: 'Daily build (at ~3 am) of run_test with le-heavy enabled '
+    triggers:
+      - timed: "H 3 * * *"
+    builders:
+      - trigger-builds:
+          - project: 'build_and_test'
+            predefined-parameters: |
+              test_set=
+              smoke=yes
+              name=daily_all-$BUILD_ID
+              target=daily_all-$BUILD_ID 
+              box=centos_7_libvirt
+    publishers:
+      !include: './maxscale_jobs/include/mail.yaml'
