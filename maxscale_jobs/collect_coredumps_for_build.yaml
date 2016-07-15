@@ -2,10 +2,10 @@
     name: collect_coredumps_for_build
     description: 'This job executes collect all coredumps from given build and store them at '
     parameters: 
-      - string
+      - string:
           name: "CONFIGURATION_NAME"
           description: "Relative path (in ~/mdbci directory) of stopped configuration."
-      - string
+      - string:
           name: "BUILD_TO_PROCESS"
           description: "Build name-number, for example run_test-9, run_test_matrix-6"
           default: "run_test-187"
