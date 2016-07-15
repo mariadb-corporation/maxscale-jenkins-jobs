@@ -1,0 +1,14 @@
+- job:
+    name: collect_coredumps_for_build
+    description: 'This job executes collect all coredumps from given build and store them at '
+    parameters: 
+      - !include: './maxscale_jobs/include/'
+    builders:
+      - shell: 
+          'echo $sql | mysql --defaults-file=/home/vagrant/build_parser_db_password --database=test_results_db'
+    wrappers:
+      - workspace-cleanup:
+          include:
+            - "*.*"
+          dirmatch: true
+    concurrent: true
