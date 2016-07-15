@@ -33,6 +33,10 @@ echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/monitor_maxscale_bsl.yaml 
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/create_snapshot.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/restore_snapshot.yaml
+../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/daily_heavy_run_test.yaml
+../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/weekly_no_smoke_run_test.yaml
+../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/weekly_smoke_run_test_matrix.yaml
+
 
 echo \'\' > maxscale_jobs/include/default_repo_user.yaml
 echo \'\' > maxscale_jobs/include/default_repo_password.yaml
