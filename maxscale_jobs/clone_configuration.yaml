@@ -1,0 +1,8 @@
+- job:
+    name: clone_configuration
+    description: 'This job clones a configuration'
+    parameters: 
+      - !include: './maxscale_jobs/include/cloning/old_configuration.yaml'
+      - !include: './maxscale_jobs/include/cloning/new_configuration.yaml'
+    builders:
+      - !include: './maxscale_jobs/include/cloning/clone_configuration_shell.yaml'

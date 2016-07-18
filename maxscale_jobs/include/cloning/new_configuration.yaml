@@ -1,0 +1,4 @@
+string:
+  name: new_configuration
+  default: "maxscale_test_new_configuration_path"
+  description: "Path to new machine configuration. It should be not existing directory"
