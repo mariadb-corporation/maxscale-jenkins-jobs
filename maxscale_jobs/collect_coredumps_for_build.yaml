@@ -11,7 +11,23 @@
           default: "run_test-187"
     builders:
       - shell: |
-          cd ~/mdbci
-          ./mdbci up $CONFIGURATION_NAME/maxscale
+          # Checking coredumps existance
+          coredumpsCount=`~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file | wc -l`
+          if [[ "$coredumpsCount" == "0" ]]
+          then
+              echo "No coredumps found for $BUILD_TO_PROCESS, exiting"
+              exit 1
+          else
+              echo "Found coredumps:"
+              ~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS url
+          fi
       - shell: |
-          cp `~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file` ~/mdbci/$CONFIGURATION_NAME/maxscale 
+          # Copying coredumps with their pathes
+          mkdir ~/mdbci/$CONFIGURATION_NAME/$BUILD_TO_PROCESS
+          cd $HOME/LOGS/$BUILD_TO_PROCESS 
+          cp --parents `~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file` ~/mdbci/$CONFIGURATION_NAME/$BUILD_TO_PROCESS
+      - shell: |
+          # Running maxscale node from $CONFIGURATION_NAME
+          cd ~/mdbci
+          # ./mdbci up $CONFIGURATION_NAME/maxscale
+          echo "Coredumps are stored at $CONFIGURATION_NAME/maxscale at /vagrant/$BUILD_TO_PROCESS"
