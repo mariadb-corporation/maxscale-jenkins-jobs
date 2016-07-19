@@ -1,4 +1,4 @@
 shell: |
   # Running maxscale node from $CONFIGURATION_NAME
   cd ~/mdbci
-  # ./mdbci up $CONFIGURATION_NAME/maxscale
+  ./mdbci up $CONFIGURATION_NAME/maxscale
