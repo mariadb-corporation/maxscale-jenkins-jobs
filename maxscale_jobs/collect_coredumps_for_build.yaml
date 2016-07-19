@@ -2,32 +2,10 @@
     name: collect_coredumps_for_build
     description: 'This job executes collect all coredumps from given build and store them at '
     parameters: 
-      - string:
-          name: "CONFIGURATION_NAME"
-          description: "Relative path (in ~/mdbci directory) of stopped configuration."
-      - string:
-          name: "BUILD_TO_PROCESS"
-          description: "Build name-number, for example run_test-9, run_test_matrix-6"
-          default: "run_test-187"
+      - !include: './maxscale_jobs/include/stopped_configuration.yaml'
+      - !include: './maxscale_jobs/include/build_id.yaml'
     builders:
-      - shell: |
-          # Checking coredumps existance
-          coredumpsCount=`~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file | wc -l`
-          if [[ "$coredumpsCount" == "0" ]]
-          then
-              echo "No coredumps found for $BUILD_TO_PROCESS, exiting"
-              exit 1
-          else
-              echo "Found coredumps:"
-              ~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS url
-          fi
-      - shell: |
-          # Copying coredumps with their pathes
-          mkdir ~/mdbci/$CONFIGURATION_NAME/$BUILD_TO_PROCESS
-          cd $HOME/LOGS/$BUILD_TO_PROCESS 
-          cp --parents `~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file` ~/mdbci/$CONFIGURATION_NAME/$BUILD_TO_PROCESS
-      - shell: |
-          # Running maxscale node from $CONFIGURATION_NAME
-          cd ~/mdbci
-          # ./mdbci up $CONFIGURATION_NAME/maxscale
-          echo "Coredumps are stored at $CONFIGURATION_NAME/maxscale at /vagrant/$BUILD_TO_PROCESS"
+      - !include: './maxscale_jobs/include/coredumps/does_coredumps_exists.yaml'
+      - !include: './maxscale_jobs/include/coredumps/copy_coredumps.yaml'
+      - !include: './maxscale_jobs/include/coredumps/run_maxscale.yaml'
+      - !include: './maxscale_jobs/include/coredumps/inform_about_coredumps.yaml'
