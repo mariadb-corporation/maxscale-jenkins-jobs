@@ -1,0 +1,11 @@
+- job:
+    name: collect_coredumps_for_build
+    description: 'This job executes collect all coredumps from given build and store them at '
+    parameters: 
+      - !include: './maxscale_jobs/include/stopped_configuration.yaml'
+      - !include: './maxscale_jobs/include/build_id.yaml'
+    builders:
+      - !include: './maxscale_jobs/include/coredumps/does_coredumps_exists.yaml'
+      - !include: './maxscale_jobs/include/coredumps/copy_coredumps.yaml'
+      - !include: './maxscale_jobs/include/coredumps/run_maxscale.yaml'
+      - !include: './maxscale_jobs/include/coredumps/inform_about_coredumps.yaml'

@@ -1,0 +1,2 @@
+shell: |
+  echo "Coredumps are stored at $CONFIGURATION_NAME/maxscale at /vagrant/$BUILD_TO_PROCESS"
