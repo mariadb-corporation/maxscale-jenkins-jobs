@@ -1,3 +1,3 @@
 shell: |
-  cd "/home/vagrant/mdbci"
+  cd "$HOME/mdbci"
   ./mdbci clone $old_configuration $new_configuration
