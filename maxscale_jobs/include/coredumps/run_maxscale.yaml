@@ -1,4 +1,10 @@
 shell: |
   # Running maxscale node from $CONFIGURATION_NAME
-  cd ~/mdbci
-  ./mdbci up $CONFIGURATION_NAME/maxscale
+  cd ~/mdbci/$CONFIGURATION_NAME
+  if vagrant status maxscale | grep -q 'not created'; then
+    cd ..
+    ./mdbci up $CONFIGURATION_NAME/maxscale
+  else
+    echo "$CONFIGURATION_NAME/maxscale is still running!"
+    exit 1
+  fi
