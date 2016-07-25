@@ -6,5 +6,5 @@ shell: |
     ./mdbci up $CONFIGURATION_NAME/maxscale
   else
     echo "$CONFIGURATION_NAME/maxscale is already up, doing rsync of /vagrant partion."
+    vagrant rsync maxscale
   fi
-  vagrant rsync maxscale
