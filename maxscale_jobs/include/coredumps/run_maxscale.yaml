@@ -5,6 +5,5 @@ shell: |
     cd ..
     ./mdbci up $CONFIGURATION_NAME/maxscale
   else
-    echo "$CONFIGURATION_NAME/maxscale is still running!"
-    exit 1
+    echo "$CONFIGURATION_NAME/maxscale is already up, copying logs."
   fi
