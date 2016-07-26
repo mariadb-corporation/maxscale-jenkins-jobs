@@ -1,0 +1,4 @@
+string:
+  name: old_configuration
+  default: "maxscale_test_old_configuration_path"
+  description: "Path to old machine configuration"
