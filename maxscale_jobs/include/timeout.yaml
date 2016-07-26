@@ -1,0 +1,4 @@
+timeout:
+  timeout: 30
+  type: no-activity
+  fail: true
