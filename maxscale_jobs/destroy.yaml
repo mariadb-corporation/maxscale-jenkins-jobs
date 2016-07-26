@@ -2,13 +2,17 @@
     name: destroy
     description: 'This job destroys test setup'
     parameters:
-        - string:
-             name: name
-             default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+      - !include: './maxscale_jobs/include/name.yaml'
+      - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
     builders:
-      - shell:
-          'cd ~/mdbci/$name; vagrant destroy -f'
-    wrappers:
-      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
-    concurrent: true
-
+      - shell: | 
+          if [ $do_not_destroy_vm == "yes" ]; then
+            echo "Config marked as undestroyable, exiting"
+            exit 1
+          fi
+      - shell: |
+          cd ~/mdbci/$name
+          vagrant destroy -f
+          if [ "$?" -eq "1" ]; then
+            ../scripts/clean_vms.sh ${name}
+          fi 
