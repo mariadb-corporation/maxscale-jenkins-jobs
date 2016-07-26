@@ -30,9 +30,7 @@
             choices:
                 - 'no'
                 - 'yes'
-        - string:
-             name: name
-             default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+        - !include: './maxscale_jobs/include/name.yaml'
         - string:
             name: target
             default: !include: './maxscale_jobs/include/default_target.yaml'
