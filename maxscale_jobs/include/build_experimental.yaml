@@ -1,0 +1,5 @@
+choice:
+  name: build_experimental
+  choices:
+      - 'no'
+      - 'yes'

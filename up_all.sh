@@ -3,6 +3,8 @@
 # $1 - repo_user
 # $2 - repo_password
 
+set -e
+
 echo \'$1\' > maxscale_jobs/include/default_repo_user.yaml
 echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
 
@@ -36,7 +38,9 @@ echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/daily_heavy_run_test.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/weekly_no_smoke_run_test.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/weekly_smoke_run_test_matrix.yaml
-
+../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/collect_coredumps_for_build.yaml
+../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/destroy.yaml
+../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/clone_configuration.yaml
 
 echo \'\' > maxscale_jobs/include/default_repo_user.yaml
 echo \'\' > maxscale_jobs/include/default_repo_password.yaml
