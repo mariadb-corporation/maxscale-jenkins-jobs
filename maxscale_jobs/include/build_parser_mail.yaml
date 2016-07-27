@@ -1,5 +1,5 @@
 email-ext:
-  recipients: $DEFAULT_RECIPIENTS
+  recipients: !include-raw: "./maxscale_jobs/include/mail_recipients.yaml"
   reply-to: $DEFAULT_REPLYTO
   content-type: default
   subject: $DEFAULT_SUBJECT
