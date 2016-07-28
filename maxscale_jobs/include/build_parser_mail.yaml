@@ -13,4 +13,3 @@ email-ext:
   fixed: true
   send-to:
     - recipients
-    - developers
