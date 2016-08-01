@@ -1,0 +1,10 @@
+- job:
+    name: match_pattern_from_bsl_push
+    description: 'This checks given branch for matching given pattern and in case of match calls specified job with given test_set.'
+    parameters:
+      - !include: './maxscale_jobs/include/branch_to_check.yaml'
+      - !include: './maxscale_jobs/include/pattern.yaml'
+      - !include: './maxscale_jobs/include/test_set.yaml'
+      - !include: './maxscale_jobs/include/job_name.yaml'
+    builders:
+      - !include: './maxscale_jobs/include/check_branch_matches_pattern.yaml'
