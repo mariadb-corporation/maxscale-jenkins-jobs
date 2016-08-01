@@ -1,4 +1,4 @@
-trigger-parametrized-builds:
+trigger-parameterized-builds:
   - project: 'cleanup'
     condition: UNSTABLE_OR_WORSE
     predefined-parameters: |
