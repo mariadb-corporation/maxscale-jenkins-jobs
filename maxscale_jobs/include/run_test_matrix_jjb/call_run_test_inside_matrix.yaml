@@ -1,0 +1,18 @@
+trigger-builds:
+  - project: 'run_test'
+    block: true
+    predefined-parameters: |
+      box=$box
+      product=$product
+      version=$version
+      maxscale_restart=$maxscale_restart
+      do_not_destroy_vm=$do_not_destroy_vm
+      smoke=$smoke
+      name=$name
+      target=$target
+      test_set=$test_set
+      ci_url=$ci_url
+      repo_user=$repo_user
+      repo_password=$repo_password
+      big=$big
+      ci_release=$ci_release
