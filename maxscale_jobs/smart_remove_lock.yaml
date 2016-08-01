@@ -2,9 +2,7 @@
     name: smart_remove_lock
     description: 'Compares $build_full_name and ~/vagrant_lock content and calls remove lock if they are equal'
     parameters:
-      - string:
-          name: build_full_name
-          description: "Job_name-Build_id"
+      - !include: './maxscale_jobs/include/buildb_full_name.yaml'
     builders:
       - shell: |
           locker=`cat ~/vagrant_lock`
