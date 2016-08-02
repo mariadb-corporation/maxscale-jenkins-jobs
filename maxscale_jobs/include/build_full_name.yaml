@@ -1,0 +1,3 @@
+string:
+  name: build_full_name
+  description: "Job_name-Build_id"

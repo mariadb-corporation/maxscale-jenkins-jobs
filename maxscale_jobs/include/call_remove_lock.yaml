@@ -1,0 +1,5 @@
+trigger-builds:
+  - project: 'smart_remove_lock'
+    block: true
+    predefined-parameters: |
+      build_full_name=$build_full_name

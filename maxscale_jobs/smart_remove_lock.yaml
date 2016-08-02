@@ -1,0 +1,14 @@
+- job:
+    name: smart_remove_lock
+    description: 'Compares $build_full_name and ~/vagrant_lock content and calls remove lock if they are equal'
+    parameters:
+      - !include: './maxscale_jobs/include/build_full_name.yaml'
+    builders:
+      - shell: |
+          locker=`cat ~/vagrant_lock`
+          if [ "$build_full_name" != "$locker" ]; then
+            echo "Lock file was created not by current task! Lock file will not be removed."
+            exit 1
+          fi
+      - trigger-builds:
+          - project: 'remove_lock'

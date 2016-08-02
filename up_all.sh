@@ -41,6 +41,7 @@ echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/collect_coredumps_for_build.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/destroy.yaml
 ../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/clone_configuration.yaml
+../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update maxscale_jobs/smart_remove_lock.yaml
 
 echo \'\' > maxscale_jobs/include/default_repo_user.yaml
 echo \'\' > maxscale_jobs/include/default_repo_password.yaml

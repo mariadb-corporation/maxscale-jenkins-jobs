@@ -1,0 +1,10 @@
+- job:
+    name: cleanup
+    description: 'This job perform complex garbage collection after any other jobs which produce Vagrant configurations.'
+    parameters:
+      - !include: './maxscale_jobs/include/name.yaml'
+      - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+      - !include: './maxscale_jobs/include/build_full_name.yaml'
+    builders:
+      - !include: './maxscale_jobs/include/call_destroy.yaml'
+      - !include: './maxscale_jobs/include/call_remove_lock.yaml'
