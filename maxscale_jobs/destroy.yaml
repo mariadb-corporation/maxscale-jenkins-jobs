@@ -11,12 +11,12 @@
             exit 1
           fi
       - shell: |
-          if [ -d "~/mdbci/$name" ]; then
-            cd ~/mdbci/$name
+          if [ -d "$HOME/mdbci/$name" ]; then
+            cd $HOME/mdbci/$name
             vagrant destroy -f
             if [ "$?" -eq "1" ]; then
               ../scripts/clean_vms.sh ${name}
             fi
           else
-            echo "Directory ~/mdbci/$name does not exist. Probably this job was called before $name configuration had created."
+            echo "Directory $HOME/mdbci/$name does not exist. Probably this job was called before $name configuration had created."
           fi 
