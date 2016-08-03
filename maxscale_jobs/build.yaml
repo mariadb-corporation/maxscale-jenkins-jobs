@@ -17,14 +17,15 @@
       - !include: './maxscale_jobs/include/use_mariadbd.yaml'
     scm:
       - git:
-          url: !include './maxscale_jobs/include/maxscale_repo.yaml'
+          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
             - master
     builders:
       - shell: 
           '~/build-scripts/prepare_and_build.sh'
     publishers:
-      !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/call_cleanup.yaml'
     wrappers:
       - workspace-cleanup:
           include:
