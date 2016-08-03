@@ -13,4 +13,4 @@
               target=daily_all-$BUILD_ID 
               box=centos_7_libvirt
     publishers:
-      !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail.yaml'
