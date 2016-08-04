@@ -7,11 +7,15 @@
       - shell:
           !include-raw: './maxscale_jobs/include/generate_branch_property_files.sh' 
       - trigger-builds:
-          - project: 'run_test'
+          - project: '7334_test_sub_job'
+#          - project: 'run_test'
             predefined-parameters: |
               name=daily_maxscale_bsl_branch_run_test-$BUILD_ID
             parameter-factories:
               - factory: filebuild
-                file-pattern: $WORKSPACE/branches/*
-    publishers:
-      - !include: './maxscale_jobs/include/mail.yaml'
+                file-pattern: ./branches/*
+                no-files-found-action: FAIL
+#    publishers:
+#      - !include: './maxscale_jobs/include/mail.yaml'
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
