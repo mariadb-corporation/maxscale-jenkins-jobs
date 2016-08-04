@@ -16,4 +16,4 @@
               target=weekly_matrix-$BUILD_ID 
             block: true
     publishers:
-      !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail.yaml'

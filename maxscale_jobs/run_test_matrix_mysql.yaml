@@ -74,7 +74,6 @@
         - !include: './maxscale_jobs/include/build_parser/inject_coredumps_var.yaml'
     publishers:
       - !include: './maxscale_jobs/include/build_parser_mail.yaml'
-#!include: './maxscale_jobs/include/mail.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
