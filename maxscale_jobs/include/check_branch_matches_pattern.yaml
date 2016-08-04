@@ -1,0 +1,10 @@
+conditional-step:
+  condition-kind: regex-match
+  regex: $pattern
+  label: $branch_to_check
+  steps:
+    - trigger-builds:
+        - project: $job_name
+          block: true
+          predefined-parameters: |
+            test_set=$test_set
