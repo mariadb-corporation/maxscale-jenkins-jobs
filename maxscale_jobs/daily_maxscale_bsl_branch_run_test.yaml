@@ -1,17 +1,17 @@
 - job:
-    name: run_test
-    description: 'This job perform integration testing of maxscale'
+    name: daily_maxscale_bsl_branch_run_test 
+    description: 'This job perform daily run of run_test on a given branch set.'
     triggers:
-      - timed: "H 3 * * *"
+      - timed: "H 5 * * *"
     builders:
-      - shell: 
+      - shell:
+          !include-raw: './maxscale_jobs/include/generate_branch_property_files.sh' 
       - trigger-builds:
-          - project: 'build_and_test'
+          - project: 'run_test'
             predefined-parameters: |
-              test_set=
-              smoke=yes
-              name=daily_all-$BUILD_ID
-              target=daily_all-$BUILD_ID 
-              box=centos_7_libvirt
+              name=daily_maxscale_bsl_branch_run_test-$BUILD_ID
+            parameter-factories:
+              - factory: filebuild
+                file-pattern: $WORKSPACE/branches/*
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
