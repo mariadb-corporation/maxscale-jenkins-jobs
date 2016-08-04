@@ -1,0 +1,17 @@
+- job:
+    name: run_test
+    description: 'This job perform integration testing of maxscale'
+    triggers:
+      - timed: "H 3 * * *"
+    builders:
+      - shell: 
+      - trigger-builds:
+          - project: 'build_and_test'
+            predefined-parameters: |
+              test_set=
+              smoke=yes
+              name=daily_all-$BUILD_ID
+              target=daily_all-$BUILD_ID 
+              box=centos_7_libvirt
+    publishers:
+      - !include: './maxscale_jobs/include/mail.yaml'

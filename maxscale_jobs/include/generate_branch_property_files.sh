@@ -1,4 +1,9 @@
 branches_file="$home/run_test_branches.list"
-property_files_dir="$WORKSPACE/branches"
+if [ ! -f ${branches_file} ]; then
+	echo "Branch file ${branches_file} not found! Exiting."
+	exit 1
+fi
 
-cat ${branches_file} | xargs -I@ echo "target=@" > {property_files_dir}/@
+property_files_dir="$WORKSPACE/branches"
+mkdir ${property_files_dir}
+cat ${branches_file} | xargs -I@ sh -c "echo 'target=@' > ${property_files_dir}'@'"
