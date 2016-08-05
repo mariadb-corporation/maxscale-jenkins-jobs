@@ -1,21 +1,21 @@
 - job:
     name: daily_maxscale_bsl_branch_run_test 
-    description: 'This job perform daily run of run_test on a given branch set.'
+    description: 'This job perform daily run of run_test on a given branch set stored at $HOME/run_test_branches.list as list of branch names each in a new line.'
     triggers:
       - timed: "H 5 * * *"
     builders:
       - shell:
           !include-raw: './maxscale_jobs/include/generate_branch_property_files.sh' 
       - trigger-builds:
-          - project: '7334_test_sub_job'
-#          - project: 'run_test'
+          - project: 'run_test'
+            block: true
             predefined-parameters: |
               name=daily_maxscale_bsl_branch_run_test-$BUILD_ID
             parameter-factories:
               - factory: filebuild
-                file-pattern: ./branches/*
+                file-pattern: branches/*
                 no-files-found-action: FAIL
-#    publishers:
-#      - !include: './maxscale_jobs/include/mail.yaml'
+    publishers:
+      - !include: './maxscale_jobs/include/mail.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
