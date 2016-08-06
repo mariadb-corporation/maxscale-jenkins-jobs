@@ -1,0 +1,4 @@
+string:
+  name: config_to_clone
+  default: ""
+  description: ""
