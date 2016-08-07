@@ -1,2 +1,2 @@
 shell: 
-  '~/build-scripts/test/run_test_snapshot.sh | tee $WORKSPACE/build_log_$BUILD_ID; echo ${PIPESTATUS[0]} > result_$BUILD_ID'
+  '~/build-scripts/test/run_test_no_env_rebuild.sh | tee $WORKSPACE/build_log_$BUILD_ID; echo ${PIPESTATUS[0]} > result_$BUILD_ID'
