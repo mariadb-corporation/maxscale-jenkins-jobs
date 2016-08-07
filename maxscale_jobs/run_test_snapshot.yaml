@@ -1,0 +1,70 @@
+- job:
+    name: run_test_snapshot
+    description: 'This job perform integration testing of maxscale'
+    parameters:
+        - choice:
+            name: maxscale_restart
+            choices:
+                - 'yes'
+                - 'no'
+        - choice:
+            name: smoke
+            choices:
+                - 'yes'
+                - 'no'
+        - choice:
+            name: backend_ssl
+            choices:
+                - 'no'
+                - 'yes'
+        - !include: './maxscale_jobs/include/name.yaml'
+        - string:
+            name: snapshot_name
+            default: 'clean'
+        - string:
+            name: target
+            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - string:
+            name: test_set
+            default: !include: './maxscale_jobs/include/default_test_set.yaml'
+        - string:
+            name: ci_url
+            default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - string:
+            name: repo_user
+            default: !include: './maxscale_jobs/include/default_repo_user.yaml'
+        - string:
+            name: repo_password
+            default: !include: './maxscale_jobs/include/default_repo_password.yaml'
+        - choice:
+            name: big
+            choices:
+                - 'no'
+                - 'yes'
+        - choice:
+            name: ci_release
+            choices:
+                - ci
+                - release
+    scm:
+        - git:
+            # TODO parametrize this url
+            url: https://github.com/mariadb-corporation/maxscale-system-test.git
+            branches:
+                - master
+    builders:
+      - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
+      - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'
+      - !include: './maxscale_jobs/include/build_parser/run_test_snapshot_and_collect.yaml'
+      - !include: './maxscale_jobs/include/build_parser/parse_build_log.yaml'
+      - !include: './maxscale_jobs/include/build_parser/write_build_results.yaml'
+      - !include: './maxscale_jobs/include/build_parser/inject_build_results.yaml'
+      - !include: './maxscale_jobs/include/build_parser/create_env_coredumps.yaml'
+      - !include: './maxscale_jobs/include/build_parser/inject_coredumps_var.yaml'
+    publishers:
+      - !include: './maxscale_jobs/include/build_parser_mail.yaml'
+#      - !include: './maxscale_jobs/include/call_cleanup.yaml'
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+      - !include: './maxscale_jobs/include/timeout.yaml'
+    concurrent: true
