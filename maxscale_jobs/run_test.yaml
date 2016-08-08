@@ -58,7 +58,7 @@
                 - release
         - string:
             name: config_to_clone
-            default: !include: './maxscale_jobs/include/config_to_clone.yaml'
+            description: !include: './maxscale_jobs/include/config_to_clone.yaml'
 
     scm:
         - git:
