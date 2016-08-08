@@ -31,4 +31,4 @@
               name=pushtest-$BUILD_ID
               target=pushtest-$BUILD_ID 
     publishers:
-      !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail.yaml'

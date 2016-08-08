@@ -36,7 +36,7 @@
       - shell: 
           '~/build-scripts/test/create_env.sh'
     publishers:
-      !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail.yaml'
     wrappers:
       - workspace-cleanup:
           include:
