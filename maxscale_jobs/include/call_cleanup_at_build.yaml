@@ -4,5 +4,5 @@ trigger-parameterized-builds:
     predefined-parameters: |
       build_full_name=$JOB_NAME-$BUILD_NUMBER
       do_not_destroy_vm=$do_not_destroy_vm
-      name=build_$box-$datestr
+      name=$box-$JOB_NAME-$BUILD_NUMBER
       
