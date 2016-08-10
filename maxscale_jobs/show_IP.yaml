@@ -7,9 +7,9 @@
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
     builders:
       - shell:
-          'cd ~/mdbci/; ./mdbci show network $name --silent'
+          'cd $HOME/mdbci/; ./mdbci show network $name --silent'
       - shell:
-          'cd ~/mdbci/$name ; vagrant ssh maxscale -c whoami 2> /dev/null | tr -cd "[:print:]"'
+          'cd $HOME/mdbci/$name ; vagrant ssh maxscale -c whoami 2> /dev/null | tr -cd "[:print:]"'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
