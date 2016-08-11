@@ -31,7 +31,7 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - master
+            - ''
     builders:
       - shell: 
           '~/build-scripts/test/create_env.sh'

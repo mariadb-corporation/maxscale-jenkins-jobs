@@ -23,7 +23,7 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - master
+            - ''
     builders:
       - shell: 
           '~/build-scripts/prepare_and_build.sh'
