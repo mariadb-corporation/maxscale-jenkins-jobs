@@ -24,7 +24,7 @@
             default: !include: './maxscale_jobs/include/default_repo_password.yaml'
     builders:
         - shell:
-            '~/build-scripts/upgrade_test.sh'
+            '$HOME/build-scripts/upgrade_test.sh'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true

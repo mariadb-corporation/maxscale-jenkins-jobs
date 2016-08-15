@@ -1,5 +1,5 @@
 shell: |
-  cd "/home/vagrant/mdbci"
+  cd "$HOME/mdbci"
   if ./scripts/detect_snapshot.sh $environment_name; then
     echo "No preexisting snapshots found, creating new one"
     ./mdbci snapshot take --path-to-nodes $environment_name --snapshot-name $snapshot_name

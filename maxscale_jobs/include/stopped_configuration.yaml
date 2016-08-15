@@ -1,3 +1,3 @@
 string:
   name: "CONFIGURATION_NAME"
-  description: "Relative path (in ~/mdbci directory) of stopped configuration."
+  description: "Relative path (in $HOME/mdbci directory) of stopped configuration."

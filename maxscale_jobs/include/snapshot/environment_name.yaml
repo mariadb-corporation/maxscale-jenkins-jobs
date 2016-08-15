@@ -1,4 +1,4 @@
 string:
   name: environment_name
   default: "maxscale_test_run"
-  description: "Relative path in ~/mdbci folder for RUNING configuration. "
+  description: "Relative path in $HOME/mdbci folder for RUNING configuration. "
