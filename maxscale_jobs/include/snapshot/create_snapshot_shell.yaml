@@ -1,3 +1,9 @@
 shell: |
   cd "$HOME/mdbci"
-  ./mdbci snapshot take --path-to-nodes $environment_name --snapshot-name $snapshot_name
+  if ./scripts/detect_snapshot.sh $environment_name; then
+    echo "No preexisting snapshots found, creating new one"
+    ./mdbci snapshot take --path-to-nodes $environment_name --snapshot-name $snapshot_name
+  else
+    echo "Snapshots already exists for $environment_name!"
+    exit 1
+  fi
