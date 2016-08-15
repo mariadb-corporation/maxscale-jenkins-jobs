@@ -1,0 +1,4 @@
+string:
+  name: logs_dir
+  default: $HOME/LOGS
+  description: "Path were logs should be stored locally"
