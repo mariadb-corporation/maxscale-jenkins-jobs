@@ -54,6 +54,7 @@
             name: named_test
             choices:
                 !include: './maxscale_jobs/include/named_tests.yaml'
+        - !include: './maxscale_jobs/include/logs_dir.yaml'
     scm:
         - git:
             # TODO parametrize this url

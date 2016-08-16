@@ -46,6 +46,7 @@
             choices:
                 - ci
                 - release
+        - !include: './maxscale_jobs/include/logs_dir.yaml'
     scm:
         - git:
             # TODO parametrize this url
