@@ -17,6 +17,10 @@
             if [ "$?" -eq "1" ]; then
               ../scripts/clean_vms.sh ${name}
             fi
+            cd ..
+            rm -rf "$name"
+            rm -rf "$name"_network_config*
+            rm -rf "$name".json
           else
             echo "Directory $HOME/mdbci/$name does not exist. Probably this job was called before $name configuration had created."
           fi 
