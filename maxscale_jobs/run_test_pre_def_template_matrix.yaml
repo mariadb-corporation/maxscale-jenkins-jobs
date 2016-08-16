@@ -29,6 +29,7 @@
         - string:
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
         - choice:
             name: smoke
             choices:

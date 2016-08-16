@@ -38,6 +38,7 @@
         - string:
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
         - string:
             name: repo_user
             default: !include: './maxscale_jobs/include/default_repo_user.yaml'
