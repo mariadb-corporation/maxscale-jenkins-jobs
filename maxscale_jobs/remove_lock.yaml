@@ -1,6 +1,6 @@
 - job:
     name: remove_lock
-    description: 'This job builds Maxscale'
+    description: 'This job removes vagrant_lock'
     builders:
       - shell: 
           'rm $HOME/vagrant_lock'
