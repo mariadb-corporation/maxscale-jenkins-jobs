@@ -1,0 +1,4 @@
+string:
+  name: "ci_url_suffix"
+  description: "part of repo URL after the name of Maxscale version (after 'target')"
+  default: "mariadb-maxscale"
