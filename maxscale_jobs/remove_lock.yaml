@@ -3,4 +3,4 @@
     description: 'This job builds Maxscale'
     builders:
       - shell: 
-          'rm ~/vagrant_lock'
+          'rm $HOME/vagrant_lock'

@@ -21,10 +21,10 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo_open.yaml'
           branches:
-            - master
+            - ''
     builders:
       - shell: 
-          '~/build-scripts/prepare_and_build.sh'
+          '$HOME/build-scripts/prepare_and_build.sh'
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
     wrappers:
