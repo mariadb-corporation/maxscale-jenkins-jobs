@@ -8,8 +8,6 @@
     scm:
         - git:
             url: git@github.com:OSLL/mdbci.git
-            branches:
-                - origin/*
     triggers:
         - github
     builders:
@@ -18,8 +16,8 @@
         - trigger-builds:
             - project: 'match_pattern_from_bsl_push'
               predefined-parameters: |
-                job_name='run_test'
+                job_name=run_test
                 branch_to_check=BRANCH
-                test_set='test_set'
-                pattern=$BRANCHES_LIST
+                test_set=-LE HEAVY
+                pattern=BRANCHES_LIST
 
