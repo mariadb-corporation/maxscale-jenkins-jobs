@@ -30,6 +30,7 @@
         - string:
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
         - string:
             name: repo_user
             default: !include: './maxscale_jobs/include/default_repo_user.yaml'
@@ -46,6 +47,7 @@
             choices:
                 - ci
                 - release
+        - !include: './maxscale_jobs/include/logs_dir.yaml'
     scm:
         - git:
             # TODO parametrize this url
@@ -63,7 +65,7 @@
       - !include: './maxscale_jobs/include/build_parser/inject_coredumps_var.yaml'
     publishers:
       - !include: './maxscale_jobs/include/build_parser_mail.yaml'
-#      - !include: './maxscale_jobs/include/call_cleanup.yaml'
+      - !include: './maxscale_jobs/include/call_cleanup_snapshot.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
       - !include: './maxscale_jobs/include/timeout.yaml'

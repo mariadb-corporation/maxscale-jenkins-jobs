@@ -1,11 +1,11 @@
 shell: |
   # Checking coredumps existance
-  coredumpsCount=`~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file | wc -l`
+  coredumpsCount=`$HOME/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file | wc -l`
   if [[ "$coredumpsCount" -eq "0" ]]
   then
       echo "No coredumps found for $BUILD_TO_PROCESS, exiting"
       exit 1
   else
       echo "Found coredumps:"
-      ~/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS url
+      $HOME/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS url
   fi

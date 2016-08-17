@@ -34,12 +34,11 @@
         - string:
             name: target
             default: !include: './maxscale_jobs/include/default_target.yaml'
-        - string:
-            name: test_set
-            default: !include: './maxscale_jobs/include/default_test_set.yaml'
+        - !include: './maxscale_jobs/include/test_set.yaml'
         - string:
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
         - string:
             name: repo_user
             default: !include: './maxscale_jobs/include/default_repo_user.yaml'
@@ -56,6 +55,7 @@
             choices:
                 - ci
                 - release
+        - !include: './maxscale_jobs/include/logs_dir.yaml'
     scm:
         - git:
             # TODO parametrize this url

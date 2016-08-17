@@ -1,0 +1,8 @@
+- job:
+    name: remove_lock_snapshot
+    parameters:
+      - !include: './maxscale_jobs/include/name.yaml'
+    description: 'This job removes snapshot_lock'
+    builders:
+      - shell: 
+          'rm $HOME/mdbci/$name/snapshot_lock'
