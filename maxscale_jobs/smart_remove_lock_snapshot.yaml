@@ -1,5 +1,5 @@
 - job:
-    name: smart_remove_lock
+    name: smart_remove_lock_snapshot
     description: 'Compares $build_full_name and $HOME/mdbci/$name/snapshot_lock content and calls remove lock if they are equal'
     parameters:
       - !include: './maxscale_jobs/include/name.yaml'
