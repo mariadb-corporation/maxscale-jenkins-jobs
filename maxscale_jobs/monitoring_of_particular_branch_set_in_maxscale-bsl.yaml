@@ -18,7 +18,7 @@
         - trigger-builds:
             - project: 'match_pattern_from_bsl_push'
               predefined-parameters: |
-                job_name='job_name'
+                job_name='run_test'
                 branch_to_check=BRANCH
                 test_set='test_set'
                 pattern=$BRANCHES_LIST
