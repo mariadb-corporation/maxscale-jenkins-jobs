@@ -5,11 +5,20 @@
         - inject:
             properties-content: |
                 BRANCHES_LIST_FILE=branches_list.txt
+    parameters:
+      - !include: './maxscale_jobs/include/branch_to_check.yaml'
+      - !include: './maxscale_jobs/include/pattern.yaml'
+      - !include: './maxscale_jobs/include/test_set.yaml'
+      - !include: './maxscale_jobs/include/job_name.yaml'
     scm:
-        - git:
-            url: git@github.com:OSLL/mdbci.git
+      - git:
+          # TODO replace repo url
+          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+          branches:
+            - develop
     triggers:
         - github
+
     builders:
         - shell:
             BRANCHES_LIST=`cat $BRANCHES_LIST_FILE`
