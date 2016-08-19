@@ -5,4 +5,10 @@ if [ ! -f ${branches_file} ]; then
 fi
 property_files_dir="$WORKSPACE/branches"
 mkdir ${property_files_dir}
-cat ${branches_file} | xargs -I@ sh -c "echo 'target=@' > ${property_files_dir}/'@'"
+cat ${branches_file} | while read branch_string;
+do
+	branch=`echo "${branch_string}"| sed -e 's/|[^|]*$//g'`
+	test_set=`echo "${branch_string}"| sed -e 's/^[^|]*|//g'`
+        echo "target=${branch}" > ${property_files_dir}/${branch}
+	echo "test_set=${test_set}" >>${property_files_dir}/${branch}
+done
