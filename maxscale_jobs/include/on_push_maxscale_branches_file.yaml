@@ -1,3 +1,3 @@
 string:
-  name: branches_list
+  name: branches_list_file
   default: $HOME/on_push_maxscale_branches.list
