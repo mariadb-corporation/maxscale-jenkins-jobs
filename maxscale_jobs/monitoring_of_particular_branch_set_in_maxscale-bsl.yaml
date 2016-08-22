@@ -18,13 +18,13 @@
 
     builders:
         - shell:
-            tmp=`sed 's/|[^|]*/|/g' $branches_list`
+            tmp=`sed 's/|[^|]*/|/g' $branches_list_file`
             BRANCHES_LIST=`echo $tmp | sed 's/^\(.*\).$/\1)/' | sed 's/^/(/' | sed 's/ //g'`
         - trigger-builds:
             - project: 'match_pattern_from_bsl_push'
               predefined-parameters: |
                 job_name=run_test
-                branch_to_check=BRANCH
+                branch_to_check=$BRANCH
                 test_set=test_set
-                pattern=BRANCHES_LIST
+                pattern=$BRANCHES_LIST
 
