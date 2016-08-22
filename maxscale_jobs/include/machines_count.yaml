@@ -1,0 +1,4 @@
+string:
+  name: machines_count
+  default: 4
+  description: "Machine count in tested configuration. Must be >= 1." 
