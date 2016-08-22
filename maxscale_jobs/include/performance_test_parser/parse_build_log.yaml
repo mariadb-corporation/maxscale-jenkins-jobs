@@ -1,2 +1,2 @@
 shell:
-  '$HOME/mdbci/scripts/build_parser/parse_ctest_log.rb  -l $WORKSPACE/build_log_$BUILD_ID -o $WORKSPACE/results_$BUILD_ID -r -f -j $WORKSPACE/json_$BUILD_ID'
+#  '$HOME/mdbci/scripts/build_parser/parse_ctest_log.rb  -l $WORKSPACE/build_log_$BUILD_ID -o $WORKSPACE/results_$BUILD_ID -r -f -j $WORKSPACE/json_$BUILD_ID'

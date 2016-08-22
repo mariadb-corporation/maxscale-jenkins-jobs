@@ -4,5 +4,3 @@ Rebuild here: $BUILD_URL/rebuild
 $DB_WRITE_ERROR
 
 Result: $BUILD_LOG_PARSING_RESULT
-
-Coredumps: $COREDUMPS
