@@ -27,4 +27,3 @@
                 branch_to_check=$BRANCH
                 test_set=test_set
                 pattern=$BRANCHES_LIST
-
