@@ -1,4 +1,4 @@
 string:
-  name: branch_to_check
+  name: git_branch
   default: master
   description: Git branch which name will be checked for matching the regexp

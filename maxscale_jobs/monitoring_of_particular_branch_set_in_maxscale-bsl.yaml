@@ -7,12 +7,16 @@
       - !include: './maxscale_jobs/include/pattern.yaml'
       - !include: './maxscale_jobs/include/test_set.yaml'
       - !include: './maxscale_jobs/include/job_name.yaml'
+    properties:
+        - inject:
+            properties-content: |
+                BRANCHES_LIST=''
     scm:
       - git:
           # TODO replace repo url
           url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - develop
+            - origin/*
     triggers:
         - github
 
@@ -20,10 +24,13 @@
         - shell:
             tmp=`sed 's/|[^|]*/|/g' $branches_list_file`
             BRANCHES_LIST=`echo $tmp | sed 's/^\(.*\).$/\1)/' | sed 's/^/(/' | sed 's/ //g'`
+            echo $BRANCHES_LIST
+        - shell:
+            echo $BRANCHES_LIST
         - trigger-builds:
             - project: 'match_pattern_from_bsl_push'
               predefined-parameters: |
                 job_name=run_test
-                branch_to_check=$BRANCH
+                branch_to_check=$git_branch
                 test_set=test_set
                 pattern=$BRANCHES_LIST
