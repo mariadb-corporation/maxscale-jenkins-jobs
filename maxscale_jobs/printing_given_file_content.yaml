@@ -3,10 +3,10 @@
     description: 'This job prints given file content'
     parameters:
         - choice:
-            name: maxscale_restart
+            name: file_for_print
             choices:
-                - !include: './maxscale_jobs/include/on_push_maxscale_branches_file.yaml'
-                - !include: './maxscale_jobs/include/run_test_branches_file.yaml'
-     builders:
-         - shell:
-             cat $maxscale_restart
+                - $HOME/run_test_branches.list
+                - $HOME/on_push_maxscale_branches.list
+    builders:
+        - shell:
+            cat $file_for_print
