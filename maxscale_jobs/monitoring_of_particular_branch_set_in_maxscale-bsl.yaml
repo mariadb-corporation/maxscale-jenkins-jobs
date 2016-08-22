@@ -1,11 +1,8 @@
 - job:
     name: monitoring_of_particular_branch_set_in_maxscale-bsl
     description: 'This job checks "branches_list" file and passes branches list from given file with special settings to maxscale_jobs/match_pattern_from_bsl_push.yaml'
-    properties:
-        - inject:
-            properties-content: |
-                BRANCHES_LIST_FILE=branches_list.txt
     parameters:
+      - !include: './maxscale_jobs/include/on_push_maxscale_branches_file.yaml'
       - !include: './maxscale_jobs/include/branch_to_check.yaml'
       - !include: './maxscale_jobs/include/pattern.yaml'
       - !include: './maxscale_jobs/include/test_set.yaml'
@@ -21,12 +18,13 @@
 
     builders:
         - shell:
-            BRANCHES_LIST=`cat $BRANCHES_LIST_FILE`
+            tmp=`sed 's/|[^|]*/|/g' $branches_list`
+            BRANCHES_LIST=`echo $tmp | sed 's/^\(.*\).$/\1)/' | sed 's/^/(/' | sed 's/ //g'`
         - trigger-builds:
             - project: 'match_pattern_from_bsl_push'
               predefined-parameters: |
                 job_name=run_test
                 branch_to_check=BRANCH
-                test_set=-LE HEAVY
+                test_set=test_set
                 pattern=BRANCHES_LIST
 
