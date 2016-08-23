@@ -1,0 +1,5 @@
+choice:
+  name: branches_list
+  choices:
+    - $HOME/run_test_branches.list
+    - $HOME/on_push_maxscale_branches.list
