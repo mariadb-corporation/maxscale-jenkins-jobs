@@ -1,3 +1,0 @@
-string:
-  name: pattern
-  description: Regexp for checking git_branch

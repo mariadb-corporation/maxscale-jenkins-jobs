@@ -1,4 +1,0 @@
-choice:
-  name: job_name
-  choices: !include: './maxscale_jobs/include/possible_jobs_for_bsl_push.yaml'
-  description: 'Which job should be triggered in case git_branch matches pattern.'
