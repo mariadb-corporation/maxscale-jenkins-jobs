@@ -1,0 +1,76 @@
+- job:
+    name: performance_test
+    description: 'This job execute performance test on parametrized maxscale instance.'
+    parameters:
+        - choice:
+            name: box
+            choices:
+                !include: './maxscale_jobs/include/boxes_all.yaml'
+        - choice:
+            name: product
+            choices:
+                !include: './maxscale_jobs/include/products.yaml'
+        - choice:
+            name: version
+            choices:
+                !include: './maxscale_jobs/include/versions.yaml'
+        - choice:
+            name: maxscale_restart
+            choices:
+                - 'yes'
+                - 'no'
+        - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+        - choice:
+            name: smoke
+            choices:
+                - 'yes'
+                - 'no'
+        - string:
+             name: name
+             default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+        - string:
+            name: target
+            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - string:
+            name: ci_url
+            default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
+        - string:
+            name: repo_user
+            default: !include: './maxscale_jobs/include/default_repo_user.yaml'
+        - string:
+            name: repo_password
+            default: !include: './maxscale_jobs/include/default_repo_password.yaml'
+        - choice:
+            name: big
+            choices:
+                - 'no'
+                - 'yes'
+        - choice:
+            name: ci_release
+            choices:
+                - ci
+                - release
+        - !include: './maxscale_jobs/include/performance_named_test.yaml'
+        - !include: './maxscale_jobs/include/sysbench_params.yaml'
+        - !include: './maxscale_jobs/include/machines_count.yaml'
+        - !include: './maxscale_jobs/include/logs_dir.yaml'
+    scm:
+        - git:
+            # TODO parametrize this url
+            url: https://github.com/mariadb-corporation/maxscale-system-test.git
+            branches:
+                - master
+    builders:
+        - !include: './maxscale_jobs/include/performance_test_parser/create_env_vars.yaml'
+        - !include: './maxscale_jobs/include/performance_test_parser/inject_initial_env.yaml'
+        - !include: './maxscale_jobs/include/performance_test_parser/run_test_and_collect.yaml'
+        - !include: './maxscale_jobs/include/performance_test_parser/parse_build_log.yaml'
+        - !include: './maxscale_jobs/include/performance_test_parser/write_build_results.yaml'
+        - !include: './maxscale_jobs/include/performance_test_parser/inject_build_results.yaml'
+    publishers:
+      - !include: './maxscale_jobs/include/performance_test_parser/mail.yaml'
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+    concurrent: true
+

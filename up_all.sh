@@ -2,11 +2,17 @@
 
 # $1 - repo_user
 # $2 - repo_password
+# $3 - particular job (optional)
 
 echo \'$1\' > maxscale_jobs/include/default_repo_user.yaml
 echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
 
-jobs=`ls maxscale_jobs/*.yaml -1`
+if [ -z "$3" ]
+then
+	jobs="$3"
+else
+	jobs=`ls maxscale_jobs/*.yaml -1`
+fi
 res=0
 failed_list=""
 
