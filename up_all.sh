@@ -9,9 +9,9 @@ echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
 
 if [ -z "$3" ]
 then
-	jobs="$3"
+        jobs=`ls maxscale_jobs/*.yaml -1`
 else
-	jobs=`ls maxscale_jobs/*.yaml -1`
+        jobs="$3"
 fi
 res=0
 failed_list=""
