@@ -1,6 +1,6 @@
 conditional-step:
-  condition-kind: file-exists	
-  condition-filename: branch_match 
+  condition-kind: file-exists
+  condition-filename: branch_match
   steps:
     - trigger-builds:
         - project: run_test
