@@ -1,6 +1,6 @@
 - job:
     name: match_pattern_from_bsl_push
-    description: 'This job checks given branch (@branch_to_check@) for matching given regular expressing @pattern@ and in case of match calls specified @job@ with given @test_set@ param.'
+    description: 'This job checks given branch (@git_branch@) for matching given regular expressing @pattern@ and in case of match calls specified @job@ with given @test_set@ param.'
     parameters:
       - !include: './maxscale_jobs/include/branch_to_check.yaml'
       - !include: './maxscale_jobs/include/pattern.yaml'

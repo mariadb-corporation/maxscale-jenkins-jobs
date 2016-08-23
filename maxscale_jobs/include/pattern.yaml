@@ -1,3 +1,3 @@
 string:
   name: pattern
-  description: Regexp for checking branch_to_check
+  description: Regexp for checking git_branch

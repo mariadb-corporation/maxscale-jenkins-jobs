@@ -1,7 +1,7 @@
 conditional-step:
   condition-kind: regex-match
   regex: $pattern
-  label: $branch_to_check
+  label: $git_branch
   steps:
     - trigger-builds:
         - project: $job_name
