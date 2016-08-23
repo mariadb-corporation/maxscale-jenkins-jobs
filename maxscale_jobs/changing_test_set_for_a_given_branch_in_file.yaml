@@ -1,6 +1,6 @@
 - job:
     name: changing_test_set_for_a_given_branch_in_file
-    description: 'This job '
+    description: 'This job replace string containing $branch in $file for "$branch|$test_set"'
     parameters:
         - !include: './maxscale_jobs/include/branch_to_check.yaml'
         - !include: './maxscale_jobs/include/test_set.yaml'
