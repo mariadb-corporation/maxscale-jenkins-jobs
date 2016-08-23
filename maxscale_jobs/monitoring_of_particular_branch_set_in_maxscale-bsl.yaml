@@ -23,10 +23,7 @@
     builders:
         - shell:
             tmp=`sed 's/|[^|]*/|/g' $branches_list_file`
-            BRANCHES_LIST=`echo $tmp | sed 's/^\(.*\).$/\1)/' | sed 's/^/(/' | sed 's/ //g'`
-            echo $BRANCHES_LIST
-        - shell:
-            echo $BRANCHES_LIST
+            && BRANCHES_LIST=`echo $tmp | sed 's/^\(.*\).$/\1)/' | sed 's/^/(/' | sed 's/ //g'`
         - trigger-builds:
             - project: 'match_pattern_from_bsl_push'
               predefined-parameters: |
