@@ -6,7 +6,7 @@
             name: file_for_print
             choices:
                 - $HOME/run_test_branches.list
-                - $HOME/on_push_maxscale_branches.list
+                - !include: './maxscale_jobs/include/on_push_maxscale_branches_file.yaml'
     builders:
         - shell:
             cat $file_for_print
