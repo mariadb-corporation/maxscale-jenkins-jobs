@@ -1,0 +1,17 @@
+- job:
+    name: monitoring_of_particular_branch_set_in_maxscale-bsl
+    description: 'This job checks "branches_list" file and executes run_test_snapshot in case of first match.'
+    parameters:
+      - !include: './maxscale_jobs/include/on_push_maxscale_branches_file.yaml'
+    scm:
+      - git:
+          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+          branches:
+            - origin/*
+    triggers:
+        - github
+    builders:
+        - !include: "./maxscale_jobs/include/check_branch_matches_pattern.yaml"
+        - !include: "./maxscale_jobs/include/conditional_step_branch_match_pattern.yaml"
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
