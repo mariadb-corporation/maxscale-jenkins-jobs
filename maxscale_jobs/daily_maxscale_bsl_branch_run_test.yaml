@@ -1,6 +1,6 @@
 - job:
     name: daily_maxscale_bsl_branch_run_test 
-    description: 'This job perform daily run of run_test on a given branch set stored at $HOME/run_test_branches.list as list of branch names each in a new line.'
+    description: 'This job perform daily run of run_test on a given branch set stored at $HOME/run_test_branches.list as pairs "branch_name|test_set" seprated by new line symbol.'
     triggers:
       - timed: "H 5 * * *"
     builders:
