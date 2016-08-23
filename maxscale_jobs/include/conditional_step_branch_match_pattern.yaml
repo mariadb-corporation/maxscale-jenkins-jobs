@@ -3,7 +3,7 @@ conditional-step:
   condition-filename: branch_match
   steps:
     - trigger-builds:
-        - project: run_test
+        - project: run_test_snapshot
           block: true
           predefined-parameters: |
             test_set=$test_set
