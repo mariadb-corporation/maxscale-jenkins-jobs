@@ -12,8 +12,6 @@
         - github
     builders:
         - !include: "./maxscale_jobs/include/check_branch_matches_pattern.yaml"
-        - inject:
-            properties-file: $WORKSPACE/env_vars_$BUILD_ID
         - !include: "./maxscale_jobs/include/conditional_step_branch_match_pattern.yaml"
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
