@@ -1,6 +1,6 @@
 - job:
-    name: run_test_matrix
-    description: 'This job executes run_test for several combinations of OS and MariaDB versions'
+    name: run_test_all_distros
+    description: 'This job executes run_test for all supported distros and given MariaDB versions'
     project-type: matrix
     execution-strategy:
       sequential: true
@@ -9,14 +9,7 @@
           type: user-defined
           name: box
           values:
-            !include: './maxscale_jobs/include/boxes_for_regular.yaml'
-      - axis:
-          type: user-defined
-          name: backend
-          values:
-           - mariadb-5.5
-           - mariadb-10.0
-           - mariadb-10.1
+            !include: './maxscale_jobs/include/boxes.yaml'
     parameters:
         - choice:
             name: maxscale_restart
@@ -30,6 +23,12 @@
         - string:
             name: target
             default: !include: './maxscale_jobs/include/default_target.yaml'
+        - choice:
+            name: backend
+            choices:
+                - mariadb-10.0
+                - mariadb-10.1
+                - mariadb-10.2
         - string:
             name: test_set
             default: !include: './maxscale_jobs/include/default_test_set.yaml'

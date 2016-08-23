@@ -16,3 +16,5 @@ trigger-builds:
       repo_password=$repo_password
       big=$big
       ci_release=$ci_release
+      ci_url_suffix=$ci_url_suffix
+      logs_dir=$log_dir
