@@ -5,7 +5,13 @@ conditional-step:
     - inject:
         properties-file: $WORKSPACE/env_vars_$BUILD_ID
     - trigger-builds:
+        - project: build
+          block: true
+          predefined-parameters: |
+            target=$JOB_NAME-$BUILD_ID
+    - trigger-builds:
         - project: run_test_snapshot
           block: true
           predefined-parameters: |
+            name=$JOB_NAME-$BUILD_ID
             test_set=$test_set
