@@ -1,0 +1,14 @@
+- job:
+    name: changing_test_set_for_a_given_branch_in_file
+    description: 'This job '
+    parameters:
+        - !include: './maxscale_jobs/include/branch_to_check.yaml'
+        - !include: './maxscale_jobs/include/test_set.yaml'
+        - choice:
+              name: branches_list_file
+              choices:
+                  - $HOME/run_test_branches.list
+                  - $HOME/on_push_maxscale_branches.list
+    builders:
+        - shell:
+            sed -i 's/'$branch_to_check'/'$branch_to_check'|'$test_set'/' $branches_list_file
