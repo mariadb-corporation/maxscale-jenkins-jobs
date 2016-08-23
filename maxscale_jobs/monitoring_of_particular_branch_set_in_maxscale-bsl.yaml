@@ -3,31 +3,15 @@
     description: 'This job checks "branches_list" file and passes branches list from given file with special settings to maxscale_jobs/match_pattern_from_bsl_push.yaml'
     parameters:
       - !include: './maxscale_jobs/include/on_push_maxscale_branches_file.yaml'
-      - !include: './maxscale_jobs/include/branch_to_check.yaml'
-      - !include: './maxscale_jobs/include/pattern.yaml'
-      - !include: './maxscale_jobs/include/test_set.yaml'
-      - !include: './maxscale_jobs/include/job_name.yaml'
-    properties:
-        - inject:
-            properties-content: |
-                BRANCHES_LIST=''
     scm:
       - git:
-          # TODO replace repo url
           url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
             - origin/*
     triggers:
         - github
-
     builders:
-        - shell:
-            tmp=`sed 's/|[^|]*/|/g' $branches_list_file`
-            && BRANCHES_LIST=`echo $tmp | sed 's/^\(.*\).$/\1)/' | sed 's/^/(/' | sed 's/ //g'`
-        - trigger-builds:
-            - project: 'match_pattern_from_bsl_push'
-              predefined-parameters: |
-                job_name=run_test
-                git_branch=$git_branch
-                test_set=test_set
-                pattern=$BRANCHES_LIST
+        - !include: "./maxscale_jobs/include/check_branch_matches_pattern.yaml"
+        - inject:
+            properties-file: $WORKSPACE/env_vars_$BUILD_ID
+        - !include: "./maxscale_jobs/include/conditional_step_branch_match_pattern.yaml"

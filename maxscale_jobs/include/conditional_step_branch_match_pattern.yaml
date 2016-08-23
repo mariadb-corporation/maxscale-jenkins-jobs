@@ -1,0 +1,9 @@
+conditional-step:
+  condition-kind: file-exists	
+  condition-filename: branch_match 
+  steps:
+    - trigger-builds:
+        - project: run_test
+          block: true
+          predefined-parameters: |
+            test_set=$test_set
