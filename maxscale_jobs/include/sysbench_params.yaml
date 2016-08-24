@@ -1,0 +1,3 @@
+string:
+  name: sysbench_params
+  description: "additional parameters for sysbench util"

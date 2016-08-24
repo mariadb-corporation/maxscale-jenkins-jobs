@@ -1,0 +1,4 @@
+string:
+  name: repo_path
+  default: $HOME/repository
+  description: "Path for builded binaries repository" 

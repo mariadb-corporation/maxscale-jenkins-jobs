@@ -3,4 +3,5 @@ trigger-builds:
     block: true
     predefined-parameters: |
       do_not_destroy_vm=$do_not_destroy_vm
+      try_already_running=$try_already_running
       name=$name
