@@ -1,0 +1,3 @@
+string:
+  name: repo
+  default: !include: './maxscale_jobs/include/maxscale_repo.yaml'
