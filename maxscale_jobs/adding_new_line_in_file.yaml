@@ -1,0 +1,27 @@
+- job:
+    name: adding_new_line_in_file
+    description: 'This job adding a new line branch|test_set for given file.'
+    parameters:
+      - string:
+          name: branch
+      - string:
+          name: test_set
+      - choice:
+          name: file
+          choices:
+            - $HOME/run_test_branches.list
+            - $HOME/on_push_maxscale_branches.list
+      - string:
+          name: repo
+          default: "https://github.com/mariadb-corporation/MaxScale.git"
+    builders:
+      - shell: |
+          if [[ $(git ls-remote --heads $repo $branch) ]]; then
+            echo "$branch exist"
+            echo "$branch|$test_set" >> $file
+            echo "$branch|$test_set added to $file"
+          else
+            echo "$branch not exist!"
+            exit 1
+          fi
+
