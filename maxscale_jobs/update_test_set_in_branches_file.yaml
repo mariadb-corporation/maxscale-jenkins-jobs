@@ -6,9 +6,10 @@
       - !include: './maxscale_jobs/include/test_set.yaml'
       - !include: './maxscale_jobs/include/branches_list.yaml'
     builders:
-      - shell:
+      - shell: |
           line_number=$(grep -n --max-count=1 "$branch_to_check|" $branches_list | cut -f1 -d:)
-          if [ -z $line_number ]; then
+          if [ -z $line_number ]
+          then
             echo "$branch_to_check not exist in file $branches_list!"
             exit 1
           fi
