@@ -2,13 +2,8 @@
     name: remove_line_from_branches_file
     description: 'This job remove a first line with branch from given file.'
     parameters:
-      - string:
-          name: branch
-      - choice:
-          name: file
-          choices:
-            - $HOME/run_test_branches.list
-            - $HOME/on_push_maxscale_branches.list
+      - !include: './maxscale_jobs/include/branch_to_check.yaml'
+      - !include: './maxscale_jobs/include/branches_list.yaml'
       - !include: './maxscale_jobs/include/repo.yaml'
     builders:
       - shell: |
