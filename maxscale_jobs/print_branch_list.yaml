@@ -1,0 +1,8 @@
+- job:
+    name: print_branch_list
+    description: 'This job prints given file content'
+    parameters:
+        - !include: './maxscale_jobs/include/branches_list.yaml'
+    builders:
+        - shell:
+            cat $branches_list
