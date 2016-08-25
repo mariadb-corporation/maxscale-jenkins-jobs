@@ -1,0 +1,5 @@
+choice:
+  name: branches_list
+  choices:
+    - !include: './maxscale_jobs/include/job_branches/run_test_branches.yaml'
+    - !include: './maxscale_jobs/include/job_branches/on_push_maxscale_branches.yaml'

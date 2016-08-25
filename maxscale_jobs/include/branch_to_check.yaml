@@ -1,0 +1,3 @@
+string:
+  name: branch_to_check
+  description: Git branch which name will be checked for matching the regexp

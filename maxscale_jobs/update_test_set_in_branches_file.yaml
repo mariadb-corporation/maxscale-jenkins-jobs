@@ -1,0 +1,17 @@
+- job:
+    name: update_test_set_in_branches_file
+    description: 'This job replace string containing $branch in $file for "$branch|$test_set"'
+    parameters:
+      - !include: './maxscale_jobs/include/branch_to_check.yaml'
+      - !include: './maxscale_jobs/include/test_set.yaml'
+      - !include: './maxscale_jobs/include/branches_list.yaml'
+    builders:
+      - shell: |
+          line_number=$(grep -n --max-count=1 "$branch_to_check|" $branches_list | cut -f1 -d:)
+          if [ -z $line_number ]
+          then
+            echo "$branch_to_check not exist in file $branches_list!"
+            exit 1
+          fi
+
+          sed -i "s/$branch_to_check|[^|]*$/$branch_to_check|$test_set/" $branches_list
