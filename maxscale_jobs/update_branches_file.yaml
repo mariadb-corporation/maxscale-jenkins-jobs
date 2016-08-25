@@ -8,7 +8,7 @@
       - !include: './maxscale_jobs/include/repo.yaml'
     builders:
       - shell: |
-          branch_entry=$(git ls-remote --heads $repo $branch_to_check)
+          branch_entry=$(git ls-remote --heads $repo | grep "$branch_to_check")
           if [ -z  "$branch_entry" ]; then
             echo "$branch_to_check not exist in repo!"
             exit 1
