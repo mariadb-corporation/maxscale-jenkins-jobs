@@ -21,4 +21,4 @@
           fi
       - shell: |
           echo "$branch_to_check|$test_set" >> $branches_list
-          echo "$branch_to_check|$test_set added to $file"
+          echo "$branch_to_check|$test_set added to $branches_list"
