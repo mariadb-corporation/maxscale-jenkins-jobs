@@ -1,0 +1,3 @@
+string:
+  name: named_test
+  default: sysbench_example

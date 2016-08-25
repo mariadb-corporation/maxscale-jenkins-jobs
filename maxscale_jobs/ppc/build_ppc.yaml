@@ -14,6 +14,7 @@
       - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
       - !include: './maxscale_jobs/include/build_experimental.yaml'
       - !include: './maxscale_jobs/include/use_mariadbd.yaml'
+      - !include: './maxscale_jobs/include/repo_path.yaml'
 #      !include: './maxscale_jobs/include/build_parameters.yaml'
     scm:
       - git:

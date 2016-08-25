@@ -1,0 +1,2 @@
+shell: 
+  '$HOME/build-scripts/test/performance_test.sh | tee $WORKSPACE/build_log_$BUILD_ID; echo ${PIPESTATUS[0]} > result_$BUILD_ID'
