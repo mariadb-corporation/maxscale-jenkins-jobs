@@ -7,11 +7,11 @@
       - !include: './maxscale_jobs/include/repo.yaml'
     builders:
       - shell: |
-          LINE_NUMBER=$(grep -n --max-count=1 "$branch|" $file | cut -f1 -d:)
+          LINE_NUMBER=$(grep -n --max-count=1 "$branch_to_check|" $file | cut -f1 -d:)
           if [ -z $LINE_NUMBER ]; then
-            echo "$branch not exist!"
+            echo "$branch_to_check not exist!"
             exit 1
           fi
-          echo "$branch exist"
+          echo "$branch_to_check exist"
           $(sed -i $LINE_NUMBER"d" $file)
-          echo "$branch remove success"
+          echo "$branch_to_check remove success"

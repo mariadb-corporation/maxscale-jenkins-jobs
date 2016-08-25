@@ -2,9 +2,9 @@
     name: update_test_set_in_branches_file
     description: 'This job replace string containing $branch in $file for "$branch|$test_set"'
     parameters:
-        - !include: './maxscale_jobs/include/branch_to_check.yaml'
-        - !include: './maxscale_jobs/include/test_set.yaml'
-        - !include: './maxscale_jobs/include/branches_list.yaml'
+      - !include: './maxscale_jobs/include/branch_to_check.yaml'
+      - !include: './maxscale_jobs/include/test_set.yaml'
+      - !include: './maxscale_jobs/include/branches_list.yaml'
     builders:
-        - shell:
-            sed -i 's/'$branch_to_check'[|]*[^|]*/'$branch_to_check'|'$test_set'/' $branches_list
+      - shell:
+          sed -i 's/'$branch_to_check'[|]*[^|]*/'$branch_to_check'|'$test_set'/' $branches_list

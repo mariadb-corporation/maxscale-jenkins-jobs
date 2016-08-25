@@ -1,0 +1,19 @@
+- job:
+    name: adding_new_line_in_file
+    description: 'This job adding a new line branch|test_set for given file.'
+    parameters:
+      - !include: './maxscale_jobs/include/branch_to_check.yaml'
+      - !include: './maxscale_jobs/include/test_set.yaml'
+      - !include: './maxscale_jobs/include/branches_list.yaml'
+      - !include: './maxscale_jobs/include/repo.yaml'
+    builders:
+      - shell: |
+          branch_entry=$(git ls-remote --heads $repo $branch_to_check)
+          if [ -z  "$branch_entry" ]; then
+            echo "$branch_to_check not exist!"
+            exit 1
+          fi
+
+          echo "$branch_to_check exist"
+          echo "$branch_to_check|$test_set" >> $file
+          echo "$branch_to_check|$test_set added to $file"
