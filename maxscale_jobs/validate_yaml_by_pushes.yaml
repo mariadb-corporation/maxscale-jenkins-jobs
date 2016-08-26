@@ -1,0 +1,34 @@
+- job:
+    name: validate_yaml_by_pushes
+    description: 'This job check maxscale-jobs repo content using validator triggered by pushes.'
+    triggers:
+      - github
+    scm:
+      - git:
+          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+          branches:
+            - ''
+    builders:
+      - shell: |
+          jobs=`ls maxscale_jobs/*.yaml -1`
+          res=0
+          failed_list=""
+          
+          for job in $jobs
+          do
+            ../jenkins_job_gitizer/scripts/validate_yaml.sh $job
+            if [ $? != 0 ]; then
+              echo "Validating of $job FAILED!"
+              failed_list="$failed_list \n $job"
+              res=1
+            fi
+          done
+
+          if [ $res != 0 ]; then
+            echo ""
+            echo "Failed jobs:"
+            echo -e $failed_list
+          fi
+
+          exit $res
+          
