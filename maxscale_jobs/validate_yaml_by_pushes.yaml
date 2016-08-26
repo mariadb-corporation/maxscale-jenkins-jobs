@@ -10,13 +10,15 @@
             - ''
     builders:
       - shell: |
+          TEMP_PATH="mdbci_kinyaev/maxscale-jenkins-jobs"
+          cd $HOME/$TEMP_PATH
           jobs=`ls maxscale_jobs/*.yaml -1`
           res=0
           failed_list=""
           
           for job in $jobs
           do
-            ../jenkins_job_gitizer/scripts/validate_yaml.sh $job
+            $HOME/jjg/jenkins_job_gitizer/scripts/validate_yaml.sh $job
             if [ $? != 0 ]; then
               echo "Validating of $job FAILED!"
               failed_list="$failed_list \n $job"
