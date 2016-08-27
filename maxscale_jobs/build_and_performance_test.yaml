@@ -1,0 +1,56 @@
+- job:
+    name: build_and_performance_test
+    project-type: multijob
+    description: 'This job build and run performance test.'
+    parameters: 
+      - !include: './maxscale_jobs/include/name.yaml'
+      - choice:
+          name: box
+          choices:
+            !include: './maxscale_jobs/include/boxes.yaml'
+      - !include: './maxscale_jobs/include/value.yaml'
+      - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/target.yaml'
+      - !include: './maxscale_jobs/include/build_experimental.yaml'
+      - !include: './maxscale_jobs/include/use_mariadbd.yaml'
+      - !include: './maxscale_jobs/include/cmake_flags.yaml'
+      - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+      - string:
+          name: ci_url
+          default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+      - string:
+          name: repo_user
+          default: !include: './maxscale_jobs/include/default_repo_user.yaml'
+      - string:
+          name: repo_password
+          default: !include: './maxscale_jobs/include/default_repo_password.yaml'
+      - choice:
+          name: smoke
+          choices:
+              - 'yes'
+              - 'no'
+      - choice:
+          name: big
+          choices:
+              - 'no'
+              - 'yes'
+      - choice:
+          name: ci_release
+          choices:
+              - ci
+              - release
+      - !include: './maxscale_jobs/include/machines_count.yaml'
+      - !include: './maxscale_jobs/include/sysbench_params.yaml'     
+    builders:
+      - multijob:
+          name: build
+          projects:
+            - name: build
+              current-parameters: true
+      - multijob:
+          name: performance_test
+          projects:
+            - name: performance_test
+              current-parameters: true
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
