@@ -15,5 +15,7 @@
               echo "$pattern does not match any branches from $repo!"
               exit 1
             fi
-            echo $branches_list
+            for branch_name in ${branches_list[@]} ; do
+              echo $branch_name
+            done
             exit 0
