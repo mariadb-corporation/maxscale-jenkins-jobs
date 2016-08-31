@@ -11,7 +11,7 @@
     builders:
         - shell: |
             branches_list=`git ls-remote --heads git://$repo $pattern | sed 's?.*refs/heads/??'`
-            if [[ branches_list -eq '\0' ]]; then
+            if [ -z "$branches_list" ]; then
               echo "$pattern does not match any branches from $repo!"
               exit 1
             fi
