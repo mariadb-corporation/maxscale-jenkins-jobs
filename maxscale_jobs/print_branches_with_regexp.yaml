@@ -1,0 +1,19 @@
+- job:
+    name: print_branches_with_regexp
+    description: 'This job prints list of all branches from maxscale repo which match $pattern'
+    parameters:
+        - string:
+            name: pattern
+            default: master
+        - string:
+            name: repo
+            default: github.com/mariadb-corporation/maxscale-jenkins-jobs.git
+    builders:
+        - shell: |
+            branches_list=`git ls-remote --heads git://$repo $pattern | sed 's?.*refs/heads/??'`
+            if [[ branches_list -eq '\0' ]]; then
+              echo "$pattern does not match any branches from $repo!"
+              exit 1
+            fi
+            echo $branches_list
+            exit 0
