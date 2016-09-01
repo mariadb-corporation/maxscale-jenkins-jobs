@@ -5,13 +5,11 @@
       - github
     scm:
       - git:
-          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+          url: !include: './maxscale_jobs/include/maxscale_bsl_url.yaml'
           branches:
-            - ''
+            - '*'
     builders:
       - shell: |
-          TEMP_PATH="mdbci_kinyaev/maxscale-jenkins-jobs"
-          cd $HOME/$TEMP_PATH
           jobs=`ls maxscale_jobs/*.yaml -1`
           res=0
           failed_list=""
