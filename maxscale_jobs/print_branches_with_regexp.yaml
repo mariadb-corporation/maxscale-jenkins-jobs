@@ -2,12 +2,8 @@
     name: print_branches_with_regexp
     description: 'This job prints list of all branches from maxscale repo which match $pattern'
     parameters:
-        - string:
-            name: pattern
-            default: master
-        - string:
-            name: repo
-            default: github.com/mariadb-corporation/maxscale-jenkins-jobs.git
+        - !include: './maxscale_jobs/include/pattern.yaml'
+        - !include: './maxscale_jobs/include/maxscale_repo_url.yaml'
     builders:
         - shell: |
             branches_list=`git ls-remote --heads git://$repo | sed 's?.*refs/heads/??'`
