@@ -11,11 +11,12 @@
     builders:
         - shell: |
             branches_list=`git ls-remote --heads git://$repo | sed 's?.*refs/heads/??'`
-            matches_list=""
+            matches_list=()
 
             for line in $branches_list
             do
-              if [ echo $line | grep -q $pattern ]; then
+              if echo $line | grep -q $pattern
+              then
                 matches_list+=($line)
               fi
             done
