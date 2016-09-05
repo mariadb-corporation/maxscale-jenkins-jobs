@@ -6,23 +6,8 @@
         - !include: './maxscale_jobs/include/maxscale_repo_url.yaml'
     builders:
         - shell: |
-            branches_list=`git ls-remote --heads git://$repo | sed 's?.*refs/heads/??'`
-            matches_list=()
-
-            for line in $branches_list
-            do
-              if echo $line | grep -q $pattern
-              then
-                matches_list+=($line)
-              fi
-            done
-            
-            if [ -z "$matches_list" ]; then
+            if ! git ls-remote --heads git://$repo | sed 's?.*refs/heads/??' | grep "$pattern"; then
               echo "$pattern does not match any branches from $repo!"
               exit 1
             fi
-            
-            for branch_name in ${matches_list[@]} ; do
-              echo $branch_name
-            done
             exit 0
