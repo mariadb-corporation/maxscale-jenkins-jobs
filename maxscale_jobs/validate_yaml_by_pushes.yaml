@@ -33,7 +33,7 @@
           exit $res
     publishers:
         - email-ext:
-            recipients: !include-raw: "./maxscale_jobs/include/mail_recipients.yaml"
+            recipients: $DEFAULT_RECIPIENTS
             reply-to: $DEFAULT_REPLYTO
             content-type: default
             subject: $DEFAULT_SUBJECT
@@ -47,4 +47,5 @@
             presend-script: $DEFAULT_PRESEND_SCRIPT
             send-to:
               - recipients
+              - developers
           
