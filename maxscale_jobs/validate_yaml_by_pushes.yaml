@@ -17,7 +17,7 @@
           for job in $jobs
           do
             
-            if $HOME/jjg/jenkins_job_gitizer/scripts/validate_yaml.sh $job ; then
+            if $HOME/jjg/scripts/validate_yaml.sh $job ; then
               echo "Validating of $job SUCCESS."
             else
               echo "Validating of $job FAILED!"
