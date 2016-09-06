@@ -5,7 +5,7 @@
       - github
     scm:
       - git:
-          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+          url: 'git@github.com:mariadb-corporation/maxscale-jenkins-jobs.git'
           branches:
             - '*'
     builders:
