@@ -5,7 +5,7 @@
       - github
     scm:
       - git:
-          url: !include: './maxscale_jobs/include/maxscale_bsl_url.yaml'
+          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
             - '*'
     builders:
@@ -34,20 +34,4 @@
 
           exit $res
     publishers:
-        - email-ext:
-            recipients: $DEFAULT_RECIPIENTS
-            reply-to: $DEFAULT_REPLYTO
-            content-type: default
-            subject: $DEFAULT_SUBJECT
-            body: $DEFAULT_CONTENT 
-            attach-build-log: false
-            aborted: true
-            failure: true
-            still-failing: true
-            success: true
-            fixed: true
-            presend-script: $DEFAULT_PRESEND_SCRIPT
-            send-to:
-              - recipients
-              - developers
-          
+      - !include: './maxscale_jobs/include/mail_branch.yaml'
