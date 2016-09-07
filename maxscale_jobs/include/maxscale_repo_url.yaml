@@ -1,3 +1,0 @@
-string:
-  name: repo
-  default: github.com/mariadb-corporation/maxscale.git
