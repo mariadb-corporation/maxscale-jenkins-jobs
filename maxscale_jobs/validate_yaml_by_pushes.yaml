@@ -10,10 +10,13 @@
             - '*'
     builders:
       - shell: |
+          prop_file="failed_yaml_tests_property_file"
+          injection_var="FAILED_YAML_TESTS_LIST"
+
           jobs=`ls maxscale_jobs/*.yaml -1`
           res=0
           failed_list=""
-          
+
           for job in $jobs
           do
             
@@ -22,6 +25,9 @@
             else
               echo "Validating of $job FAILED!"
               failed_list="$failed_list \n $job"
+
+              echo "$job \\" >> "$prop_file"
+
               res=1
             fi
           done
@@ -32,6 +38,11 @@
             echo -e $failed_list
           fi
 
+          prop_file_content=$(cat "$prop_file")
+          if [[ -n prop_file_content ]]; then
+            echo "$injection_var=Failed yaml jobs: \\$prop_file_content" > "$prop_file"
+          fi
+
           exit $res
     publishers:
-      - !include: './maxscale_jobs/include/mail_branch.yaml'
+      - !include: './maxscale_jobs/include/mail_yaml.yaml'
