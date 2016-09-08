@@ -1,0 +1,5 @@
+shell: |
+  echo "Checking $GIT_BRANCH"
+  ./scripts/check_branch_for_nonempty_test_scenario.sh
+  ./scripts/check_branch_for_pullrequest_existing.sh
+
