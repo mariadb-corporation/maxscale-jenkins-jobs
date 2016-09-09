@@ -1,0 +1,2 @@
+shell:
+  'exit `cat result_$BUILD_ID`'
