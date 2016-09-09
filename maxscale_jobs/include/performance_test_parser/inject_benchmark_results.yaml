@@ -1,2 +1,2 @@
 inject:
-  properties-file: $WORKSPACE/results_$BUILD_ID
+  properties-file: $WORKSPACE/env_results_$BUILD_ID

@@ -1,2 +1,2 @@
 shell:
-  '$HOME/mdbci/scripts/benchmark_parser/parse_log.rb -i $WORKSPACE/build_log_$BUILD_ID -e $WORKSPACE/results_$BUILD_ID -r -f -o $WORKSPACE/json_$BUILD_ID'
+  '$HOME/mdbci_zaslavskiy/scripts/benchmark_parser/parse_log.rb -i $WORKSPACE/build_log_$BUILD_ID -e $WORKSPACE/env_results_$BUILD_ID -o $WORKSPACE/json_$BUILD_ID'
