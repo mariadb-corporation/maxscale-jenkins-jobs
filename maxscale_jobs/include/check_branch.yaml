@@ -1,3 +1,4 @@
 shell: |
   echo "Checking $GIT_BRANCH"
-  python scripts/check_branch_in_redmine.py --branch $GIT_BRANCH
+  python scripts/check_branch/check_branch_in_redmine.py --branch $GIT_BRANCH
+  ./scripts/decide_build_success.sh
