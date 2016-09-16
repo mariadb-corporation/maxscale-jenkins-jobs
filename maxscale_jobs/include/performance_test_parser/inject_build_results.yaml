@@ -1,2 +1,0 @@
-inject:
-  properties-file: $WORKSPACE/results_$BUILD_ID
