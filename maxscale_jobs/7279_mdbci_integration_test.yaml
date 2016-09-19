@@ -2,7 +2,9 @@
     name: 7279_mdbci_integration_test
     description: 'This job perform running mdbci integration tests.'
     key_one: &SORTED_GIT_BRANCHES_FILE_PATH '/home/vagranttest/mdbci_jenkins_config/branch_list'
-   qwerty
+    parameters:
+        - choice:
+            name: box
             choices:
                 !include: './maxscale_jobs/include/boxes_all.yaml'
         - choice:
