@@ -7,7 +7,7 @@
       - git:
           url: 'git@github.com:mariadb-corporation/maxscale-jenkins-jobs.git'
           branches:
-            - '*'
+            - ''
     builders:
       - shell: |
           jobs=`ls maxscale_jobs/*.yaml -1`
