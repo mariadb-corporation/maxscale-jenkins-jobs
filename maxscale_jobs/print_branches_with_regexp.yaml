@@ -1,0 +1,15 @@
+- job:
+    name: print_branches_with_regexp
+    description: 'This job prints list of all branches from maxscale repo which match $pattern'
+    parameters:
+        - !include: './maxscale_jobs/include/pattern.yaml'
+        - string:
+            name: repo
+            default: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+    builders:
+        - shell: |
+            if ! git ls-remote --heads $repo | sed 's?.*refs/heads/??' | grep "$pattern"; then
+              echo "$pattern does not match any branches from $repo!"
+              exit 1
+            fi
+            exit 0
