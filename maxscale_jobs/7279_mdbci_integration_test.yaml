@@ -48,7 +48,6 @@
             reply-to: $DEFAULT_REPLYTO
             content-type: default
             subject: $DEFAULT_SUBJECT - $MDBCI_BRANCH
-            body: !include-raw: "./maxscale_jobs/include/integration_tests_email_body" 
             attach-build-log: true
             compress-build-log: true
             always: true
