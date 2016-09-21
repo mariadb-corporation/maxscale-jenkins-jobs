@@ -2,7 +2,24 @@
     name: 7279_mdbci_integration_test
     description: 'This job perform running mdbci integration tests.'
     key_one: &SORTED_GIT_BRANCHES_FILE_PATH '/home/vagranttest/mdbci_jenkins_config/branch_list'
-asdasdasdasd              type: 'PT_SINGLE_SELECT'
+    parameters:
+        - choice:
+            name: box
+            choices:
+                !include: './maxscale_jobs/include/boxes_all.yaml'
+        - choice:
+            name: product
+            choices:
+                !include: './maxscale_jobs/include/products.yaml'
+        - choice:
+            name: version
+            choices:
+                !include: './maxscale_jobs/include/versions.yaml'
+        - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+        - extended-choice:
+              name: MDBCI_BRANCH
+              description: "MDBCI branch"
+              type: 'PT_SINGLE_SELECT'
               property-file: *SORTED_GIT_BRANCHES_FILE_PATH
               property-key: branch_name
               default-value: refs/heads/integration
