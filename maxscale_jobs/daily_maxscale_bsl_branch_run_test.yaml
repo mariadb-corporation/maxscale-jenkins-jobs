@@ -12,8 +12,6 @@
       - trigger-builds:
           - project: 'run_test'
             block: true
-            predefined-parameters: |
-              name=daily_maxscale_bsl_branch_run_test-$BUILD_ID
             parameter-factories:
               - factory: filebuild
                 file-pattern: branches/*

@@ -13,6 +13,7 @@ do
 	git ls-remote --heads ${repo} | grep ${branch_template} | sed 's?.*refs/heads/??' | while read branch;
 	do
 		echo "branch=${branch}"	
+		echo "name=daily_maxscale_bsl_branch_run_test-$BUILD_ID-${branch}" > ${property_files_dir}/${branch} 
 	        echo "target=${branch}" > ${property_files_dir}/${branch}
 		echo "test_set=${test_set}" >>${property_files_dir}/${branch}
 	done
