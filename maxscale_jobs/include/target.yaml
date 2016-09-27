@@ -1,3 +1,4 @@
 string:
   name: target
   default: !include: './maxscale_jobs/include/default_target.yaml'
+  description: 'The repository sub-directory where packages are stored'
