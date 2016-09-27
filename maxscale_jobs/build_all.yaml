@@ -30,6 +30,7 @@
           '$HOME/build-scripts/prepare_and_build.sh'
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/call_cleanup.yaml'
     wrappers:
       - workspace-cleanup:
           include:
