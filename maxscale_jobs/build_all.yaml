@@ -26,9 +26,7 @@
           branches:
             - ''
     builders:
-        - !include: './maxscale_jobs/include/build_all/setup_env.yaml'
-        - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'
-        - !include: './maxscale_jobs/include/build_all/call_build.yaml'
+      - !include: './maxscale_jobs/include/build_all/call_build.yaml'
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
     wrappers:

@@ -12,9 +12,5 @@ trigger-builds:
       build_experimental=$build_experimental
       use_mariadbd=$use_mariadbd
       repo_path=$repo_path
-      product=$product
-      version=$version
-      nama=$name
-      ci_release=$ci_release
-      big=$big
-      maxscale_restart=$maxscale_restart
+      try_already_running=no
+
