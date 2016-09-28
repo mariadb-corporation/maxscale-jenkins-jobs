@@ -1,0 +1,2 @@
+shell:
+  !include-raw: './maxscale_jobs/include/run_test_matrix_jjb/setup_env.sh'
