@@ -24,7 +24,7 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - ''
+            - '*'
     builders:
       - !include: './maxscale_jobs/include/build_all/call_build.yaml'
     publishers:
