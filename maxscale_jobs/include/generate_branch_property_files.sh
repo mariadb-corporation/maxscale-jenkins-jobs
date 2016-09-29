@@ -15,5 +15,6 @@ do
 		echo "branch=${branch}"	
 	        echo "target=${branch}" > ${property_files_dir}/${branch}
 		echo "test_set=${test_set}" >>${property_files_dir}/${branch}
+		echo "name=daily_maxscale_bsl_branch_run_test-$BUILD_ID-${branch}" >> ${property_files_dir}/${branch} 
 	done
 done
