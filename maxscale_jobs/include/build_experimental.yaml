@@ -3,3 +3,4 @@ choice:
   choices:
       - 'no'
       - 'yes'
+  description: "Build experimental module and development package"
