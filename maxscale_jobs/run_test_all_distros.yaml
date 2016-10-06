@@ -20,9 +20,7 @@
         - string:
              name: name1
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
-        - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - choice:
             name: backend
             choices:
