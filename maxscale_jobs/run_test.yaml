@@ -31,9 +31,7 @@
                 - 'no'
                 - 'yes'
         - !include: './maxscale_jobs/include/name.yaml'
-        - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - !include: './maxscale_jobs/include/test_set.yaml'
         - string:
             name: ci_url

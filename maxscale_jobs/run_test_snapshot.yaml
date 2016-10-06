@@ -21,9 +21,7 @@
         - string:
             name: snapshot_name
             default: 'clean'
-        - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - string:
             name: test_set
             default: !include: './maxscale_jobs/include/default_test_set.yaml'

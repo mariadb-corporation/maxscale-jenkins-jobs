@@ -28,9 +28,7 @@
         - string:
              name: name
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
-        - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - string:
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
