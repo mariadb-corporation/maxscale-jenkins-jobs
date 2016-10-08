@@ -3,6 +3,7 @@
     description: 'This job perform daily run of run_test on a given branch set stored at $HOME/run_test_branches.list as pairs "branch_name|test_set" seprated by new line symbol.'
     parameters:
       - !include: './maxscale_jobs/include/run_test_branches.yaml'
+      - !include: './maxscale_jobs/include/repo.yaml'
     triggers:
       - timed: "H 5 * * *"
     builders:
@@ -11,8 +12,6 @@
       - trigger-builds:
           - project: 'run_test'
             block: true
-            predefined-parameters: |
-              name=daily_maxscale_bsl_branch_run_test-$BUILD_ID
             parameter-factories:
               - factory: filebuild
                 file-pattern: branches/*

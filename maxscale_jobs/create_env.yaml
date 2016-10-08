@@ -32,7 +32,7 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - ''
+            - '*'
     builders:
       - shell: 
           '$HOME/build-scripts/test/create_env.sh'

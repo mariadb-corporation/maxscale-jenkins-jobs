@@ -31,9 +31,7 @@
                 - 'no'
                 - 'yes'
         - !include: './maxscale_jobs/include/name.yaml'
-        - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - !include: './maxscale_jobs/include/test_set.yaml'
         - string:
             name: ci_url
@@ -75,7 +73,7 @@
       - !include: './maxscale_jobs/include/build_parser/create_env_coredumps.yaml'
       - !include: './maxscale_jobs/include/build_parser/inject_coredumps_var.yaml'
     publishers:
-      - !include: './maxscale_jobs/include/build_parser_mail.yaml'
+      - !include: './maxscale_jobs/include/build_parser_mail_subject_with_name.yaml'
       - !include: './maxscale_jobs/include/call_cleanup.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
