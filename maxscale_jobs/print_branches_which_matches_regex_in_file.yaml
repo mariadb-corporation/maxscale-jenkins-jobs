@@ -1,0 +1,26 @@
+- job:
+    name: print_branches_which_matches_regex_in_file
+    description: 'This job checks branches_list file and print list of the branches which are matching patterns from it.'
+    parameters:
+        - !include: './maxscale_jobs/include/branches_list.yaml'
+        - string:
+            name: repo
+            default: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+    builders:
+        - shell: |
+            echo "Checking $GIT_BRANCH"
+            result_list = "Matches in $branches_list_file:"
+            branches_list=`cat $branches_list_file`
+            for line in $branches_list
+            do
+              branch_pattern=`echo $line | sed -e 's/|[^|]*$//g'`
+              if echo $GIT_BRANCH | grep -q $branch_pattern 
+              then
+                echo "$GIT_BRANCH matches $branch_pattern!"
+                result_list="$result_list \n $GIT_BRANCH"
+                
+              fi
+            done
+            echo "$GIT_BRANCH does not match any patterns from $branches_list_file!"
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
