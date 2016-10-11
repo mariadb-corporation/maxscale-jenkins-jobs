@@ -10,7 +10,7 @@
             - origin/*
     triggers:
       - pollscm:
-          cron: "0 */2 * * *"
+          cron: "0 H/2 * * *"
           ignore-post-commit-hooks: True
     builders:
         - !include: "./maxscale_jobs/include/check_branch_matches_pattern.yaml"
