@@ -2,7 +2,9 @@
     name: build_and_test_by_maxscale_bsl_push
     description: 'This job run build_and_test by commits to maxscale_bsl '
     triggers:
-      - github
+      - pollscm:
+          cron: "0 */2 * * *"
+          ignore-post-commit-hooks: True
     scm:
       - git:
           # TODO replace repo url
