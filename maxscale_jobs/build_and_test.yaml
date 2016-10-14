@@ -49,6 +49,7 @@
           choices:
               - ci
               - release
+      - !include: './maxscale_jobs/include/test_branch.yaml'
     builders:
         - multijob:
             name: build
