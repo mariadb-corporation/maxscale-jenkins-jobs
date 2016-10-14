@@ -38,6 +38,7 @@
           '$HOME/build-scripts/test/create_env.sh'
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/call_cleanup_without_destroy.yaml'
     wrappers:
       - workspace-cleanup:
           include:
