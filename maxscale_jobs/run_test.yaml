@@ -57,12 +57,13 @@
         - string:
             name: config_to_clone
             description: !include: './maxscale_jobs/include/config_to_clone.yaml'
+        - !include: './maxscale_jobs/include/test_branch.yaml'
     scm:
         - git:
             # TODO parametrize this url
             url: https://github.com/mariadb-corporation/maxscale-system-test.git
             branches:
-                - master
+                - $test_branch
     builders:
       - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
       - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'
