@@ -17,4 +17,4 @@ trigger-builds:
       big=$big
       ci_release=$ci_release
       ci_url_suffix=$ci_url_suffix
-      logs_dir=$log_dir
+      logs_dir=$logs_dir

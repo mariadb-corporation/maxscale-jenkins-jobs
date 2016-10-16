@@ -39,8 +39,9 @@
           choices:
               - ci
               - release
+      - !include: './maxscale_jobs/include/test_branch.yaml'
       - !include: './maxscale_jobs/include/machines_count.yaml'
-      - !include: './maxscale_jobs/include/sysbench_params.yaml'     
+      - !include: './maxscale_jobs/include/sysbench_params.yaml'
     builders:
       - multijob:
           name: build
