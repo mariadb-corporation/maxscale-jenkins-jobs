@@ -1,3 +1,6 @@
 shell: |
+  echo $target
   echo "BUILD_TIMESTAMP=$(date +%Y-%m-%d\ %H-%M-%S)" > $WORKSPACE/initial_env_vars_$BUILD_ID
   echo "BUILD_LOG_PARSING_RESULT=\"Build log parsing finished with an error\"" >> $WORKSPACE/initial_env_vars_$BUILD_ID
+  echo $target
+
