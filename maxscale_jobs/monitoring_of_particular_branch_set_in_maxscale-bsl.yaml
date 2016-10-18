@@ -9,7 +9,9 @@
           branches:
             - origin/*
     triggers:
-        - github
+      - pollscm:
+          cron: "0 H/2 * * *"
+          ignore-post-commit-hooks: True
     builders:
         - !include: "./maxscale_jobs/include/check_branch_matches_pattern.yaml"
         - !include: "./maxscale_jobs/include/conditional_step_branch_match_pattern.yaml"

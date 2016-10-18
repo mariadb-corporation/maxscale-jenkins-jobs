@@ -2,7 +2,9 @@
     name: validate_yaml_by_pushes
     description: 'This job check maxscale-jobs repo content using validator triggered by pushes.'
     triggers:
-      - github
+      - pollscm:
+          cron: "H/15 * * * *"
+          ignore-post-commit-hooks: True
     scm:
       - git:
           url: 'git@github.com:mariadb-corporation/maxscale-jenkins-jobs.git'
