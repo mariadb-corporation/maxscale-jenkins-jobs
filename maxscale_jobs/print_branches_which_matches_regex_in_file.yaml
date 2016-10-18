@@ -8,19 +8,22 @@
             default: !include: './maxscale_jobs/include/maxscale_repo.yaml'
     builders:
         - shell: |
-            echo "Checking $GIT_BRANCH"
-            result_list = "Matches in $branches_list_file:"
-            branches_list=`cat $branches_list_file`
-            for line in $branches_list
-            do
+            result_list=""
+            while read line; do
               branch_pattern=`echo $line | sed -e 's/|[^|]*$//g'`
-              if echo $GIT_BRANCH | grep -q $branch_pattern 
-              then
-                echo "$GIT_BRANCH matches $branch_pattern!"
-                result_list="$result_list \n $GIT_BRANCH"
-                
+              temp_list=""
+              if [[ $(git ls-remote --heads $repo | sed 's?.*refs/heads/??' | grep "$branch_pattern"| wc -c) -ne 0 ]]; then
+                temp_list="$(git ls-remote --heads $repo | sed 's?.*refs/heads/??' | grep "$branch_pattern")"
               fi
-            done
-            echo "$GIT_BRANCH does not match any patterns from $branches_list_file!"
+              if [[ -n $temp_list ]]; then
+                result_list="$result_list \n\tPattern $branch_pattern :\n$temp_list"
+              fi
+            done <$branches_list
+            if [[ -z $result_list ]]; then
+              echo "Branches in $repo does not match any patterns from $branches_list!"
+              exit 1
+            fi
+            printf "Matches in $branches_list:$result_list\n"
+            exit 0
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
