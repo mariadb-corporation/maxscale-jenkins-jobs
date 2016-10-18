@@ -44,11 +44,6 @@
               - 'no'
               - 'yes'
           description: "Use larger VMs (don't change this unless you know you need it)"
-      - choice:
-          name: ci_release
-          choices:
-              - ci
-              - release
       - !include: './maxscale_jobs/include/test_branch.yaml'
     builders:
         - multijob:

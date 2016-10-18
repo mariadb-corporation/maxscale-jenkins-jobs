@@ -1,7 +1,6 @@
 export product=`echo $backend | cut -d'-' -f1 `
 export version=`echo $backend | cut -d'-' -f2 `
 export name=$backend-$box-$target
-export ci_release="ci"
 export big="no"
 export maxscale_restart="yes"
 ~/build-scripts/test/run_test.sh | tee $WORKSPACE/build_log_$BUILD_ID; echo ${PIPESTATUS[0]} > result_$BUILD_ID;

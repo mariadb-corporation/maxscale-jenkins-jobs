@@ -44,11 +44,6 @@
             choices:
                 - 'no'
                 - 'yes'
-        - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
         - !include: './maxscale_jobs/include/performance_named_test.yaml'
         - !include: './maxscale_jobs/include/sysbench_params.yaml'
         - !include: './maxscale_jobs/include/machines_count.yaml'

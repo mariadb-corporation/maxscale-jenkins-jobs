@@ -40,11 +40,6 @@
             choices:
                 - 'no'
                 - 'yes'
-        - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
         - !include: './maxscale_jobs/include/logs_dir.yaml'
         - !include: './maxscale_jobs/include/test_branch.yaml'
     scm:

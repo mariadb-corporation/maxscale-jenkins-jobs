@@ -34,11 +34,6 @@
           choices:
               - 'no'
               - 'yes'
-      - choice:
-          name: ci_release
-          choices:
-              - ci
-              - release
       - !include: './maxscale_jobs/include/test_branch.yaml'
       - !include: './maxscale_jobs/include/machines_count.yaml'
       - !include: './maxscale_jobs/include/sysbench_params.yaml'

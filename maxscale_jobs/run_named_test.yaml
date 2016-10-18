@@ -45,11 +45,6 @@
                 - 'no'
                 - 'yes'
         - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
-        - choice:
             name: named_test
             choices:
                 !include: './maxscale_jobs/include/named_tests.yaml'

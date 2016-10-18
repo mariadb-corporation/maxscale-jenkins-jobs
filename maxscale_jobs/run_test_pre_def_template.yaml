@@ -33,11 +33,6 @@
             choices:
                 - 'no'
                 - 'yes'
-        - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
         - string:
             name: repo_user
             default: !include: './maxscale_jobs/include/default_repo_user.yaml'
