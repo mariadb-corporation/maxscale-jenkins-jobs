@@ -24,10 +24,9 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - '*'
+            - 'develop'
     builders:
-      - shell: 
-          '$HOME/build-scripts/prepare_and_build.sh'
+      - !include: './maxscale_jobs/include/build_all/call_build.yaml'
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
     wrappers:
