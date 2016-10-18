@@ -1,0 +1,6 @@
+choice:
+  name: smoke
+  choices:
+      - 'yes'
+      - 'no'
+  description: "Run fast versions of every test"

@@ -14,17 +14,9 @@
             name: version
             choices:
                 !include: './maxscale_jobs/include/versions.yaml'
-        - choice:
-            name: maxscale_restart
-            choices:
-                - 'yes'
-                - 'no'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
-        - choice:
-            name: smoke
-            choices:
-                - 'yes'
-                - 'no'
+        - !include: './maxscale_jobs/include/smoke.yaml'
+        - !include: './maxscale_jobs/include/big.yaml'
         - string:
              name: name
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
@@ -39,11 +31,6 @@
         - string:
             name: repo_password
             default: !include: './maxscale_jobs/include/default_repo_password.yaml'
-        - choice:
-            name: big
-            choices:
-                - 'no'
-                - 'yes'
         - choice:
             name: named_test
             choices:

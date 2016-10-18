@@ -5,7 +5,6 @@ trigger-builds:
       box=$box
       product=$product
       version=$version
-      maxscale_restart=$maxscale_restart
       do_not_destroy_vm=$do_not_destroy_vm
       smoke=$smoke
       name=$name

@@ -3,11 +3,6 @@
     description: 'This job perform integration testing of maxscale using existing test VMs'
     parameters:
         - choice:
-            name: maxscale_restart
-            choices:
-                - 'yes'
-                - 'no'
-        - choice:
             name: smoke
             choices:
                 - 'yes'
