@@ -25,6 +25,7 @@
           name: repo_password
           default: !include: './maxscale_jobs/include/default_repo_password.yaml'
       - !include: './maxscale_jobs/include/smoke.yaml'
+      - !include: './maxscale_jobs/include/backend_ssl.yaml'
       - !include: './maxscale_jobs/include/test_branch.yaml'
       - !include: './maxscale_jobs/include/machines_count.yaml'
       - !include: './maxscale_jobs/include/sysbench_params.yaml'

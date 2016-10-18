@@ -4,11 +4,7 @@
     parameters:
         - !include: './maxscale_jobs/include/smoke.yaml'
         - !include: './maxscale_jobs/include/big.yaml'
-        - choice:
-            name: backend_ssl
-            choices:
-                - 'no'
-                - 'yes'
+        - !include: './maxscale_jobs/include/backedn_ssl.yaml'
         - !include: './maxscale_jobs/include/name.yaml'
         - string:
             name: snapshot_name

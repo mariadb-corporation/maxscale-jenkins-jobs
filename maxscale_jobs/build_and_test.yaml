@@ -34,6 +34,7 @@
           description: "Repository password"
       - !include: './maxscale_jobs/include/smoke.yaml'
       - !include: './maxscale_jobs/include/big.yaml'
+      - !include: './maxscale_jobs/include/backend_ssl.yaml'
       - !include: './maxscale_jobs/include/test_branch.yaml'
     builders:
         - multijob:
