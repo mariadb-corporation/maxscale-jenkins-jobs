@@ -32,7 +32,7 @@
         - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
         - !include: './maxscale_jobs/include/smoke.yaml'
         - !include: './maxscale_jobs/include/big.yaml'
-        - !include: './maxscale_jobs/include/backedn_ssl.yaml'
+        - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - string:
             name: repo_user
             default: !include: './maxscale_jobs/include/default_repo_user.yaml'

@@ -35,7 +35,7 @@
             name: named_test
             choices:
                 !include: './maxscale_jobs/include/named_tests.yaml'
-        - !include: './maxscale_jobs/include/backedn_ssl.yaml'
+        - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/logs_dir.yaml'
         - !include: './maxscale_jobs/include/test_branch.yaml'
     scm:
