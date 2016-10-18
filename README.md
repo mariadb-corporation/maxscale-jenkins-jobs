@@ -14,14 +14,13 @@ This repo contains yaml description of the jenkins jobs used in Maxscale contini
 * **maxscale_jobs/print_branch_list** - outputs whole file content.
   * *Parameter:*
     + *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them. 
-  * *How to use:*
--- open [print_branch_list][1] job, select Build with Parameters and choose branches list file.
+  * *How to use:* open [print_branch_list][1] job, select Build with Parameters and choose branches list file.
 
 * **maxscale_jobs/remove_line_from_branches_file** - deletes first entry by branch name.
   * *Parameters:*
     + *branch_to_check* - branch name or regex, which is must be deleted from branches list file;
     + *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them. 
-  * *How to use:*  open [remove_line_from_branches_file][2] job, select Build with Parameters, write regex or branch name of searching line  to delete and choose branches list file.
+  * *How to use:* open [remove_line_from_branches_file][2] job, select Build with Parameters, write regex or branch name of searching line  to delete and choose branches list file.
   * *Example:*
 
     <pre>
