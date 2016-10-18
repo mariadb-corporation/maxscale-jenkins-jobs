@@ -12,55 +12,55 @@ This repo contains yaml description of the jenkins jobs used in Maxscale contini
 ### Jobs for editing branches lists
 
 * **maxscale_jobs/print_branch_list** - outputs whole file content.
- *Parameter:*
--- *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them. 
-*How to use:*
+  * *Parameter:*
+    + *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them. 
+  * *How to use:*
 -- open [print_branch_list][1] job, select Build with Parameters and choose branches list file.
 
 * **maxscale_jobs/remove_line_from_branches_file** - deletes first entry by branch name.
-*Parameters:*
--- *branch_to_check* - branch name or regex, which is must be deleted from branches list file;
--- *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them. 
-*How to use:*
--- open [remove_line_from_branches_file][2] job, select Build with Parameters, write regex or branch name of searching line  to delete and choose branches list file.
-*Example:*
- <pre>
+  * *Parameters:*
+    + *branch_to_check* - branch name or regex, which is must be deleted from branches list file;
+    + *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them. 
+  * *How to use:*  open [remove_line_from_branches_file][2] job, select Build with Parameters, write regex or branch name of searching line  to delete and choose branches list file.
+  * *Example:*
+
+    <pre>
 -- branch_to_check=1.4
 -- branches_list=$HOME/jobs_branches/on_push_maxscale_branches.list
 </pre>
- *Result*: delete "1.4" branch name and its test set.
+  * *Result*: delete "1.4" branch name and its test set.
 
 * **maxscale_jobs/update_branches_file** - adds new line (branch|test_set) to given file.
-*Parameters:*
--- *branch_to_check* - branch name , which is must be added to branches list file;
--- *test_set* - command line parameters given to CTest;
--- *branches_list* -  one of the files in \$HOME/jobs_branches/ with list of branches and test sets for them;
--- repo - reference to repo, where searching $branch_to_check 
-*How to use:*
--- open [update_branches_file][3] job, select Build with Parameters, write regex or branch name of searching line to delete and choose branches list file.
-*Example:*
- <pre>
+  * *Parameters:*
+    + *branch_to_check* - branch name , which is must be added to branches list file;
+    + *test_set* - command line parameters given to CTest;
+    + *branches_list* -  one of the files in \$HOME/jobs_branches/ with list of branches and test sets for them;
+    + repo - reference to repo, where searching $branch_to_check 
+  * *How to use:* open [update_branches_file][3] job, select Build with Parameters, write regex or branch name of searching line to delete and choose branches list file.
+  * *Example:*
+    
+    <pre>
 -- branch_to_check=1.4
 -- test_set=-LE HEAVY
 -- branches_list=$HOME/jobs_branches/on_push_maxscale_branches.list
 -- repo=git@github.com:mariadb-corporation/maxscale.git
 </pre>
- *Result*: create new line with branch name "1.4" and test set lines "-LE HEAVY".
+  * *Result*: create new line with branch name "1.4" and test set lines "-LE HEAVY".
 
 * **maxscale_jobs/update_test_set_in_branches_file** - change \$test_set for a given \$branch in \$file for "\$branch|$test_set".
- *Parameters:*
--- *branch_to_check* - branch name or regex, which is looking in branches list file;
--- *test_set* - command line parameters given to CTest;
--- *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them;
-*How to use:*
--- open [update_test_set_in_branches_file][4] job, select Build with Parameters, write regex or branch name of searching line where change test_set in a given branches list file.
-*Example:*
- <pre>
+  * *Parameters:*
+    + *branch_to_check* - branch name or regex, which is looking in branches list file;
+    + *test_set* - command line parameters given to CTest;
+    + *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them;
+  * *How to use:* open [update_test_set_in_branches_file][4] job, select Build with Parameters, write regex or branch name of searching line where change test_set in a given branches list file.
+  * *Example:*
+
+    <pre>
 -- branch_to_check=MXS-.*
 -- test_set=-I 41,42
 -- branches_list=$HOME/jobs_branches/on_push_maxscale_branches.list
 </pre>
- *Result*: update all test sets lines to "-I 41,42" with regex "MXS-.*".
+  * *Result*: update all test sets lines to "-I 41,42" with regex "MXS-.*".
 
 ### Branches list file format
 
