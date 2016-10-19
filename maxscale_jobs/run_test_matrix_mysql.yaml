@@ -17,11 +17,6 @@
            - mysql-5.6
            - mysql-5.7
     parameters:
-        - choice:
-            name: maxscale_restart
-            choices:
-                - 'yes'
-                - 'no'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - string:
              name: name1
@@ -34,21 +29,9 @@
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
         - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
-        - choice:
-            name: smoke
-            choices:
-                - 'yes'
-                - 'no'
-        - choice:
-            name: big
-            choices:
-                - 'no'
-                - 'yes'
-        - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
+        - !include: './maxscale_jobs/include/smoke.yaml'
+        - !include: './maxscale_jobs/include/big.yaml'
+        - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - string:
             name: repo_user
             default: !include: './maxscale_jobs/include/default_repo_user.yaml'

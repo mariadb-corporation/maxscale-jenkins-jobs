@@ -1,0 +1,6 @@
+choice:
+  name: backend_ssl
+  choices:
+      - 'no'
+      - 'yes'
+  description: "Maxscale is configured to use ssl for all communications with backend"

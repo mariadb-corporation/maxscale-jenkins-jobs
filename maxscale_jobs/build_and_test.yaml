@@ -32,23 +32,9 @@
           name: repo_password
           default: !include: './maxscale_jobs/include/default_repo_password.yaml'
           description: "Repository password"
-      - choice:
-          name: smoke
-          choices:
-              - 'yes'
-              - 'no'
-          description: "Run fast versions of the tests"
-      - choice:
-          name: big
-          choices:
-              - 'no'
-              - 'yes'
-          description: "Use larger VMs (don't change this unless you know you need it)"
-      - choice:
-          name: ci_release
-          choices:
-              - ci
-              - release
+      - !include: './maxscale_jobs/include/smoke.yaml'
+      - !include: './maxscale_jobs/include/big.yaml'
+      - !include: './maxscale_jobs/include/backend_ssl.yaml'
       - !include: './maxscale_jobs/include/test_branch.yaml'
     builders:
         - multijob:

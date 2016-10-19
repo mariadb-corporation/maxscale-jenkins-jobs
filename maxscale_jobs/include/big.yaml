@@ -1,0 +1,6 @@
+choice:
+  name: big
+  choices:
+      - 'no'
+      - 'yes'
+  description: "Use larger number of VMs (don't change this unless you know you need it)"
