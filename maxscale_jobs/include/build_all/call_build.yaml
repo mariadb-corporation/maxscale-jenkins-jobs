@@ -1,0 +1,16 @@
+trigger-builds:
+  - project: 'build'
+    block: true
+    predefined-parameters: |
+      box=$box
+      value=$value
+      source=$source
+      target=$target
+      remove_strip=$remove_strip
+      cmake_flags=$cmake_flags
+      do_not_destroy_vm=$do_not_destroy_vm
+      build_experimental=$build_experimental
+      use_mariadbd=$use_mariadbd
+      repo_path=$repo_path
+      try_already_running=no
+

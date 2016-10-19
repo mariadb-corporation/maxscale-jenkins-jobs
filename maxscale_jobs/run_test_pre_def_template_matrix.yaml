@@ -11,18 +11,11 @@
           values:
             !include: './maxscale_jobs/include/pre_def_templates.yaml'
     parameters:
-        - choice:
-            name: maxscale_restart
-            choices:
-                - 'yes'
-                - 'no'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - string:
              name: name1
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
-        - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - string:
             name: test_set
             default: !include: './maxscale_jobs/include/default_test_set.yaml'
@@ -30,34 +23,22 @@
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
         - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
-        - choice:
-            name: smoke
-            choices:
-                - 'yes'
-                - 'no'
-        - choice:
-            name: big
-            choices:
-                - 'no'
-                - 'yes'
-        - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
+        - !include: './maxscale_jobs/include/smoke.yaml'
         - string:
             name: repo_user
             default: !include: './maxscale_jobs/include/default_repo_user.yaml'
         - string:
             name: repo_password
             default: !include: './maxscale_jobs/include/default_repo_password.yaml'
+        - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/logs_dir.yaml'
+        - !include: './maxscale_jobs/include/test_branch.yaml'
     scm:
         - git:
             # TODO parametrize this url
             url: https://github.com/mariadb-corporation/maxscale-system-test.git
             branches:
-                - master
+                - $test_branch
     builders:
         - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
         - !include: './maxscale_jobs/include/run_test_pre_def_templates/setup_env.yaml'

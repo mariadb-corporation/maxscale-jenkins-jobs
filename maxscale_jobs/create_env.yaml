@@ -32,12 +32,13 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - ''
+            - 'develop'
     builders:
       - shell: 
           '$HOME/build-scripts/test/create_env.sh'
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/call_cleanup_without_destroy.yaml'
     wrappers:
       - workspace-cleanup:
           include:

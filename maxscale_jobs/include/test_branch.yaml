@@ -1,0 +1,4 @@
+string:
+  name: test_branch
+  default: master
+  description: "Branch of 'maxscale-system-test' repository"

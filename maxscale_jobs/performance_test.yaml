@@ -14,23 +14,12 @@
             name: version
             choices:
                 !include: './maxscale_jobs/include/versions.yaml'
-        - choice:
-            name: maxscale_restart
-            choices:
-                - 'yes'
-                - 'no'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
-        - choice:
-            name: smoke
-            choices:
-                - 'yes'
-                - 'no'
+        - !include: './maxscale_jobs/include/smoke.yaml'
         - string:
              name: name
              default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
-        - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - string:
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
@@ -41,26 +30,18 @@
         - string:
             name: repo_password
             default: !include: './maxscale_jobs/include/default_repo_password.yaml'
-        - choice:
-            name: big
-            choices:
-                - 'no'
-                - 'yes'
-        - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
         - !include: './maxscale_jobs/include/performance_named_test.yaml'
+        - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/sysbench_params.yaml'
         - !include: './maxscale_jobs/include/machines_count.yaml'
         - !include: './maxscale_jobs/include/logs_dir.yaml'
+        - !include: './maxscale_jobs/include/test_branch.yaml'
     scm:
         - git:
             # TODO parametrize this url
             url: https://github.com/mariadb-corporation/maxscale-system-test.git
             branches:
-                - master
+                - $test_branch
     builders:
         - !include: './maxscale_jobs/include/performance_test_parser/create_env_vars.yaml'
         - !include: './maxscale_jobs/include/performance_test_parser/inject_initial_env.yaml'

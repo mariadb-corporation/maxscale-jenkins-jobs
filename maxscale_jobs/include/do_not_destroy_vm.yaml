@@ -3,3 +3,4 @@ choice:
   choices:
       - 'no'
       - 'yes'
+  description: "Leave the VMs running after the build"

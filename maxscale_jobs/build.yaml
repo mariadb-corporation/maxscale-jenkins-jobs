@@ -8,6 +8,7 @@
           name: box
           choices:
             !include: './maxscale_jobs/include/boxes.yaml'
+          description: 'MaxScale OS'
       - !include: './maxscale_jobs/include/target.yaml'
       - !include: './maxscale_jobs/include/remove_strip.yaml'
       - !include: './maxscale_jobs/include/cmake_flags.yaml'
@@ -21,7 +22,7 @@
       - git:
           url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - ''
+            - 'develop'
     builders:
       - shell: 
           '$HOME/build-scripts/prepare_and_build.sh'

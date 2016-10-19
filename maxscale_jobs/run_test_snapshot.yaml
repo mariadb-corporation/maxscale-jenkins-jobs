@@ -2,28 +2,14 @@
     name: run_test_snapshot
     description: 'This job perform integration testing of maxscale'
     parameters:
-        - choice:
-            name: maxscale_restart
-            choices:
-                - 'yes'
-                - 'no'
-        - choice:
-            name: smoke
-            choices:
-                - 'yes'
-                - 'no'
-        - choice:
-            name: backend_ssl
-            choices:
-                - 'no'
-                - 'yes'
+        - !include: './maxscale_jobs/include/smoke.yaml'
+        - !include: './maxscale_jobs/include/big.yaml'
+        - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/name.yaml'
         - string:
             name: snapshot_name
             default: 'clean'
-        - string:
-            name: target
-            default: !include: './maxscale_jobs/include/default_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - string:
             name: test_set
             default: !include: './maxscale_jobs/include/default_test_set.yaml'
@@ -37,23 +23,14 @@
         - string:
             name: repo_password
             default: !include: './maxscale_jobs/include/default_repo_password.yaml'
-        - choice:
-            name: big
-            choices:
-                - 'no'
-                - 'yes'
-        - choice:
-            name: ci_release
-            choices:
-                - ci
-                - release
         - !include: './maxscale_jobs/include/logs_dir.yaml'
+        - !include: './maxscale_jobs/include/test_branch.yaml'
     scm:
         - git:
             # TODO parametrize this url
             url: https://github.com/mariadb-corporation/maxscale-system-test.git
             branches:
-                - master
+                - $test_branch
     builders:
       - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
       - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'

@@ -3,11 +3,6 @@
     description: 'This job perform integration testing of maxscale using existing test VMs'
     parameters:
         - choice:
-            name: maxscale_restart
-            choices:
-                - 'yes'
-                - 'no'
-        - choice:
             name: smoke
             choices:
                 - 'yes'
@@ -18,13 +13,15 @@
         - string:
             name: test_set
             default: !include: './maxscale_jobs/include/default_test_set.yaml'
+        - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/logs_dir.yaml'
+        - !include: './maxscale_jobs/include/test_branch.yaml'
     scm:
         - git:
             # TODO parametrize this url
             url: https://github.com/mariadb-corporation/maxscale-system-test.git
             branches:
-                - master
+                - $test_branch
     builders:
         - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
         - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'

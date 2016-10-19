@@ -4,3 +4,4 @@ choice:
     - BRANCH
     - TAG
     - COMMIT
+  description: 'The source type to use'
