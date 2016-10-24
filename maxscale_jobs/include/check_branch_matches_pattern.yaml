@@ -1,7 +1,6 @@
 shell: |
   echo "Checking $GIT_BRANCH"
-  branches_list=`cat $branches_list_file`
-  for line in $branches_list
+  while read line
   do
     branch_pattern=`echo $line | sed -e 's/|[^|]*$//g'`
     test_set=`echo $line | sed -e 's/^[^|]*|//g'`
@@ -12,5 +11,5 @@ shell: |
       touch branch_match
       exit 0
     fi
-  done
+  done < $branches_list_file
   echo "$GIT_BRANCH does not match any patterns from $branches_list_file!"
