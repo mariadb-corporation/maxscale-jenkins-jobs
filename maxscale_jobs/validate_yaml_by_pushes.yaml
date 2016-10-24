@@ -12,18 +12,28 @@
             - '*'
     builders:
       - shell: |
+          prop_file="failed_yaml_tests_property_file"
+          injection_var="FAILED_YAML_TESTS_LIST"
+
+          if [ -f "$prop_file" ]; then
+              rm "$prop_file"
+          fi
+
           jobs=`ls maxscale_jobs/*.yaml -1`
           res=0
           failed_list=""
-          
+
           for job in $jobs
           do
-            
+
             if $HOME/jjg/scripts/validate_yaml.sh $job ; then
               echo "Validating of $job SUCCESS."
             else
               echo "Validating of $job FAILED!"
               failed_list="$failed_list \n $job"
+
+              echo "$job \\" >> "$prop_file"
+
               res=1
             fi
           done
@@ -34,6 +44,21 @@
             echo -e $failed_list
           fi
 
-          exit $res
+          prop_file_content=$(cat "$prop_file") || true
+          if [[ -n "$prop_file_content" ]]; then
+            echo "$injection_var=Failed yaml jobs: \\" > "$prop_file"
+            echo "$prop_file_content" >> "$prop_file"
+          else
+            echo "$injection_var=All jobs are valid" >> "$prop_file"
+          fi
+      - inject:
+          properties-file: failed_yaml_tests_property_file
+      - shell: |
+          prop_file="failed_yaml_tests_property_file"
+          injection_var="FAILED_YAML_TESTS_LIST"
+
+          if [[ -z $(cat "$prop_file" | grep "All jobs are valid") ]]; then
+          	exit 1
+          fi
     publishers:
-      - !include: './maxscale_jobs/include/mail_branch.yaml'
+      - !include: './maxscale_jobs/include/mail_yaml.yaml'
