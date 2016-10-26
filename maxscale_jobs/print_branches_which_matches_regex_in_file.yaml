@@ -25,5 +25,3 @@
             fi
             printf "Matches in $branches_list:$result_list\n"
             exit 0
-    wrappers:
-      - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
