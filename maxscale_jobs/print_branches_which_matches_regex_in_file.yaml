@@ -3,9 +3,7 @@
     description: 'This job checks branches_list file and print list of the branches which are matching patterns from it.'
     parameters:
         - !include: './maxscale_jobs/include/branches_list.yaml'
-        - string:
-            name: repo
-            default: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+        - !include: './maxscale_jobs/include/repo.yaml'
     builders:
         - shell: |
             result_list=""
