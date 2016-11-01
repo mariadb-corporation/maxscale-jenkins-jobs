@@ -14,5 +14,6 @@ conditional-step:
         - project: run_test_snapshot
           block: true
           predefined-parameters: |
+            target=$JOB_NAME-$BUILD_ID
             name=$JOB_NAME-$BUILD_ID
             test_set=$test_set
