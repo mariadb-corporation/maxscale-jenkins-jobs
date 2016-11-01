@@ -8,6 +8,7 @@ shell: |
     then
       echo "$GIT_BRANCH matches $branch_pattern!"
       echo "test_set=$test_set" > $WORKSPACE/env_vars_$BUILD_ID
+      echo "branch_to_check=$branch_pattern" >> $WORKSPACE/env_vars_$BUILD_ID
       touch branch_match
       exit 0
     fi
