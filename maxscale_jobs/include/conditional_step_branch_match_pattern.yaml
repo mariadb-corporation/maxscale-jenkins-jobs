@@ -10,6 +10,7 @@ conditional-step:
           predefined-parameters: |
             target=$JOB_NAME-$BUILD_ID
             value=$branch_to_check
+            try_already_running=yes
     - trigger-builds:
         - project: run_test_snapshot
           block: true
