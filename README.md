@@ -18,7 +18,7 @@ This repo contains yaml description of the jenkins jobs used in Maxscale contini
 
 * **maxscale_jobs/remove_line_from_branches_file** - deletes first entry by branch name.
   * *Parameters:*
-    + *branch_to_check* - branch name or regex, which is must be deleted from branches list file;
+    + *branch_to_check* - branch name or regex, which must be deleted from branches list file;
     + *branches_list* -  one of the files in $HOME/jobs_branches/ with list of branches and test sets for them. 
   * *How to use:* open [remove_line_from_branches_file][2] job, select Build with Parameters, write regex or branch name of searching line  to delete and choose branches list file.
   * *Example:*
@@ -31,7 +31,7 @@ This repo contains yaml description of the jenkins jobs used in Maxscale contini
 
 * **maxscale_jobs/update_branches_file** - adds new line (branch|test_set) to given file.
   * *Parameters:*
-    + *branch_to_check* - branch name , which is must be added to branches list file;
+    + *branch_to_check* - branch name , which must be added to branches list file;
     + *test_set* - command line parameters given to CTest;
     + *branches_list* -  one of the files in \$HOME/jobs_branches/ with list of branches and test sets for them;
     + repo - reference to repo, where searching $branch_to_check 
