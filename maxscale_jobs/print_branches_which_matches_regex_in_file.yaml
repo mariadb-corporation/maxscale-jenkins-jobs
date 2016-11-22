@@ -1,0 +1,25 @@
+- job:
+    name: print_branches_which_matches_regex_in_file
+    description: 'This job checks branches_list file and print list of the branches which are matching patterns from it.'
+    parameters:
+        - !include: './maxscale_jobs/include/branches_list.yaml'
+        - !include: './maxscale_jobs/include/repo.yaml'
+    builders:
+        - shell: |
+            result_list=""
+            while read line; do
+              branch_pattern=`echo $line | sed -e 's/|[^|]*$//g'`
+              temp_list=""
+              if [[ $(git ls-remote --heads $repo | sed 's?.*refs/heads/??' | grep "$branch_pattern"| wc -c) -ne 0 ]]; then
+                temp_list="$(git ls-remote --heads $repo | sed 's?.*refs/heads/??' | grep "$branch_pattern")"
+              fi
+              if [[ -n $temp_list ]]; then
+                result_list="$result_list \n\tPattern $branch_pattern :\n$temp_list"
+              fi
+            done <$branches_list
+            if [[ -z $result_list ]]; then
+              echo "Branches in $repo does not match any patterns from $branches_list!"
+              exit 1
+            fi
+            printf "Matches in $branches_list:$result_list\n"
+            exit 0
