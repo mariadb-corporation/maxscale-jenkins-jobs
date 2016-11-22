@@ -12,3 +12,4 @@
           fi
       - trigger-builds:
           - project: 'remove_lock'
+            same-node: true

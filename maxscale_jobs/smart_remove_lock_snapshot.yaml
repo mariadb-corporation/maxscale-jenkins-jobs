@@ -15,9 +15,11 @@
           - project: 'remove_lock_snapshot'
             predefined-parameters: |
               name=$name
+            same-node: true
     publishers:
       - trigger-parameterized-builds:
           - project: 'smart_remove_lock'
             condition: 'UNSTABLE_OR_WORSE'
             predefined-parameters: |
               build_full_name=$build_full_name
+            node-parameters: true

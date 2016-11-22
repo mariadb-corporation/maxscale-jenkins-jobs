@@ -6,4 +6,4 @@ trigger-parameterized-builds:
       do_not_destroy_vm=$do_not_destroy_vm
       try_already_running=$try_already_running
       name=$box-$JOB_NAME-$BUILD_NUMBER
-      
+    node-parameters: true
