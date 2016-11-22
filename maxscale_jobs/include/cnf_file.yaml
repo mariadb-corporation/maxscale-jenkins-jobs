@@ -1,0 +1,4 @@
+string:
+  name: cnf_file
+  default: 'maxscale.cnf.minimum'
+  description: 'The name of maxscale.cnf file to be used for test Maxscale start'

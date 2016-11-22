@@ -1,0 +1,4 @@
+string:
+  name: maxadmin_command
+  default: 'sudo maxadmin show services'
+  description: 'Maxadmin command show services for upgrade test'
