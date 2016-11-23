@@ -3,3 +3,4 @@ trigger-builds:
     block: true
     predefined-parameters: |
       build_full_name=$build_full_name
+    same-node: true
