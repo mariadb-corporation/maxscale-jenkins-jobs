@@ -19,6 +19,7 @@
         - string:
             name: test_set
             default: !include: './maxscale_jobs/include/default_test_set.yaml'
+        - !include: './maxscale_jobs/include/use_snapshots.yaml'
         - string:
             name: ci_url
             default: !include: './maxscale_jobs/include/default_ci_url.yaml'
