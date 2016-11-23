@@ -30,8 +30,6 @@
       - !include: './maxscale_jobs/include/mail.yaml'
       - !include: './maxscale_jobs/include/call_cleanup_at_build.yaml'
     wrappers:
-      - workspace-cleanup:
-          include:
-            - "*.*"
-          dirmatch: true
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+      - !include: './maxscale_jobs/include/timeout.yaml'
     concurrent: true
