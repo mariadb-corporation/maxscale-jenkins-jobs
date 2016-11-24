@@ -5,7 +5,7 @@
       - !include: './maxscale_jobs/include/build_full_name.yaml'
     builders:
       - shell: |
-          locker=`cat $HOME/vagrant_lock`
+          locker=`cat $locker`
           if [ "$build_full_name" != "$locker" ]; then
             echo "Lock file was created not by current task! Lock file will not be removed."
             exit 1
