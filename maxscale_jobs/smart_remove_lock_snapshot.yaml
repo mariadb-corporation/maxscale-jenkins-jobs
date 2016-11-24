@@ -6,7 +6,7 @@
       - !include: './maxscale_jobs/include/build_full_name.yaml'
     builders:
       - shell: |
-          locker=`cat $build_full_name`
+          locker=`cat $HOME/mdbci/$name/snapshot_lock`
           if [ "$build_full_name" != "$locker" ]; then
             echo "Snapshot lock file was created not by current task! Lock file will not be removed."
             exit 1
