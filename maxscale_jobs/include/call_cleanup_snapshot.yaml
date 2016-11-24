@@ -5,3 +5,4 @@ trigger-parameterized-builds:
       name=$name
       build_full_name=$JOB_NAME-$BUILD_NUMBER
       locker=$snapshot_lock_file
+    node-parameters: true

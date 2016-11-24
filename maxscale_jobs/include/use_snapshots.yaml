@@ -1,0 +1,6 @@
+choice:
+  name: use_snapshots
+  choices:
+      - 'no'
+      - 'yes'
+  description: "Take snapsot of all VMs after check_backend and the revert before every test"
