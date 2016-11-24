@@ -2,6 +2,6 @@ trigger-parameterized-builds:
   - project: 'smart_remove_lock_snapshot'
     condition: UNSTABLE_OR_WORSE
     predefined-parameters: |
-      name=$name
-      build_full_name="$box-$product-$version-permanent"
+      name=$box-$product-$version-permanent
+      build_full_name=$JOB_NAME-$BUILD_NUMBER
     node-parameters: true
