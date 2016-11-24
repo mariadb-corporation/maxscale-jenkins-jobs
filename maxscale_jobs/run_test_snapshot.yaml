@@ -28,15 +28,15 @@
         - choice:
             name: box
             choices:
-                !include: './maxscale_jobs/include/boxes_all.yaml'
+              !include: './maxscale_jobs/include/boxes_all.yaml'
         - choice:
             name: product
             choices:
-                !include: './maxscale_jobs/include/products.yaml'
+              !include: './maxscale_jobs/include/products.yaml'
         - choice:
             name: version
             choices:
-                !include: './maxscale_jobs/include/versions.yaml'
+              !include: './maxscale_jobs/include/versions.yaml'
     scm:
         - git:
             # TODO parametrize this url
