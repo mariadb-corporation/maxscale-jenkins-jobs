@@ -3,6 +3,5 @@ trigger-parameterized-builds:
     condition: UNSTABLE_OR_WORSE
     predefined-parameters: |
       name=$name
-      build_full_name=$JOB_NAME-$BUILD_NUMBER
-      locker=$snapshot_lock_file
+      build_full_name="$box-$product-$version-permanent"
     node-parameters: true
