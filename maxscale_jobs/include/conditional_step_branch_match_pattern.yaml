@@ -7,6 +7,7 @@ conditional-step:
     - trigger-builds:
         - project: build
           block: true
+          same-node: true
           predefined-parameters: |
             target=$JOB_NAME-$BUILD_ID
             value=$branch_to_check
@@ -14,6 +15,7 @@ conditional-step:
     - trigger-builds:
         - project: run_test_snapshot
           block: true
+          same-node: true
           predefined-parameters: |
             target=$JOB_NAME-$BUILD_ID
             name=$JOB_NAME-$BUILD_ID
