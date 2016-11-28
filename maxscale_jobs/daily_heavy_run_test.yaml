@@ -1,6 +1,7 @@
 - job:
     name: daily_heavy_run_test
     description: 'Daily build (at ~3 am) of run_test with le-heavy enabled '
+    node: !include: './maxscale_jobs/include/slave_for_daily_tests.yaml'
     triggers:
       - timed: "H 3 * * *"
     builders:
