@@ -7,7 +7,7 @@
       - trigger-builds:
           - project: 'build_and_test'
             predefined-parameters: |
-              test_set=
+              test_set=-LE UNSTABLE
               smoke=yes
               name=daily_all-$BUILD_ID
               target=daily_all-$BUILD_ID 
