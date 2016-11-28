@@ -2,12 +2,12 @@
     name: build_and_performance_test
     project-type: multijob
     description: 'This job build and run performance test.'
-    parameters: 
+    parameters:
       - !include: './maxscale_jobs/include/name.yaml'
       - choice:
           name: box
           choices:
-            !include: './maxscale_jobs/include/boxes.yaml'
+            !include: './maxscale_jobs/include/performance_test_boxes.yaml'
       - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/target.yaml'

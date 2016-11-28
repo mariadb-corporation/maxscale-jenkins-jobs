@@ -5,7 +5,7 @@
         - choice:
             name: box
             choices:
-                !include: './maxscale_jobs/include/boxes_all.yaml'
+                !include: './maxscale_jobs/include/performance_test_boxes_all.yaml'
         - choice:
             name: product
             choices:
@@ -56,4 +56,3 @@
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
       - !include: './maxscale_jobs/include/timeout.yaml'
     concurrent: true
-
