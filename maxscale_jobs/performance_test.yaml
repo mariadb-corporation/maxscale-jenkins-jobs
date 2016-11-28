@@ -51,7 +51,9 @@
         - !include: './maxscale_jobs/include/performance_test_parser/inject_benchmark_results.yaml'
     publishers:
       - !include: './maxscale_jobs/include/performance_test_parser/mail.yaml'
+      - !include: './maxscale_jobs/include/call_cleanup.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+      - !include: './maxscale_jobs/include/timeout.yaml'
     concurrent: true
 
