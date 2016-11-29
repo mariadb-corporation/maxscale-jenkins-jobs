@@ -1,7 +1,6 @@
 - job:
     name: build_and_test
     description: 'This job builds Maxscale and runs tests'
-    project-type: multijob
     parameters: 
       - string:
           name: name
@@ -37,18 +36,16 @@
       - !include: './maxscale_jobs/include/backend_ssl.yaml'
       - !include: './maxscale_jobs/include/test_branch.yaml'
     builders:
-        - multijob:
-            name: build
-            projects:
-              - name: build
-                node-parameters: true
-                current-parameters: true
-        - multijob:
-            name: run_test
-            projects:
-              - name: run_test
-                current-parameters: true
-                node-parameters: true
+      - trigger-builds:
+          - project: 'build'
+            block: true
+            same-node: true
+            current-parameters: true
+      - trigger-builds:
+          - project: 'run_test'
+            block: true
+            same-node: true
+            current-parameters: true
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
