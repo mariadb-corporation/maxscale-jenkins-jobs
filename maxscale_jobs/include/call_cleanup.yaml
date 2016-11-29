@@ -1,5 +1,6 @@
 trigger-parameterized-builds:
   - project: 'cleanup'
+    same-node: true
     condition: UNSTABLE_OR_WORSE
     predefined-parameters: |
       build_full_name=$JOB_NAME-$BUILD_NUMBER

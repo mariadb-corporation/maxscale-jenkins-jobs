@@ -7,6 +7,7 @@
     builders:
       - trigger-builds:
           - project: 'build_and_test'
+            same-node: true
             predefined-parameters: |
               test_set=-LE UNSTABLE
               smoke=yes

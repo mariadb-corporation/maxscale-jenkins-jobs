@@ -41,12 +41,14 @@
             name: build
             projects:
               - name: build
+                node-parameters: true
                 current-parameters: true
         - multijob:
             name: run_test
             projects:
               - name: run_test
                 current-parameters: true
+                node-parameters: true
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
