@@ -48,4 +48,4 @@
             current-parameters: true
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
-    concurrent: true
+    concurrent: false
