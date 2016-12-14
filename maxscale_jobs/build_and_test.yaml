@@ -1,5 +1,6 @@
 - job:
     name: build_and_test
+    project-type: multijob
     description: 'This job builds Maxscale and runs tests'
     parameters: 
       - string:
