@@ -38,6 +38,7 @@
                 <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
                   <jobName>build</jobName>
                   <currParams>true</currParams>
+                  <condition>SUCCESSFUL</condition>
                   <configs>
                     <hudson.plugins.parameterizedtrigger.NodeParameters plugin="parameterized-trigger@2.29"/>
                   </configs>
