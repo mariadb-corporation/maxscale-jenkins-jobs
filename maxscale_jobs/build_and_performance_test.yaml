@@ -36,7 +36,7 @@
               <phaseName>build</phaseName>
               <phaseJobs>
                 <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
-                  <jobName>7798_build</jobName>
+                  <jobName>build</jobName>
                   <currParams>true</currParams>
                   <configs>
                     <hudson.plugins.parameterizedtrigger.NodeParameters plugin="parameterized-trigger@2.29"/>
@@ -50,7 +50,7 @@
               <phaseName>performance_test</phaseName>
               <phaseJobs>
                 <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
-                  <jobName>7798_performance_test</jobName>
+                  <jobName>performance_test</jobName>
                   <currParams>true</currParams>
                   <configs>
                     <hudson.plugins.parameterizedtrigger.NodeParameters plugin="parameterized-trigger@2.29"/>
