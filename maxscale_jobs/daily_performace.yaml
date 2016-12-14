@@ -12,5 +12,6 @@
               name=daily_performace-$BUILD_ID
               target=daily_performace-$BUILD_ID 
               box=centos_7_libvirt
+            same-node: true
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'

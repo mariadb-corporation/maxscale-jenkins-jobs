@@ -30,15 +30,33 @@
       - !include: './maxscale_jobs/include/machines_count.yaml'
       - !include: './maxscale_jobs/include/sysbench_params.yaml'
     builders:
-      - multijob:
-          name: build
-          projects:
-            - name: build
-              current-parameters: true
-      - multijob:
-          name: performance_test
-          projects:
-            - name: performance_test
-              current-parameters: true
+      - raw:
+          xml: |
+            <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+              <phaseName>build</phaseName>
+              <phaseJobs>
+                <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+                  <jobName>7798_build</jobName>
+                  <currParams>true</currParams>
+                  <configs>
+                    <hudson.plugins.parameterizedtrigger.NodeParameters plugin="parameterized-trigger@2.29"/>
+                  </configs>
+                </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+              </phaseJobs>
+            </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+      - raw:
+          xml: |
+            <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+              <phaseName>performance_test</phaseName>
+              <phaseJobs>
+                <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+                  <jobName>7798_performance_test</jobName>
+                  <currParams>true</currParams>
+                  <configs>
+                    <hudson.plugins.parameterizedtrigger.NodeParameters plugin="parameterized-trigger@2.29"/>
+                  </configs>
+                </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+              </phaseJobs>
+            </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
