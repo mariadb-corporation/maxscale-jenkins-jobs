@@ -5,4 +5,4 @@ trigger-parameterized-builds:
       build_full_name=$JOB_NAME-$BUILD_NUMBER
       do_not_destroy_vm=$do_not_destroy_vm
       name=$name
-      
+    node-parameters: true
