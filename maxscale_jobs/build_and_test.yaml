@@ -35,17 +35,35 @@
       - !include: './maxscale_jobs/include/big.yaml'
       - !include: './maxscale_jobs/include/backend_ssl.yaml'
       - !include: './maxscale_jobs/include/test_branch.yaml'
-    builders:
-      - trigger-builds:
-          - project: 'build'
-            block: true
-            same-node: true
-            current-parameters: true
-      - trigger-builds:
-          - project: 'run_test'
-            block: true
-            same-node: true
-            current-parameters: true
+     builders:
+        - raw:
+            xml: |
+              <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+                <phaseName>build</phaseName>
+                <phaseJobs>
+                  <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+                    <jobName>build</jobName>
+                    <currParams>true</currParams>
+                    <configs>
+                      <hudson.plugins.parameterizedtrigger.NodeParameters plugin="parameterized-trigger@2.29"/>
+                    </configs>
+                  </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+                </phaseJobs>
+              </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+        - raw:
+            xml: |
+              <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+                <phaseName>run_test</phaseName>
+                <phaseJobs>
+                  <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+                    <jobName>run_test</jobName>
+                    <currParams>true</currParams>
+                    <configs>
+                      <hudson.plugins.parameterizedtrigger.NodeParameters plugin="parameterized-trigger@2.29"/>
+                    </configs>
+                  </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+                </phaseJobs>
+              </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
