@@ -13,12 +13,6 @@
       - trigger-builds:
           - project: 'build_and_test'
             block: true
-            predefined-parameters: |
-                test_set=-LE UNSTABLE
-                smoke=yes
-                name=daily_all-$BUILD_ID
-                target=daily_all-$BUILD_ID
-                box=centos_7_libvirt
             parameter-factories:
               - factory: filebuild
                 file-pattern: branches/*
