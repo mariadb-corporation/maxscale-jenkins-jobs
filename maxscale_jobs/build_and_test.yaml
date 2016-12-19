@@ -37,15 +37,15 @@
       - !include: './maxscale_jobs/include/test_branch.yaml'
     builders:
       - trigger-builds:
-        - project: 'build'
-          block: true
-          same-node: true
-          current-parameters: true
+          - project: 'build'
+            block: true
+            same-node: true
+            current-parameters: true
       - trigger-builds:
-        - project: 'run_test'
-          block: true
-          same-node: true
-          current-parameters: true
+          - project: 'run_test'
+            block: true
+            same-node: true
+            current-parameters: true
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
