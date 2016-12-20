@@ -11,12 +11,13 @@
       - shell:
           !include-raw: './maxscale_jobs/include/generate_branch_property_files.sh' 
       - trigger-builds:
-          - project: 'run_test'
+          - project: 'build_and_test'
             block: true
             parameter-factories:
               - factory: filebuild
                 file-pattern: branches/*
                 no-files-found-action: FAIL
+            same-node: true
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
     wrappers:
