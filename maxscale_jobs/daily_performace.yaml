@@ -7,6 +7,7 @@
     builders:
       - trigger-builds:
           - project: 'build_and_performance_test'
+            block: true
             predefined-parameters: |
               cmake_flags=-DBUILD_TESTS=N -DFAKE_CODE=N -DBUILD_MMMON=Y -DBUILD_AVRO=Y -DBUILD_CDC=Y
               name=daily_performace-$BUILD_ID
