@@ -1,11 +1,13 @@
 - job:
     name: weekly_no_smoke_run_test
     description: 'Weekly build (at ~3 am Friday) of run_test with smoke=no'
+    node: !include: './maxscale_jobs/include/slave_for_weekly_tests.yaml'
     triggers:
       - timed: "H 3 * * 5"
     builders:
       - trigger-builds:
           - project: 'build_and_test'
+            same-node: true
             predefined-parameters: |
               smoke=no
               name=weekly_no_smoke-$BUILD_ID
