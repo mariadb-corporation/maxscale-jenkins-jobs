@@ -1,15 +1,18 @@
 - job:
     name: daily_performace
     description: 'Daily build (at ~6 am) of build_and_performance_test'
+    node: !include: './maxscale_jobs/include/slave_for_daily_tests.yaml'
     triggers:
       - timed: "H 6 * * *"
     builders:
       - trigger-builds:
           - project: 'build_and_performance_test'
+            block: true
             predefined-parameters: |
               cmake_flags=-DBUILD_TESTS=N -DFAKE_CODE=N -DBUILD_MMMON=Y -DBUILD_AVRO=Y -DBUILD_CDC=Y
               name=daily_performace-$BUILD_ID
               target=daily_performace-$BUILD_ID 
               box=centos_7_libvirt
+            same-node: true
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
