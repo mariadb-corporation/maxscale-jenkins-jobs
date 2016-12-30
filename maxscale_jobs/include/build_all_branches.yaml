@@ -1,0 +1,3 @@
+string:
+  name: branches_list_file
+  default: !include: './maxscale_jobs/include/job_branches/build_all_branches.yaml'

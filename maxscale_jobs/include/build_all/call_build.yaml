@@ -1,5 +1,6 @@
 trigger-builds:
   - project: 'build'
+    same-node: true
     block: true
     predefined-parameters: |
       box=$box
