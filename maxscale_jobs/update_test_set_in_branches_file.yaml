@@ -1,6 +1,7 @@
 - job:
     name: update_test_set_in_branches_file
     description: 'This job replace string containing $branch in $file for "$branch|$test_set"'
+    node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
       - !include: './maxscale_jobs/include/branch_to_check.yaml'
       - !include: './maxscale_jobs/include/test_set.yaml'

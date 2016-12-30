@@ -1,6 +1,7 @@
 - job:
     name: print_branch_list
     description: 'This job prints given file content'
+    node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
         - !include: './maxscale_jobs/include/branches_list.yaml'
     builders:
