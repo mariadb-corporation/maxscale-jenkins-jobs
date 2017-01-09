@@ -34,4 +34,4 @@
           include:
             - "*.*"
           dirmatch: true
-    concurrent: true
+    concurrent: false

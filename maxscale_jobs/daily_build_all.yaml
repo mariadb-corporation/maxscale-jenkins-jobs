@@ -1,0 +1,24 @@
+- job:
+    name: daily_build_all
+    description: 'Run build all daily for give branches.'
+    node: !include: './maxscale_jobs/include/slave_for_daily_build_all.yaml'
+    parameters:
+      - !include: './maxscale_jobs/include/build_all_branches.yaml'
+      - !include: './maxscale_jobs/include/repo.yaml'
+    triggers:
+      - timed: "H 1 * * *"
+    builders:
+      - shell:
+          !include-raw: './maxscale_jobs/include/generate_branch_property_files_build_all.sh' 
+      - trigger-builds:
+          - project: 'build_all'
+            block: true
+            parameter-factories:
+              - factory: filebuild
+                file-pattern: branches/*
+                no-files-found-action: FAIL
+            same-node: true
+    publishers:
+      - !include: './maxscale_jobs/include/mail.yaml'
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
