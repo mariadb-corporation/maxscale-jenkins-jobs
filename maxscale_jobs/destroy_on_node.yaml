@@ -1,0 +1,10 @@
+- job:
+    name: destroy_on_node
+    description: 'Calls destroy job on the slave'
+    parameters:
+      - !include: './maxscale_jobs/include/slaves_for_build_and_test_alone.yaml'    
+    builders:
+      - trigger-builds:
+          - project: 'destroy'
+            same-node: true
+
