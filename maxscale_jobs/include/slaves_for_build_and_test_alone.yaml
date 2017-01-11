@@ -1,5 +1,5 @@
 node:
-  name: SLAVE_NAME
+  name: slave_name
   description: "Select slave"
   allowed-slaves:
     - master
