@@ -4,7 +4,7 @@
     parameters:
       - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
-      - !include: './maxscale_jobs/include/slaves_for_build_and_test_alone.yaml'    
+      - !include: './maxscale_jobs/include/slave.yaml'    
     builders:
       - shell: | 
           if [ $do_not_destroy_vm == "yes" ]; then
