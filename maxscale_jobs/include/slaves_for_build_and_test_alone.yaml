@@ -4,3 +4,4 @@ node:
   allowed-slaves:
     - master
     - maxtst2    
+    - maxtst3
