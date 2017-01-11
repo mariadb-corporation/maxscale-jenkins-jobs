@@ -1,6 +1,6 @@
-- node:
-    name: SLAVE_NAME
-    description: "Select slave"
-    allowed-slaves:
-      - master
-      - maxtst2    
+node:
+  name: SLAVE_NAME
+  description: "Select slave"
+  allowed-slaves:
+    - master
+    - maxtst2    
