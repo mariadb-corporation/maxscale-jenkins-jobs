@@ -8,6 +8,8 @@
           name: box
           choices:
             !include: './maxscale_jobs/include/boxes.yaml'
+      - !include: './maxscale_jobs/include/products_incl.yaml'
+      - !include: './maxscale_jobs/include/versions_incl.yaml'
       - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/target.yaml'
@@ -29,6 +31,7 @@
       - !include: './maxscale_jobs/include/test_branch.yaml'
       - !include: './maxscale_jobs/include/machines_count.yaml'
       - !include: './maxscale_jobs/include/sysbench_params.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
     builders:
       - raw:
           xml: |
