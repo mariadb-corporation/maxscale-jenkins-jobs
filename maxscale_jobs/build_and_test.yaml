@@ -14,6 +14,8 @@
           name: box
           choices:
             !include: './maxscale_jobs/include/boxes.yaml'
+      - !include: './maxscale_jobs/include/products_incl.yaml'
+      - !include: './maxscale_jobs/include/versions_incl.yaml'
       - !include: './maxscale_jobs/include/remove_strip.yaml'
       - !include: './maxscale_jobs/include/cmake_flags.yaml'
       - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'

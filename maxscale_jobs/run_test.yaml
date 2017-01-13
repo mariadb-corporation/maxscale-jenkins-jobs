@@ -6,14 +6,8 @@
             name: box
             choices:
                 !include: './maxscale_jobs/include/boxes_all.yaml'
-        - choice:
-            name: product
-            choices:
-                !include: './maxscale_jobs/include/products.yaml'
-        - choice:
-            name: version
-            choices:
-                !include: './maxscale_jobs/include/versions.yaml'
+        - !include: './maxscale_jobs/include/products_incl.yaml'
+        - !include: './maxscale_jobs/include/versions_incl.yaml'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - !include: './maxscale_jobs/include/smoke.yaml'
         - !include: './maxscale_jobs/include/big.yaml'
@@ -37,6 +31,7 @@
             name: config_to_clone
             description: !include: './maxscale_jobs/include/config_to_clone.yaml'
         - !include: './maxscale_jobs/include/test_branch.yaml'
+        - !include: './maxscale_jobs/include/slave.yaml'
     scm:
         - git:
             # TODO parametrize this url
