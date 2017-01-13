@@ -1,0 +1,4 @@
+choice:
+  name: product
+  choices:
+       !include: './maxscale_jobs/include/products.yaml'
