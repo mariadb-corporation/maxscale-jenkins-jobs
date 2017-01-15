@@ -2,6 +2,7 @@
     name: remove_lock_snapshot
     parameters:
       - !include: './maxscale_jobs/include/name.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
     description: 'This job removes snapshot_lock'
     builders:
       - shell: 
