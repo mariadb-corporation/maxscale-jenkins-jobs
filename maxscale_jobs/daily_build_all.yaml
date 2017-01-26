@@ -13,6 +13,8 @@
       - trigger-builds:
           - project: 'build_all'
             block: true
+            predefined-parameters:
+              slave_name=${NODE_NAME}
             parameter-factories:
               - factory: filebuild
                 file-pattern: branches/*

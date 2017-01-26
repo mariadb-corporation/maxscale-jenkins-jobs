@@ -10,7 +10,8 @@
           name: box
           values:
             !include: './maxscale_jobs/include/boxes.yaml'
-    parameters: 
+    parameters:
+      - !include: './maxscale_jobs/include/slave.yaml'
       - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/target.yaml'
