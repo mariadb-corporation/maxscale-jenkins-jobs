@@ -18,6 +18,7 @@
       - !include: './maxscale_jobs/include/use_mariadbd.yaml'
       - !include: './maxscale_jobs/include/repo_path.yaml'
       - !include: './maxscale_jobs/include/try_already_running.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
     scm:
       - git:
           url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
