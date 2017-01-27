@@ -56,5 +56,4 @@
       - !include: './maxscale_jobs/include/build_parser_mail.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
-    concurrent: true
 
