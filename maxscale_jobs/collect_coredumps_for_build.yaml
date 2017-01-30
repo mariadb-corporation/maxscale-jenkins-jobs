@@ -4,6 +4,7 @@
     parameters: 
       - !include: './maxscale_jobs/include/stopped_configuration.yaml'
       - !include: './maxscale_jobs/include/build_id.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
     builders:
       - !include: './maxscale_jobs/include/coredumps/does_coredumps_exists.yaml'
       - !include: './maxscale_jobs/include/coredumps/copy_coredumps.yaml'
