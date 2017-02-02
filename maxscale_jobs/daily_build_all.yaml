@@ -1,6 +1,6 @@
 - job:
     name: daily_build_all
-    description: 'Run build all daily for give branches.'
+    description: 'Run build all daily for given branches.'
     node: !include: './maxscale_jobs/include/slave_for_daily_build_all.yaml'
     parameters:
       - !include: './maxscale_jobs/include/build_all_branches.yaml'
@@ -13,7 +13,8 @@
       - trigger-builds:
           - project: 'build_all'
             block: true
-            predefined-parameters:
+            predefined-parameters: |
+              run_upgrade_test=yes
               slave_name=${NODE_NAME}
             parameter-factories:
               - factory: filebuild

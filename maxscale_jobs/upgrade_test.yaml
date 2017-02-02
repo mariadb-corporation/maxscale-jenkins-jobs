@@ -7,22 +7,12 @@
             choices:
                 !include: './maxscale_jobs/include/boxes.yaml'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
-        - string:
-             name: old_target
-             default: !include: './maxscale_jobs/include/default_old_target.yaml'
-        - string:
-            name: new_target
-            default: !include: './maxscale_jobs/include/default_new_target.yaml'
-        - string:
-            name: ci_url
-            default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - !include: './maxscale_jobs/include/old_target.yaml'
+        - !include: './maxscale_jobs/include/new_target.yaml'
+        - !include: './maxscale_jobs/include/ci_url.yaml'
         - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
-        - string:
-            name: repo_user
-            default: !include: './maxscale_jobs/include/default_repo_user.yaml'
-        - string:
-            name: repo_password
-            default: !include: './maxscale_jobs/include/default_repo_password.yaml'
+        - !include: './maxscale_jobs/include/repo_user.yaml'
+        - !include: './maxscale_jobs/include/repo_password.yaml'
         - !include: './maxscale_jobs/include/cnf_file.yaml'
         - !include: './maxscale_jobs/include/maxadmin_command.yaml'
         - !include: './maxscale_jobs/include/slave.yaml'

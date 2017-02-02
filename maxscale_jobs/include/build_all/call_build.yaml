@@ -14,4 +14,14 @@ trigger-builds:
       use_mariadbd=$use_mariadbd
       repo_path=$repo_path
       try_already_running=no
+      old_target=$old_target
+      run_upgrade_test=$run_upgrade_test
+      old_target=$old_target
+      ci_url=$ci_url
+      ci_url_suffix=$ci_url_suffix
+      repo_user=$repo_user
+      repo_password=$repo_password
+      cnf_file=$cnf_file
+      maxadmin_command=$maxadmin_command
+      slave_name=$slave_name
 

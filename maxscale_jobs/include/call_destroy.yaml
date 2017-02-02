@@ -9,4 +9,5 @@ trigger-builds:
       do_not_destroy_vm=$do_not_destroy_vm
       try_already_running=$try_already_running
       name=$name
+      slave_name=$slave_name
     same-node: true
