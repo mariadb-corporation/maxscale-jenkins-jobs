@@ -3,3 +3,4 @@ choice:
   choices:
     - 'no'
     - 'yes'
+  description: "Running VM will be used for build if this parameter set to yes. No new VM will be created"

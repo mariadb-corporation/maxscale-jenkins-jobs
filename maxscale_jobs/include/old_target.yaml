@@ -1,3 +1,4 @@
 string:
   name: old_target
   default: !include: './maxscale_jobs/include/default_old_target.yaml'
+  description: "Binary repo to install previous version of Maxscale (to be upgraded during the test)"

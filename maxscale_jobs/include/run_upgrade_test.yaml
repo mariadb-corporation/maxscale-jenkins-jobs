@@ -3,3 +3,4 @@ choice:
   choices:
       - 'no'
       - 'yes'
+  description: "Upgrade test will be executed after build If this parameter set to yes"
