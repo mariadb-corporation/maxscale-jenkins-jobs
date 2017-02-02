@@ -30,6 +30,7 @@
             default: !include: './maxscale_jobs/include/default_repo_password.yaml'
         - !include: './maxscale_jobs/include/cnf_file.yaml'
         - !include: './maxscale_jobs/include/maxadmin_command.yaml'
+        - !include: './maxscale_jobs/include/slave.yaml'
     builders:
         - shell:
             '$HOME/build-scripts/upgrade_test.sh'
