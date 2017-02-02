@@ -1,0 +1,19 @@
+shell: |
+  cd "$path_to_repository"
+
+  if [ "$source" == "BRANCH" ] ; then
+    git checkout $value
+    git pull origin $value
+    if [ $? -ne 0 ] ; then
+      echo "Error checkout branch $value"
+      exit 1
+    fi
+  fi
+
+  if [ "$source" == "COMMIT"  ] || [ "$source" == "TAG" ]; then
+  	git reset --hard $value
+  	if [ $? -ne 0 ] ; then
+      echo "Error reset to tag $value of resetting tree to the commit $value"
+      exit 1
+    fi
+  fi
