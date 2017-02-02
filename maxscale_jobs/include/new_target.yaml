@@ -1,0 +1,3 @@
+string:
+  name: new_target
+  default: !include: './maxscale_jobs/include/default_new_target.yaml'

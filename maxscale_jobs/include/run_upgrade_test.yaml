@@ -1,0 +1,5 @@
+choice:
+  name: run_upgrade_test
+  choices:
+      - 'no'
+      - 'yes'
