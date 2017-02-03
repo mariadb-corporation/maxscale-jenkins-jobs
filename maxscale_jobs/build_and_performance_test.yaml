@@ -32,6 +32,12 @@
       - !include: './maxscale_jobs/include/machines_count.yaml'
       - !include: './maxscale_jobs/include/sysbench_params.yaml'
       - !include: './maxscale_jobs/include/slave.yaml'
+    properties:
+      - throttle:
+          option: project
+          max-per-node: 1
+          max-total: 5
+          enabled: true
     builders:
       - raw:
           xml: |

@@ -31,10 +31,11 @@
       - !include: './maxscale_jobs/include/slave.yaml'
     properties:
       - throttle:
-          max-per-node: 1
-          max-total: 4
           matrix-configs: true
-          option: project
+          matrix-builds: false
+          option: category
+          categories:
+            - cat1
           enabled: true
     scm:
       - git:
@@ -50,4 +51,4 @@
           include:
             - "*.*"
           dirmatch: true
-    concurrent: true
+    concurrent: false

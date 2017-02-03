@@ -38,6 +38,12 @@
       - !include: './maxscale_jobs/include/backend_ssl.yaml'
       - !include: './maxscale_jobs/include/test_branch.yaml'
       - !include: './maxscale_jobs/include/slave.yaml'
+    properties:
+      - throttle:
+          option: project
+          max-per-node: 5
+          max-total: 25
+          enabled: true
     builders:
       - trigger-builds:
           - project: 'build'
