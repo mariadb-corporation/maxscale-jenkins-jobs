@@ -2,17 +2,9 @@
     name: run_test_no_env_rebuild
     description: 'This job perform integration testing of maxscale using existing test VMs'
     parameters:
-        - choice:
-            name: smoke
-            choices:
-                - 'yes'
-                - 'no'
-        - string:
-             name: name
-             default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
-        - string:
-            name: test_set
-            default: !include: './maxscale_jobs/include/default_test_set.yaml'
+        - !include: './maxscale_jobs/include/smoke.yaml'
+        - !include: './maxscale_jobs/include/name.yaml'
+        - !include: './maxscale_jobs/include/test_set.yaml'
         - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/logs_dir.yaml'
         - !include: './maxscale_jobs/include/test_branch.yaml'

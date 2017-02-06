@@ -1,0 +1,4 @@
+string:
+   name: name1
+   default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+   description: 'Beginning of the name of this build'

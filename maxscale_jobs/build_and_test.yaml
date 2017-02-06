@@ -2,37 +2,23 @@
     name: build_and_test
     description: 'This job builds Maxscale and runs tests'
     parameters: 
-      - string:
-          name: name
-          default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+      - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/target.yaml'
       - !include: './maxscale_jobs/include/build_experimental.yaml'
       - !include: './maxscale_jobs/include/use_mariadbd.yaml'
-      - choice:
-          name: box
-          choices:
-            !include: './maxscale_jobs/include/boxes.yaml'
+      - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
       - !include: './maxscale_jobs/include/products_incl.yaml'
       - !include: './maxscale_jobs/include/versions_incl.yaml'
       - !include: './maxscale_jobs/include/remove_strip.yaml'
       - !include: './maxscale_jobs/include/cmake_flags.yaml'
       - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
-      - string:
-          name: test_set
-          default: !include: './maxscale_jobs/include/default_test_set.yaml'
-      - string:
-          name: ci_url
-          default: !include: './maxscale_jobs/include/default_ci_url.yaml'
-      - string:
-          name: repo_user
-          default: !include: './maxscale_jobs/include/default_repo_user.yaml'
-          description: "Repository user"
-      - string:
-          name: repo_password
-          default: !include: './maxscale_jobs/include/default_repo_password.yaml'
-          description: "Repository password"
+      - !include: './maxscale_jobs/include/test_set.yaml'
+      - !include: './maxscale_jobs/include/ci_url.yaml'
+      - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
+      - !include: './maxscale_jobs/include/repo_user.yaml'
+      - !include: './maxscale_jobs/include/repo_password.yaml'
       - !include: './maxscale_jobs/include/smoke.yaml'
       - !include: './maxscale_jobs/include/big.yaml'
       - !include: './maxscale_jobs/include/backend_ssl.yaml'
