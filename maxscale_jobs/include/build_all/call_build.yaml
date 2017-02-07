@@ -14,7 +14,6 @@ trigger-builds:
       use_mariadbd=$use_mariadbd
       repo_path=$repo_path
       try_already_running=no
-      old_target=$old_target
       run_upgrade_test=$run_upgrade_test
       old_target=$old_target
       ci_url=$ci_url
