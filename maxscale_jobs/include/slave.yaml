@@ -2,6 +2,5 @@ node:
   name: slave_name
   description: "Select slave"
   allowed-slaves:
-    - master
     - maxtst2    
     - maxtst3
