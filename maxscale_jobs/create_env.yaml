@@ -2,32 +2,18 @@
     name: create_env
     description: 'This job creates test environment, puts Maxscale source to VM and builds it'
     parameters: 
-      - string:
-           name: name
-           default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+      - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
-      - choice:
-          name: box
-          choices:
-            !include: './maxscale_jobs/include/boxes.yaml'
+      - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
       - !include: './maxscale_jobs/include/remove_strip.yaml'
       - !include: './maxscale_jobs/include/cmake_flags.yaml'
-      - choice:
-          name: product
-          choices:
-              !include: './maxscale_jobs/include/products.yaml'
-      - choice:
-          name: version
-          choices:
-              !include: './maxscale_jobs/include/versions.yaml'
-      - string:
-          name: repo_user
-          default: !include: './maxscale_jobs/include/default_repo_user.yaml'
-      - string:
-          name: repo_password
-          default: !include: './maxscale_jobs/include/default_repo_password.yaml'
-      - !include: './maxscale_jobs/include/repo_path.yaml'
+      - !include: './maxscale_jobs/include/products_incl.yaml'
+      - !include: './maxscale_jobs/include/versions_incl.yaml'
+      - !include: './maxscale_jobs/include/ci_url.yaml'
+      - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
+      - !include: './maxscale_jobs/include/repo_user.yaml'
+      - !include: './maxscale_jobs/include/repo_password.yaml'
     scm:
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'

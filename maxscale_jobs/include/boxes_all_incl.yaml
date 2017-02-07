@@ -1,0 +1,6 @@
+choice:
+  name: box
+  choices:
+      !include: './maxscale_jobs/include/boxes_all.yaml'
+  description: 'Virtual machine OS (name of Vagrant box)'
+

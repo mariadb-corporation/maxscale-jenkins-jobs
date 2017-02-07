@@ -2,28 +2,17 @@
     name: performance_test
     description: 'This job execute performance test on parametrized maxscale instance.'
     parameters:
-        - choice:
-            name: box
-            choices:
-                !include: './maxscale_jobs/include/boxes_all.yaml'
+        - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
         - !include: './maxscale_jobs/include/products_incl.yaml'
         - !include: './maxscale_jobs/include/versions_incl.yaml'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - !include: './maxscale_jobs/include/smoke.yaml'
-        - string:
-             name: name
-             default: !include: './maxscale_jobs/include/default_run_test_name.yaml'
+        - !include: './maxscale_jobs/include/name.yaml'
         - !include: './maxscale_jobs/include/target.yaml'
-        - string:
-            name: ci_url
-            default: !include: './maxscale_jobs/include/default_ci_url.yaml'
+        - !include: './maxscale_jobs/include/ci_url.yaml'
         - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
-        - string:
-            name: repo_user
-            default: !include: './maxscale_jobs/include/default_repo_user.yaml'
-        - string:
-            name: repo_password
-            default: !include: './maxscale_jobs/include/default_repo_password.yaml'
+        - !include: './maxscale_jobs/include/repo_user.yaml'
+        - !include: './maxscale_jobs/include/repo_password.yaml'
         - !include: './maxscale_jobs/include/performance_named_test.yaml'
         - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/sysbench_params.yaml'
