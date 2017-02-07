@@ -1,0 +1,4 @@
+string:
+  name: "ci_url"
+  description: "part of repo URL before the name of Maxscale version"
+  default: !include: './maxscale_jobs/include/default_ci_url.yaml'

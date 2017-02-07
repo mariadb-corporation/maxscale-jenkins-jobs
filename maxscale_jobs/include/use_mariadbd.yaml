@@ -3,3 +3,4 @@ choice:
   choices:
       - 'no'
       - 'yes'
+  description: "Install libmariadbd before build"

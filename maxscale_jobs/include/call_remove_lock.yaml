@@ -3,4 +3,5 @@ trigger-builds:
     block: true
     predefined-parameters: |
       build_full_name=$build_full_name
+      slave_name=$slave_name
     same-node: true

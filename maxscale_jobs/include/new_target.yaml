@@ -1,0 +1,4 @@
+string:
+  name: new_target
+  default: !include: './maxscale_jobs/include/default_new_target.yaml'
+  description: "Binary repo to install new version of Maxscale"
