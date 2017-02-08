@@ -1,0 +1,4 @@
+string:
+  name: test_set
+  default: !include: './maxscale_jobs/include/default_test_set_light.yaml'
+  description: 'Command line parameters given to CTest'
