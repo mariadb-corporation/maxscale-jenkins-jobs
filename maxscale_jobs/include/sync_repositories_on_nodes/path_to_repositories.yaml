@@ -1,0 +1,5 @@
+choice:
+  name: path_to_repository
+  choices:
+    !include: './maxscale_jobs/include/sync_repositories_on_nodes/paths_to_repositories.yaml'
+  description: 'Path to directory in which to checkout git repository'

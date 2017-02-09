@@ -1,0 +1,5 @@
+axis:
+  type: label-expression
+  name: node
+  values:
+    !include: './maxscale_jobs/include/all_nodes.yaml'
