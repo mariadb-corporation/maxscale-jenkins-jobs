@@ -1,0 +1,11 @@
+- job:
+    name: print_list_of_running_vms
+    description: 'Print list of running vms'
+    parameters:
+        - !include: './maxscale_jobs/include/slave.yaml'
+    builders: |
+        - shell:
+            vagrant global-status | grep libvirt 
+            vagrant global-status | grep docker
+            vagrant global-status | grep aws
+            vagrant global-status | grep virtualbox
