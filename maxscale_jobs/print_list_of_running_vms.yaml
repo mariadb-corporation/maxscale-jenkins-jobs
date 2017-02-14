@@ -1,0 +1,15 @@
+- job:
+    name: print_list_of_running_vms
+    description: 'Print list of running vms for libvirt and docker on slaves'
+    parameters:
+      - !include: './maxscale_jobs/include/slave.yaml'
+    builders:
+      - shell: |
+          echo 'Number of running vms for libvirt:'
+          echo $(($(virsh list  |  wc -l)-3))
+          echo 'Number of running vms for docker:'
+          echo $(($(docker ps  |  wc -l)-1))
+          echo 'List of all vms for libvirt:'
+          virsh list --all
+          echo 'List of running vms for docker:'
+          docker ps
