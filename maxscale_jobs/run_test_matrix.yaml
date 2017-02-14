@@ -14,7 +14,6 @@
           type: user-defined
           name: backend
           values:
-           - mariadb-5.5
            - mariadb-10.0
            - mariadb-10.1
     parameters:

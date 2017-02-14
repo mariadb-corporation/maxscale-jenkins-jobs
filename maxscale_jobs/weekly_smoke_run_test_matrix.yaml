@@ -1,6 +1,6 @@
 - job:
     name: weekly_smoke_run_test_matrix
-    description: 'Weekly build (at ~3 am Saturday) of run_test_matrix with smoke=yes'
+    description: 'Weekly build (at ~3 am Saturday) of run_test_matrix with smoke=yes and test_set -L LIGHT'
     triggers:
       - timed: "H 3 * * 6"
     builders:
@@ -13,7 +13,8 @@
             predefined-parameters: |
               smoke=yes
               name1=weekly_matrix_$BUILD_ID
-              target=weekly_matrix-$BUILD_ID 
+              target=weekly_matrix-$BUILD_ID
+              test_set='-L LIGHT'
             block: true
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
