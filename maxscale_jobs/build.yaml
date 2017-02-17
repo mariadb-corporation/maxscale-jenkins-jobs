@@ -39,8 +39,9 @@
           '$HOME/build-scripts/prepare_and_build.sh'
       - shell:
           'export new_target=$target; $HOME/build-scripts/upgrade_test.sh'
+      - !include: './maxscale_jobs/include/copy_logs/inject_build_info_env.yaml'
     publishers:
-      - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail_build.yaml'
       - !include: './maxscale_jobs/include/call_cleanup_at_build.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
