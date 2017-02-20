@@ -47,8 +47,5 @@
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
     wrappers:
-      - workspace-cleanup:
-          include:
-            - "*.*"
-          dirmatch: true
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: false

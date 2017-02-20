@@ -8,6 +8,7 @@
           - project: 'build_regular'
             predefined-parameters: |
               target=weekly_matrix-$BUILD_ID
+              slave_name=$slave_name
             block: true
           - project: 'run_test_matrix'
             predefined-parameters: |
@@ -15,6 +16,7 @@
               name1=weekly_matrix_$BUILD_ID
               target=weekly_matrix-$BUILD_ID
               test_set='-L LIGHT'
+              slave_name=$slave_name
             block: true
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
