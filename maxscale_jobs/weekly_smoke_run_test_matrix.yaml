@@ -1,6 +1,7 @@
 - job:
     name: weekly_smoke_run_test_matrix
     description: 'Weekly build (at ~3 am Saturday) of run_test_matrix with smoke=yes and test_set -L LIGHT'
+    node: !include: './maxscale_jobs/include/slave_for_weekly_matrix.yaml'
     triggers:
       - timed: "H 3 * * 6"
     builders:
@@ -8,7 +9,7 @@
           - project: 'build_regular'
             predefined-parameters: |
               target=weekly_matrix-$BUILD_ID
-              slave_name=$slave_name
+              slave_name=${NODE_NAME}
             block: true
           - project: 'run_test_matrix'
             predefined-parameters: |
@@ -16,7 +17,7 @@
               name1=weekly_matrix_$BUILD_ID
               target=weekly_matrix-$BUILD_ID
               test_set='-L LIGHT'
-              slave_name=$slave_name
+              slave_name=${NODE_NAME}
             block: true
     publishers:
       - !include: './maxscale_jobs/include/mail.yaml'
