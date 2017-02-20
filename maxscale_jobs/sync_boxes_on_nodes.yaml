@@ -1,0 +1,16 @@
+- job:
+    name: sync_boxes_on_nodes 
+    description: 'This job updates BOXES and KEY folders in main mdbci folder on all nodes'
+    project-type: matrix
+    execution-strategy:
+      sequential: false
+    axes:
+      - !include: './maxscale_jobs/include/all_nodes_axes.yaml'
+    parameters:
+      - !include: './maxscale_jobs/include/value.yaml'
+      - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/mdbci_path.yaml'
+      - !include: './maxscale_jobs/include/mdbci_boxes_path.yaml'
+    builders:
+      - !include: './maxscale_jobs/include/sync_boxes_on_nodes/run_git_command_shell.yaml'
+    concurrent: false
