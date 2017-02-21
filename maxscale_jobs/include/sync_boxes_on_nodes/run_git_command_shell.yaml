@@ -21,10 +21,10 @@ shell: |
     fi
   fi
 
-  if [ ! -d "$mdbci_path/BOXES"]; then
+  if [ ! -d "$mdbci_path/BOXES" ]; then
     ln -s ./BOXES "$mdbci_path/BOXES"
   fi
 
-  if [ ! -d "$mdbci_path/KEYS"]; then
+  if [ ! -d "$mdbci_path/KEYS" ]; then
     ln -s ./KEYS "$mdbci_path/KEYS"
   fi
