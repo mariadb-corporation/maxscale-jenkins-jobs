@@ -1,11 +1,11 @@
 - job:
     name: update_test_set_in_branches_file
     description: 'This job replace string containing $branch in $file for "$branch|$test_set"'
-    node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
       - !include: './maxscale_jobs/include/branch_to_check.yaml'
       - !include: './maxscale_jobs/include/test_set.yaml'
       - !include: './maxscale_jobs/include/branches_list.yaml'
+      - !include: './maxscale_jobs/include/slave_for_branches_jobs.yaml'
     builders:
       - shell: |
           line_number=$(grep -n --max-count=1 "$branch_to_check|" $branches_list | cut -f1 -d:)

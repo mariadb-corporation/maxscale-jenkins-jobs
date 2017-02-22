@@ -1,12 +1,12 @@
 - job:
     name: update_branches_file
     description: 'This job adding a new line branch|test_set for given file.'
-    node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
       - !include: './maxscale_jobs/include/branch_to_check.yaml'
       - !include: './maxscale_jobs/include/test_set.yaml'
       - !include: './maxscale_jobs/include/branches_list.yaml'
       - !include: './maxscale_jobs/include/repo.yaml'
+      - !include: './maxscale_jobs/include/slave_for_branches_jobs.yaml'
     builders:
       - shell: |
           branch_entry=$(git ls-remote --heads $repo | grep "$branch_to_check")

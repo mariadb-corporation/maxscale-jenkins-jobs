@@ -1,10 +1,10 @@
 - job:
     name: print_branches_which_matches_regex_in_file
     description: 'This job checks branches_list file and print list of the branches which are matching patterns from it.'
-    node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
         - !include: './maxscale_jobs/include/branches_list.yaml'
         - !include: './maxscale_jobs/include/repo.yaml'
+        - !include: './maxscale_jobs/include/slave_for_branches_jobs.yaml'
     builders:
         - shell: |
             result_list=""
