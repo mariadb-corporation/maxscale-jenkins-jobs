@@ -1,4 +1,0 @@
-string:
-  name: port
-  default: '8090'
-  description: "A parameter defines jenkins instance port"

@@ -1,4 +1,0 @@
-string:
-  name: host
-  default: http://max-tst-01.mariadb.com
-  description: "A parameter defines jenkins instance host"
