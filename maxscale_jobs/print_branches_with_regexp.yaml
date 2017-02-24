@@ -4,6 +4,7 @@
     parameters:
       - !include: './maxscale_jobs/include/pattern.yaml'
       - !include: './maxscale_jobs/include/repo.yaml'
+      - !include: './maxscale_jobs/include/slave_for_branches_jobs.yaml'
     builders:
       - shell: |
           if ! git ls-remote --heads $repo | sed 's?.*refs/heads/??' | grep "$pattern"; then

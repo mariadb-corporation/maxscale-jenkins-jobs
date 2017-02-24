@@ -1,0 +1,9 @@
+node:
+  name: slave_for_branches_jobs
+  description: "Select slave"
+  default-slaves:
+    - maxtst2
+  allowed-slaves:
+    - master
+    - maxtst2    
+    - maxtst3
