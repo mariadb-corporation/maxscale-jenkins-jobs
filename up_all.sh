@@ -8,6 +8,7 @@ echo \'$1\' > maxscale_jobs/include/default_repo_user.yaml
 echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
 
 ./create_build_and_test_alone.sh
+./create_labels_jobs.sh
 
 if [ -z "$3" ]
 then
