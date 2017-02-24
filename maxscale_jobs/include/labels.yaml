@@ -1,0 +1,6 @@
+extended-choice:
+  name: test_set_labels
+  description: "Select test groups to execute"
+  type: 'PT_CHECKBOX'
+  value: !include-raw: "./maxscale_jobs/include/labels_string.yaml"
+  visible-item-count: "50"
