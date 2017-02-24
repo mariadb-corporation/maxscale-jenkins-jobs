@@ -1,0 +1,11 @@
+node:
+  name: slave_name
+  description: "Select slave"
+  default: maxtst3
+  default-slaves:
+    - maxtst3
+    - maxtst2
+  allowed-slaves:
+    - maxtst3
+    - maxtst2
+    - master
