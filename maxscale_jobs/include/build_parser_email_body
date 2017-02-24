@@ -6,3 +6,5 @@ $DB_WRITE_ERROR
 Result: $BUILD_LOG_PARSING_RESULT
 
 Coredumps: $COREDUMPS
+
+Logs(ctest logs) for each test: http://max-tst-01.mariadb.com/LOGS/$JOB_NAME-$BUILD_ID/LOGS/
