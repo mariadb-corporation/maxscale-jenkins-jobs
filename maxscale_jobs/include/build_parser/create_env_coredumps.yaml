@@ -9,4 +9,4 @@ shell: |
               echo "$coredump \\" >> $WORKSPACE/coredumps_$BUILD_ID
           done
   fi
-
+  cp -p $WORKSPACE/build_log_$BUILD_ID $HOME/LOGS/$JOB_NAME-$BUILD_ID/
