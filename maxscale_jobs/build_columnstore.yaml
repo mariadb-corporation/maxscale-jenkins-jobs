@@ -27,7 +27,7 @@
             - 'develop'
     builders:
       - shell: 
-          '$HOME/build-scripts/prepare_and_build.sh'
+          'export product_name="columnstore"; $HOME/build-scripts/prepare_and_build.sh'
       - !include: './maxscale_jobs/include/copy_logs/inject_build_info_env.yaml'
     publishers:
       - !include: './maxscale_jobs/include/mail_build.yaml'
