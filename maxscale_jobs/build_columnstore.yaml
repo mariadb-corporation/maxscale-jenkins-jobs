@@ -1,0 +1,38 @@
+- job:
+    name: build_columnstore
+    description: 'This job builds Columnstore'
+    parameters: 
+      - !include: './maxscale_jobs/include/value.yaml'
+      - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
+      - !include: './maxscale_jobs/include/target.yaml'
+      - !include: './maxscale_jobs/include/remove_strip.yaml'
+      - !include: './maxscale_jobs/include/cmake_flags.yaml'
+      - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+      - !include: './maxscale_jobs/include/coverity.yaml'
+      - !include: './maxscale_jobs/include/use_mariadbd.yaml'
+      - !include: './maxscale_jobs/include/repo_path.yaml'
+      - !include: './maxscale_jobs/include/try_already_running.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
+    properties:
+      - throttle:
+          option: project
+          max-per-node: 5
+          max-total: 25
+          enabled: true
+    scm:
+      - git:
+          url: !include: './maxscale_jobs/include/columnstore_repo.yaml'
+          branches:
+            - 'develop'
+    builders:
+      - shell: 
+          '$HOME/build-scripts/prepare_and_build.sh'
+      - !include: './maxscale_jobs/include/copy_logs/inject_build_info_env.yaml'
+    publishers:
+      - !include: './maxscale_jobs/include/mail_build.yaml'
+      - !include: './maxscale_jobs/include/call_cleanup_at_build.yaml'
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+      - !include: './maxscale_jobs/include/timeout.yaml'
+    concurrent: true
