@@ -11,7 +11,7 @@
             - origin/*
     triggers:
       - pollscm:
-          cron: "0 H/2 * * *"
+          cron: "@hourly"
           ignore-post-commit-hooks: True
     builders:
         - !include: "./maxscale_jobs/include/check_branch_matches_pattern.yaml"
