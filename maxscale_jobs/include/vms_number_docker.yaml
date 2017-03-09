@@ -1,4 +1,0 @@
-string:
-  name: VMS_NUMBER_DOCKER
-  default: "30"
-  description: "Maximum number of running vms for docker"
