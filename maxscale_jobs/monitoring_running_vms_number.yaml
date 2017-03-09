@@ -1,0 +1,26 @@
+- job:
+    name: monitoring_running_vms_number
+    description: 'This job monitors running vms number for libvirt and docker provider'
+    parameters: 
+      - !include: './maxscale_jobs/include/vms_number_libvirt.yaml'
+      - !include: './maxscale_jobs/include/vms_number_docker.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
+    triggers:
+      - timed: "@hourly"
+    builders:
+      - shell: |
+          result_code=$(0)
+          ACTUAL_NUMBER_OF_VMS_LIBVIRT=$(($(virsh list  |  wc -l)-3))
+          ACTUAL_NUMBER_OF_VMS__DOCKER=$(($(docker ps  |  wc -l)-1))
+          if [ $ACTUAL_NUMBER_OF_VMS_LIBVIRT > $VMS_NUMBER_LIBVIRT ]; then 
+            echo 'Number of running vms exceeds maximum for libvirt'
+            result_code=$(1)
+          fi
+          if [ $ACTUAL_NUMBER_OF_VMS_DOCKER > $VMS_NUMBER_DOCKER ]; then 
+            echo 'Number of running vms exceeds maximum for docker'
+            result_code=$(1)
+          fi
+          exit $result_code
+
+    publishers:
+      - !include: './maxscale_jobs/include/mail_after_fail_build.yaml' 
