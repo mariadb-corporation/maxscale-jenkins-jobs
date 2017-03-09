@@ -1,0 +1,15 @@
+email-ext:
+  recipients: !include-raw: "./maxscale_jobs/include/mail_recipients.yaml"
+  reply-to: $DEFAULT_REPLYTO
+  content-type: default
+  subject: $DEFAULT_SUBJECT
+  body: $DEFAULT_CONTENT
+  attach-build-log: false
+  always: false
+  aborted: true
+  failure: true
+  still-failing: true
+  success: false
+  fixed: false
+  send-to:
+    - recipients
