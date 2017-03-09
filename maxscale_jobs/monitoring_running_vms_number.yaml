@@ -9,16 +9,16 @@
       - timed: "@hourly"
     builders:
       - shell: |
-          result_code=$(0)
+          export result_code=0
           ACTUAL_NUMBER_OF_VMS_LIBVIRT=$(($(virsh list  |  wc -l)-3))
           ACTUAL_NUMBER_OF_VMS__DOCKER=$(($(docker ps  |  wc -l)-1))
-          if [ $ACTUAL_NUMBER_OF_VMS_LIBVIRT > $VMS_NUMBER_LIBVIRT ]; then 
+          if [ $ACTUAL_NUMBER_OF_VMS_LIBVIRT -gt $VMS_NUMBER_LIBVIRT ]; then 
             echo 'Number of running vms exceeds maximum for libvirt'
-            result_code=$(1)
+            export result_code=1
           fi
-          if [ $ACTUAL_NUMBER_OF_VMS_DOCKER > $VMS_NUMBER_DOCKER ]; then 
+          if [ $ACTUAL_NUMBER_OF_VMS_DOCKER -gt $VMS_NUMBER_DOCKER ]; then 
             echo 'Number of running vms exceeds maximum for docker'
-            result_code=$(1)
+            export result_code=1
           fi
           exit $result_code
 
