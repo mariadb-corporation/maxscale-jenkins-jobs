@@ -1,0 +1,16 @@
+trigger-builds:
+  - project: 'build_columnstore'
+    same-node: true
+    block: true
+    predefined-parameters: |
+      box=$box
+      value=$value
+      source=$source
+      target=$target
+      remove_strip=$remove_strip
+      cmake_flags=$cmake_flags
+      do_not_destroy_vm=$do_not_destroy_vm
+      repo_path=$repo_path
+      try_already_running=no
+      slave_name=$slave_name
+
