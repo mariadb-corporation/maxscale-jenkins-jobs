@@ -9,7 +9,7 @@ system-groovy:
     mainJobBuildNumber = build.buildVariableResolver.resolve("UPSTREAM_JOB_BUILD_NUMBER").toInteger()
 
     def matchedJobs = Jenkins.instance.items.findAll { job ->
-        job.name =~ /$mainJob/
+        job.name =~ /^${mainJob}$/
     }
 
     matchedJobs.each { job ->
