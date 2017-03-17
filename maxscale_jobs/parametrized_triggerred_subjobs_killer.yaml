@@ -1,0 +1,8 @@
+- job:
+    name: parametrized_triggerred_subjobs_killer
+    description: 'This job kills triggerred parametrized jobs of specified job build'
+    parameters: 
+      - !include: './maxscale_jobs/include/upstream_job_name.yaml'
+      - !include: './maxscale_jobs/include/upstream_job_build_number.yaml'
+    builders:
+      - !include: './maxscale_jobs/include/parametrized_triggerred_subjobs_killer/system-groovy-script.yaml'
