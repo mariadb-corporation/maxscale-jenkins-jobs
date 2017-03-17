@@ -44,6 +44,7 @@
         - !include: './maxscale_jobs/include/run_test_matrix_jjb/call_run_test_inside_matrix.yaml'
     publishers:
       - !include: './maxscale_jobs/include/build_parser_mail.yaml'
+      - !include: './maxscale_jobs/include/parametrized_triggerred_subjobs_killer/publisher-trigger-parametrized-builds.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
 

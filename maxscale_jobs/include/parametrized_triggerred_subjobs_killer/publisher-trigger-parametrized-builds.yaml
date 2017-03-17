@@ -1,0 +1,7 @@
+trigger-parameterized-builds:
+  - project: 
+      - parametrized_triggerred_subjobs_killer
+    predefined-parameters: |
+      UPSTREAM_JOB_NAME=$JOB_NAME
+      UPSTREAM_JOB_BUILD_NUMBER=$BUILD_NUMBER
+    condition: 'UNSTABLE_OR_WORSE'
