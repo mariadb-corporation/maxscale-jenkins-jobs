@@ -1,0 +1,3 @@
+string:
+  name: UPSTREAM_JOB_NAME
+  description: 'Name of the job whose triggerred parametrized jobs needs to be killed'

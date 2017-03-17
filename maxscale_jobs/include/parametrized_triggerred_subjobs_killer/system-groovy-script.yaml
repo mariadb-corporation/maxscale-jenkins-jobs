@@ -1,0 +1,46 @@
+system-groovy:
+  command: |
+    import jenkins.model.*
+    import hudson.model.*
+      
+    import com.tikal.jenkins.plugins.multijob.*;
+
+    mainJob = build.buildVariableResolver.resolve("UPSTREAM_JOB_NAME")
+    mainJobBuildNumber = build.buildVariableResolver.resolve("UPSTREAM_JOB_BUILD_NUMBER").toInteger()
+
+    def matchedJobs = Jenkins.instance.items.findAll { job ->
+        job.name =~ /$mainJob/
+    }
+
+    matchedJobs.each { job ->
+      timestamp = job.getBuildByNumber(mainJobBuildNumber).getTimeInMillis()
+      triggersBuilder = job.getBuilders()
+      triggersBuilder.each { trigger ->
+        if(trigger instanceof hudson.plugins.parameterizedtrigger.TriggerBuilder) {
+          def blockableBuildTriggerConfigs = trigger.getConfigs()
+          blockableBuildTriggerConfigs.each { config ->
+            if(config.getBlock() != null) {
+              triggerredJobs = config.getJobs(null, null)
+              triggerredJobs.each { triggerredJob ->
+                currentTimestamp = Calendar.getInstance().getTimeInMillis();
+                builds = triggerredJob.getBuilds().byTimestamp(timestamp, currentTimestamp)
+                builds.each { build -> 
+                  if (build.isBuilding()){
+                    for (cause in build.causes) {
+                      if(cause.getUpstreamBuild() == mainJobBuildNumber && cause.getUpstreamProject().startsWith(mainJob)){
+                        println "Upstream project ${ cause.getUpstreamProject() }"
+                        println "Upstream project build number ${ cause.getUpstreamBuild() }"
+                        println('Stopping ' + build.toString());
+                        build.doStop();
+                        println(build.toString() + ' stopped.');
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
