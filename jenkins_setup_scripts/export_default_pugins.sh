@@ -1,3 +1,5 @@
+#!/bin/bash
+
 file="$1"
 
 java -jar $HOME/jenkins-cli.jar -s http://max-tst-01.mariadb.com:8089/ list-plugins > ${file}.temp
