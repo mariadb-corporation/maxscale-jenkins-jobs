@@ -4,7 +4,13 @@
     parameters: 
       - !include: './maxscale_jobs/include/vms_number_libvirt.yaml'
       - !include: './maxscale_jobs/include/vms_number_docker.yaml'
-      - !include: './maxscale_jobs/include/slave.yaml'
+    project-type: matrix
+    axes:
+      - axis:
+          type: slave
+          name: slave
+#          values:
+#            !include: './maxscale_jobs/include/slave.yaml'
     triggers:
       - timed: "@hourly"
     builders:
@@ -12,11 +18,11 @@
           export result_code=0
           ACTUAL_NUMBER_OF_VMS_LIBVIRT=$(($(virsh list  |  wc -l)-3))
           ACTUAL_NUMBER_OF_VMS__DOCKER=$(($(docker ps  |  wc -l)-1))
-          if [ $ACTUAL_NUMBER_OF_VMS_LIBVIRT -gt $VMS_NUMBER_LIBVIRT ]; then 
+          if [[ $ACTUAL_NUMBER_OF_VMS_LIBVIRT -gt $VMS_NUMBER_LIBVIRT ]]; then 
             echo 'Number of running vms exceeds maximum for libvirt'
             export result_code=1
           fi
-          if [ $ACTUAL_NUMBER_OF_VMS_DOCKER -gt $VMS_NUMBER_DOCKER ]; then 
+          if [[ $ACTUAL_NUMBER_OF_VMS_DOCKER -gt $VMS_NUMBER_DOCKER ]]; then 
             echo 'Number of running vms exceeds maximum for docker'
             export result_code=1
           fi
