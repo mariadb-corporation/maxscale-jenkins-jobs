@@ -4,7 +4,6 @@
     parameters: 
       - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/value.yaml'
-      - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/target.yaml'
       - !include: './maxscale_jobs/include/build_experimental.yaml'
       - !include: './maxscale_jobs/include/use_mariadbd.yaml'
