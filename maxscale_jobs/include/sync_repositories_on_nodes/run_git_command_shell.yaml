@@ -1,6 +1,6 @@
 shell: |
   cd "$path_to_repository"
-
+  git fetch -a
   if [ "$source" == "BRANCH" ] ; then
     git checkout $value
     if ! git pull origin $value; then
