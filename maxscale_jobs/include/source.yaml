@@ -1,7 +1,4 @@
-choice:
+string:
   name: source
-  choices:
-    - BRANCH
-    - TAG
-    - COMMIT
-  description: 'The source type to use'
+  default: !include: './maxscale_jobs/include/default_branch.yaml'
+  description: 'Tag, branch, commit, regex, or any valid git source for git SCM plugin'
