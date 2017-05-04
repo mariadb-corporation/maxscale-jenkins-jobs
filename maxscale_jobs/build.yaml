@@ -32,7 +32,7 @@
       - git:
           url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - ${source}
+            - ${scm_source}
     builders:
       - shell: 
           '$HOME/build-scripts/prepare_and_build.sh'
