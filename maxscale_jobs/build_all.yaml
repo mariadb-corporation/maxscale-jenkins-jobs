@@ -11,7 +11,7 @@
           values:
             !include: './maxscale_jobs/include/boxes.yaml'
     parameters:
-      - !include: './maxscale_jobs/include/value.yaml'
+      - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/target.yaml'
       - !include: './maxscale_jobs/include/remove_strip.yaml'
       - !include: './maxscale_jobs/include/cmake_flags.yaml'
@@ -40,7 +40,7 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - ${value}
+            - ${source}
     builders:
       - !include: './maxscale_jobs/include/build_all/call_build.yaml'
     publishers:
