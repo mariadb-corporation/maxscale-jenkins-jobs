@@ -3,6 +3,7 @@
     description: 'This job creates test environment, puts Maxscale source to VM and builds it'
     parameters: 
       - !include: './maxscale_jobs/include/name.yaml'
+      - !include: './maxscale_jobs/include/debug_env_name.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
       - !include: './maxscale_jobs/include/remove_strip.yaml'
@@ -13,6 +14,7 @@
       - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
       - !include: './maxscale_jobs/include/repo_user.yaml'
       - !include: './maxscale_jobs/include/repo_password.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
     scm:
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
