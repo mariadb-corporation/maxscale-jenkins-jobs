@@ -16,6 +16,7 @@
           values:
            - mariadb-10.0
            - mariadb-10.1
+           - mariadb-10.2
     parameters:
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - !include: './maxscale_jobs/include/name1.yaml'

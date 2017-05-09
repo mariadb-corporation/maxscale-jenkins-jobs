@@ -1,4 +1,4 @@
 string:
   name: scm_source
   default: !include: './maxscale_jobs/include/default_branch.yaml'
-  description: 'Tag, branch, commit, regex, or any valid git source for git SCM plugin'
+  description: 'Tag (refs/tags/<tagName>), branch (refs/heads/<branchName>), commit id, regex, or any other valid git source for git SCM plugin'

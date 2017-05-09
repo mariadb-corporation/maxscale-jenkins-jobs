@@ -1,9 +1,11 @@
 shell: |
   cd "$path_to_repository"
-
+  git fetch -a
   if [ "$source" == "BRANCH" ] ; then
+    git reset --hard
     git checkout $value
-    if ! git pull origin $value; then
+    git pull --no-edit origin $value
+    if [ $? -ne 0 ] ; then
       echo "Error checkout branch $value"
       exit 1
     fi
