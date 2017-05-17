@@ -2,8 +2,8 @@
     name: create_env
     description: 'This job creates test environment, puts Maxscale source to VM and builds it'
     parameters: 
+      - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/debug_env_name.yaml'
-      - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
       - !include: './maxscale_jobs/include/remove_strip.yaml'
@@ -19,7 +19,7 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - 'develop'
+            - ${scm_source}
     builders:
       - shell: 
           '$HOME/build-scripts/test/create_env.sh'

@@ -7,8 +7,8 @@
     axes:
       - !include: './maxscale_jobs/include/all_nodes_axes.yaml'
     parameters:
-      - !include: './maxscale_jobs/include/value.yaml'
-      - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/sync_repositories_on_nodes/value.yaml'
+      - !include: './maxscale_jobs/include/sync_repositories_on_nodes/source.yaml'
       - !include: './maxscale_jobs/include/sync_repositories_on_nodes/path_to_repositories.yaml'
     builders:
       - !include: './maxscale_jobs/include/sync_repositories_on_nodes/run_git_command_shell.yaml'

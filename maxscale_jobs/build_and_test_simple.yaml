@@ -3,7 +3,6 @@
     description: 'This job builds Maxscale and runs tests, simple version, uses snapshots'
     parameters: 
       - !include: './maxscale_jobs/include/name.yaml'
-      - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/target.yaml'
       - !include: './maxscale_jobs/include/test_set_light.yaml'

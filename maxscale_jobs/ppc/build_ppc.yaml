@@ -2,7 +2,6 @@
     name: build_ppc
     description: 'This job builds Maxscale'
     parameters: 
-      - !include: './maxscale_jobs/include/value.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - choice:
           name: box
@@ -20,7 +19,7 @@
       - git:
           url: !include './maxscale_jobs/include/maxscale_repo.yaml'
           branches:
-            - ''
+            - ${scm_source}
     builders:
       - shell: 
           '$HOME/build-scripts/prepare_and_build.sh'

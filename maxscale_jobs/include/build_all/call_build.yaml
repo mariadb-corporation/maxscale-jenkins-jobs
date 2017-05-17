@@ -4,8 +4,7 @@ trigger-builds:
     block: true
     predefined-parameters: |
       box=$box
-      value=$value
-      source=$source
+      scm_source=$scm_source
       target=$target
       remove_strip=$remove_strip
       cmake_flags=$cmake_flags
