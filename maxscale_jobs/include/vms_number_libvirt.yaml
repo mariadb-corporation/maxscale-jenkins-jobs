@@ -1,0 +1,4 @@
+string:
+  name: VMS_NUMBER_LIBVIRT
+  default: "30"
+  description: "Maximum number of running vms for libvirt"
