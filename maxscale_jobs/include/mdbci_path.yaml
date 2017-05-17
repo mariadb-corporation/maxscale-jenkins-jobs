@@ -1,0 +1,4 @@
+string:
+  name: mdbci_path
+  default: $HOME/mdbci
+  description: "Default path to mdbci folder on all nodes"

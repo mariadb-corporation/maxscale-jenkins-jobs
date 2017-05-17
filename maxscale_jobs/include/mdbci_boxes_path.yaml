@@ -1,0 +1,4 @@
+string:
+  name: mdbci_boxes_path
+  default: $HOME/mdbci-boxes
+  description: "Default path to mdbci boxes folder on all nodes"

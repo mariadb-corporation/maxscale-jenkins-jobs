@@ -1,0 +1,30 @@
+shell: |
+  if [ ! -d "$mdbci_boxes_path" ]; then
+    git clone https://github.com/mariadb-corporation/mdbci-boxes.git
+  fi
+
+  cd "$mdbci_boxes_path"
+
+  if [ "$source" == "BRANCH" ] ; then
+    git checkout $value
+    git pull origin $value
+    if [ $? -ne 0 ] ; then
+      echo "Error checkout branch $value"
+      exit 1
+    fi
+  fi
+  if [ "$source" == "COMMIT"  ] || [ "$source" == "TAG" ]; then
+    git reset --hard $value
+    if [ $? -ne 0 ] ; then
+      echo "Error reset to tag $value of resetting tree to the commit $value"
+      exit 1
+    fi
+  fi
+
+  if [ ! -d "$mdbci_path/BOXES" ]; then
+    ln -s ./BOXES "$mdbci_path/BOXES"
+  fi
+
+  if [ ! -d "$mdbci_path/KEYS" ]; then
+    ln -s ./KEYS "$mdbci_path/KEYS"
+  fi
