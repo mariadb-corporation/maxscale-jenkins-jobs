@@ -19,6 +19,6 @@
                 no-files-found-action: FAIL
             same-node: true
     publishers:
-      - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail_summary.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
