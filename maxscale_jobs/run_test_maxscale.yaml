@@ -1,0 +1,53 @@
+- job:
+    name: run_test_maxscale
+    description: 'This job perform integration testing of maxscale using tests from Maxscale repo'
+    parameters:
+        - !include: './maxscale_jobs/include/source.yaml'
+        - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
+        - !include: './maxscale_jobs/include/products_incl.yaml'
+        - !include: './maxscale_jobs/include/versions_incl.yaml'
+        - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+        - !include: './maxscale_jobs/include/smoke.yaml'
+        - !include: './maxscale_jobs/include/big.yaml'
+        - !include: './maxscale_jobs/include/local_backend.yaml'
+        - !include: './maxscale_jobs/include/backend_ssl.yaml'
+        - !include: './maxscale_jobs/include/name.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
+        - !include: './maxscale_jobs/include/test_set.yaml'
+        - !include: './maxscale_jobs/include/use_snapshots.yaml'
+        - !include: './maxscale_jobs/include/ci_url.yaml'
+        - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
+        - !include: './maxscale_jobs/include/repo_user.yaml'
+        - !include: './maxscale_jobs/include/repo_password.yaml'
+        - !include: './maxscale_jobs/include/logs_dir.yaml'
+        - string:
+            name: config_to_clone
+            description: !include: './maxscale_jobs/include/config_to_clone.yaml'
+        - !include: './maxscale_jobs/include/slave.yaml'
+    properties:
+      - throttle:
+          option: project
+          max-per-node: 5
+          max-total: 25
+          enabled: true
+    scm:
+        - git:
+            url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+            branches:
+              - ${scm_source}
+    builders:
+      - !include: './maxscale_jobs/include/build_parser/create_env_vars.yaml'
+      - !include: './maxscale_jobs/include/build_parser/inject_initial_env.yaml'
+      - !include: './maxscale_jobs/include/build_parser/run_test_and_collect_maxscale.yaml'
+      - !include: './maxscale_jobs/include/build_parser/parse_build_log.yaml'
+      - !include: './maxscale_jobs/include/build_parser/inject_build_results.yaml'
+      - !include: './maxscale_jobs/include/build_parser/create_env_coredumps.yaml'
+      - !include: './maxscale_jobs/include/build_parser/inject_coredumps_var.yaml'
+      - !include: './maxscale_jobs/include/build_parser/write_build_results.yaml'
+    publishers:
+      - !include: './maxscale_jobs/include/build_parser_mail_subject_with_name.yaml'
+      - !include: './maxscale_jobs/include/call_cleanup.yaml'
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+      - !include: './maxscale_jobs/include/timeout.yaml'
+    concurrent: true
