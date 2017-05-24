@@ -1,0 +1,6 @@
+choice:
+  name: local_backend
+  choices:
+      - 'no'
+      - 'yes'
+  description: "Use only one VM for tests and Maxscale build"
