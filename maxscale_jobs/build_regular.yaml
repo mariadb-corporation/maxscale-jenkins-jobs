@@ -36,7 +36,7 @@
     builders:
       - !include: './maxscale_jobs/include/build_all/call_build.yaml'
     publishers:
-      - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail_summary.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true

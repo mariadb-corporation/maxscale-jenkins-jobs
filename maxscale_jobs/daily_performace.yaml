@@ -15,4 +15,4 @@
               box=centos_7_libvirt
             same-node: true
     publishers:
-      - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail_summary.yaml'

@@ -14,4 +14,4 @@
               box=centos_7_libvirt
               test_set=
     publishers:
-      - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail_summary.yaml'

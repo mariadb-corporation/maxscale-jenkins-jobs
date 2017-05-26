@@ -1,8 +1,8 @@
 email-ext:
-  recipients: !include-raw: "./maxscale_jobs/include/mail_recipients.yaml"
+  recipients: !include-raw: "./maxscale_jobs/include/mail_recipients_summary.yaml"
   reply-to: $DEFAULT_REPLYTO
   content-type: default
-  subject: $DEFAULT_SUBJECT - (branch $GIT_BRANCH)
+  subject: $DEFAULT_SUBJECT
   body: $DEFAULT_CONTENT
   attach-build-log: false
   always: true

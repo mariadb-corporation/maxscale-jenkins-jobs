@@ -20,4 +20,4 @@
               slave_name=${NODE_NAME}
             block: true
     publishers:
-      - !include: './maxscale_jobs/include/mail.yaml'
+      - !include: './maxscale_jobs/include/mail_summary.yaml'
