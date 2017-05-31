@@ -36,7 +36,7 @@
     scm:
         - git:
             # TODO parametrize this url
-            url: https://github.com/mariadb-corporation/maxscale-system-test.git
+            url: https://github.com/mariadb-corporation/maxscale.git
             branches:
                 - $test_branch
     builders:
