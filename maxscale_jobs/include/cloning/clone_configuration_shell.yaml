@@ -1,4 +1,3 @@
 shell: |
-  cd "$HOME/mdbci"
-  ./mdbci clone $old_configuration $new_configuration
-  ./mdbci show network_config $new_configuration
+  $HOME/mdbci/mdbci clone $old_configuration $new_configuration
+  $HOME/mdbci/mdbci show network_config $new_configuration

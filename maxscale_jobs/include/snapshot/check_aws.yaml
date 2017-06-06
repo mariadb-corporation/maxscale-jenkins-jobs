@@ -1,5 +1,5 @@
 shell: |
-  aws=`cat $HOME/mdbci/$environment_name/provider | grep -o aws | wc -l`
+  aws=`cat $MDBCI_VM_PATH/$environment_name/provider | grep -o aws | wc -l`
   if [[ "$aws" != "0" ]]; then
     echo "Currently mdbci does not supports aws snapshot"
     exit 1

@@ -1,3 +1,2 @@
 shell: |
-  cd "$HOME/mdbci"
-  ./mdbci snapshot revert --path-to-nodes $environment_name --snapshot-name $snapshot_name
+  $HOME/mdbci/mdbci snapshot revert --path-to-nodes $environment_name --snapshot-name $snapshot_name

@@ -1,4 +1,4 @@
 string:
   name: environment_name
   default: "debug_env"
-  description: "Relative path in $HOME/mdbci folder for RUNING configuration. "
+  description: "Relative path in $MDBCI_VM_PATH folder for RUNING configuration. "
