@@ -47,5 +47,5 @@
       - !include: './maxscale_jobs/include/call_cleanup_snapshot.yaml'
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
-      - !include: './maxscale_jobs/include/timeout.yaml'
+      - !include: './maxscale_jobs/include/absolute_timeout.yaml'
     concurrent: true
