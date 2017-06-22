@@ -6,7 +6,6 @@
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/target.yaml'
       - !include: './maxscale_jobs/include/test_set_light.yaml'
-      - !include: './maxscale_jobs/include/test_branch.yaml'
       - !include: './maxscale_jobs/include/slave.yaml'
     properties:
       - throttle:
@@ -34,6 +33,7 @@
               box=centos_7_libvirt
               product=mariadb
               version=10.0
+              test_branch=$scm_source
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
