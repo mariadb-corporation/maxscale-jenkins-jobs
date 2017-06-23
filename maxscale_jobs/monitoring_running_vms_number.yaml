@@ -13,7 +13,7 @@
       - shell: |
           export result_code=0
           ACTUAL_NUMBER_OF_VMS_LIBVIRT=$(($(virsh list  |  wc -l)-3))
-          ACTUAL_NUMBER_OF_VMS__DOCKER=$(($(docker ps  |  wc -l)-1))
+          ACTUAL_NUMBER_OF_VMS_DOCKER=$(($(docker ps  |  wc -l)-1))
           if [ "$ACTUAL_NUMBER_OF_VMS_LIBVIRT" -gt "$VMS_NUMBER_LIBVIRT" ]; then 
             echo 'Number of running vms exceeds maximum for libvirt'
             export result_code=1
