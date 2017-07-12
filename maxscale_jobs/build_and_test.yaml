@@ -21,7 +21,6 @@
       - !include: './maxscale_jobs/include/smoke.yaml'
       - !include: './maxscale_jobs/include/big.yaml'
       - !include: './maxscale_jobs/include/backend_ssl.yaml'
-      - !include: './maxscale_jobs/include/test_branch.yaml'
       - !include: './maxscale_jobs/include/slave.yaml'
     properties:
       - throttle:
@@ -40,6 +39,8 @@
             block: true
             same-node: true
             current-parameters: true
+            predefined-parameters: |
+              test_branch=$scm_source
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
