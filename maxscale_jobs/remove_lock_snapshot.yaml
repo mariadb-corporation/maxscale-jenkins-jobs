@@ -6,4 +6,4 @@
     description: 'This job removes snapshot_lock'
     builders:
       - shell: 
-          'rm $HOME/mdbci/${name}_snapshot_lock'
+          'rm $MDBCI_VM_PATH/${name}_snapshot_lock'

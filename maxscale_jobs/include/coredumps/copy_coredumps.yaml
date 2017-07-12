@@ -1,5 +1,5 @@
 shell: |
   # Copying coredumps with their pathes
-  mkdir $HOME/mdbci/$CONFIGURATION_NAME/$BUILD_TO_PROCESS
+  mkdir $MDBCI_VM_PATH/$CONFIGURATION_NAME/$BUILD_TO_PROCESS
   cd $HOME/LOGS/$BUILD_TO_PROCESS 
-  cp --parents `$HOME/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file` $HOME/mdbci/$CONFIGURATION_NAME/$BUILD_TO_PROCESS
+  cp --parents `$HOME/mdbci/scripts/build_parser/coredump_finder.sh $BUILD_TO_PROCESS file` $MDBCI_VM_PATH//$CONFIGURATION_NAME/$BUILD_TO_PROCESS

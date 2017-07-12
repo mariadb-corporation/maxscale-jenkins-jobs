@@ -1,9 +1,9 @@
 shell: |
   # Running maxscale node from $CONFIGURATION_NAME
-  cd $HOME/mdbci/$CONFIGURATION_NAME
+  cd $MDBCI_VM_PATH/$CONFIGURATION_NAME
   if vagrant status maxscale | grep -q 'not created'; then
-    cd ..
-    ./mdbci up $CONFIGURATION_NAME/maxscale
+    
+    $HOME/mdbci/mdbci up $CONFIGURATION_NAME/maxscale
   else
     echo "$CONFIGURATION_NAME/maxscale is already up, doing rsync of /vagrant partion."
     vagrant rsync maxscale
