@@ -1,6 +1,6 @@
 - job:
     name: build_and_test
-    description: 'This job builds Maxscale and runs tests'
+    description: 'View: build. This job builds Maxscale and runs tests'
     parameters: 
       - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/source.yaml'

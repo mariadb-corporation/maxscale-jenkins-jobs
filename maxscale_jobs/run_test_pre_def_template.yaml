@@ -1,6 +1,6 @@
 - job:
     name: run_test_pre_def_template
-    description: 'This job executes run_test for pre-defined template'
+    description: 'View: test. This job executes run_test for pre-defined template'
     parameters:
         - choice:
             name: template_name

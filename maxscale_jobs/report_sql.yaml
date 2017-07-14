@@ -1,6 +1,6 @@
 - job:
     name: report_sql
-    description: 'This job executes sql agaist test results db'
+    description: 'View: axilary. This job executes sql agaist test results db'
     parameters: 
       - !include: './maxscale_jobs/include/sql.yaml'
     builders:

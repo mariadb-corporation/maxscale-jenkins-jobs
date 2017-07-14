@@ -1,6 +1,6 @@
 - job:
     name: upgrade_test_all
-    description: 'This job executes upgrade test'
+    description: 'View: upgrade_test. This job executes upgrade test'
     project-type: matrix
     execution-strategy:
       sequential: false

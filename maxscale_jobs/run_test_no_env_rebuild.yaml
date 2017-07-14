@@ -1,6 +1,6 @@
 - job:
     name: run_test_no_env_rebuild
-    description: 'This job perform integration testing of maxscale using existing test VMs'
+    description: 'View: test. This job perform integration testing of maxscale using existing test VMs'
     parameters:
         - !include: './maxscale_jobs/include/smoke.yaml'
         - !include: './maxscale_jobs/include/name.yaml'

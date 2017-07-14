@@ -1,6 +1,6 @@
 - job:
     name: remove_line_from_branches_file
-    description: 'This job remove a first line with branch from given file.'
+    description: 'View: push_tests. This job remove a first line with branch from given file.'
     parameters:
       - !include: './maxscale_jobs/include/branch_to_check.yaml'
       - !include: './maxscale_jobs/include/branches_list.yaml'
