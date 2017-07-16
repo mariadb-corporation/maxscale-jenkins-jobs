@@ -8,11 +8,6 @@ email-ext:
     http://max-tst-01.mariadb.com/ci-repository/$BUILD_PATH_INFO
   attach-build-log: false
   always: true
-  aborted: true
-  failure: true
-  still-failing: true
-  success: true
-  fixed: true
   send-to:
     - recipients
     - requester
