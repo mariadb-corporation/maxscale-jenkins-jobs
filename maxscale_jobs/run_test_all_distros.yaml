@@ -1,6 +1,6 @@
 - job:
     name: run_test_all_distros
-    description: 'This job executes run_test for all supported distros and given MariaDB versions'
+    description: 'View: test. This job executes run_test for all supported distros and given MariaDB versions'
     project-type: matrix
     execution-strategy:
       sequential: true

@@ -1,6 +1,6 @@
 - job:
     name: run_test_maxscale
-    description: 'This job perform integration testing of maxscale using tests from Maxscale repo'
+    description: 'View: test. This job perform integration testing of maxscale using tests from Maxscale repo'
     parameters:
         - !include: './maxscale_jobs/include/source.yaml'
         - !include: './maxscale_jobs/include/boxes_all_incl.yaml'

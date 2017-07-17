@@ -1,6 +1,6 @@
 - job:
     name: build_regular
-    description: 'This job builds Maxscale'
+    description: 'View: build. This job builds Maxscale'
     project-type: matrix
     execution-strategy:
       sequential: false

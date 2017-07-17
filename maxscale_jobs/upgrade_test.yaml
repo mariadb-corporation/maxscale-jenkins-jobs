@@ -1,6 +1,6 @@
 - job:
     name: upgrade_test
-    description: 'This job executes upgrade test'
+    description: 'View: upgrade_test. This job executes upgrade test'
     parameters:
         - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'

@@ -1,7 +1,7 @@
 - job:
     name: build_and_performance_test
     project-type: multijob
-    description: 'This job build and run performance test.'
+    description: 'View: build. This job build and run performance test.'
     parameters: 
       - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/boxes_all_incl.yaml'

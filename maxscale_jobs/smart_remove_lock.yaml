@@ -1,6 +1,6 @@
 - job:
     name: smart_remove_lock
-    description: 'Compares $build_full_name and $HOME/vagrant_lock content and calls remove lock if they are equal'
+    description: 'View: axilary. Compares $build_full_name and $HOME/vagrant_lock content and calls remove lock if they are equal'
     parameters:
       - !include: './maxscale_jobs/include/build_full_name.yaml'
     builders:
