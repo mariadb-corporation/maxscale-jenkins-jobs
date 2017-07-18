@@ -1,6 +1,6 @@
 - job:
     name: run_test
-    description: 'This job perform integration testing of maxscale'
+    description: 'View: test. This job perform integration testing of maxscale'
     parameters:
         - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
         - !include: './maxscale_jobs/include/products_incl.yaml'

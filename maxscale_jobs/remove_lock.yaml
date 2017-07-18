@@ -1,6 +1,6 @@
 - job:
     name: remove_lock
-    description: 'This job removes vagrant_lock'
+    description: 'View: axilary. This job removes vagrant_lock'
     parameters:
       - !include: './maxscale_jobs/include/slave.yaml'
     builders:

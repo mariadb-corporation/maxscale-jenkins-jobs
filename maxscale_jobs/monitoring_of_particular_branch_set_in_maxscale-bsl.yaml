@@ -1,6 +1,6 @@
 - job:
     name: monitoring_of_particular_branch_set_in_maxscale-bsl
-    description: 'This job checks "branches_list" file and executes run_test_snapshot in case of first match.'
+    description: 'View: push_tests. This job checks "branches_list" file and executes run_test_snapshot in case of first match.'
     node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
       - !include: './maxscale_jobs/include/on_push_maxscale_branches_file.yaml'

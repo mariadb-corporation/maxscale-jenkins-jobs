@@ -1,6 +1,6 @@
 - job:
     name: show_IP
-    description: 'This job shows IP addresses of test setup VMs'
+    description: 'View: axilary. This job shows IP addresses of test setup VMs'
     parameters:
         - string:
              name: name

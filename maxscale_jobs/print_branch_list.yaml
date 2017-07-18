@@ -1,6 +1,6 @@
 - job:
     name: print_branch_list
-    description: 'This job prints given file content'
+    description: 'View: push_tests. This job prints given file content'
     parameters:
         - !include: './maxscale_jobs/include/branches_list.yaml'
         - !include: './maxscale_jobs/include/slave_for_branches_jobs.yaml'

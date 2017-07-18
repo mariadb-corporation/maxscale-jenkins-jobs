@@ -1,6 +1,6 @@
 - job:
     name: run_test_matrix_mysql
-    description: 'This job executes run_test for several combinations of OS and MariaDB versions'
+    description: 'View: test. This job executes run_test for several combinations of OS and MariaDB versions'
     project-type: matrix
     execution-strategy:
       sequential: true

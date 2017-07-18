@@ -1,6 +1,6 @@
 - job:
     name: print_branches_with_regexp
-    description: 'This job prints list of all branches from maxscale repo which match $pattern'
+    description: 'View: push_tests. This job prints list of all branches from maxscale repo which match $pattern'
     parameters:
       - !include: './maxscale_jobs/include/pattern.yaml'
       - !include: './maxscale_jobs/include/repo.yaml'

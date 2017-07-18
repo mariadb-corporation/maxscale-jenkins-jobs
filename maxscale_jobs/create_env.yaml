@@ -1,6 +1,6 @@
 - job:
     name: create_env
-    description: 'This job creates test environment, puts Maxscale source to VM and builds it'
+    description: 'View: env. This job creates test environment, puts Maxscale source to VM and builds it'
     parameters: 
       - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/debug_env_name.yaml'

@@ -1,6 +1,6 @@
 - job:
     name: collect_coredumps_for_build
-    description: 'This job executes collect all coredumps from given build and store them at '
+    description: 'View: axilary. This job executes collect all coredumps from given build and store them at '
     parameters: 
       - !include: './maxscale_jobs/include/stopped_configuration.yaml'
       - !include: './maxscale_jobs/include/build_id.yaml'

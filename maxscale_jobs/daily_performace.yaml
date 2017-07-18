@@ -1,6 +1,6 @@
 - job:
     name: daily_performace
-    description: 'Daily build (at ~6 am) of build_and_performance_test'
+    description: 'View: regular_test. Daily build (at ~6 am) of build_and_performance_test'
     node: !include: './maxscale_jobs/include/slave_for_daily_performance_test.yaml'
     triggers:
       - timed: "H 6 * * *"

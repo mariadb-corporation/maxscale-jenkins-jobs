@@ -1,6 +1,6 @@
 - job:
     name: build
-    description: 'This job builds Maxscale'
+    description: 'View: build. This job builds Maxscale'
     parameters: 
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/boxes_all_incl.yaml'

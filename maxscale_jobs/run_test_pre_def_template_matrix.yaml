@@ -1,6 +1,6 @@
 - job:
     name: run_test_pre_def_template_matrix
-    description: 'This job executes run_test for pre-defined template'
+    description: 'View: test. This job executes run_test for pre-defined template'
     project-type: matrix
     execution-strategy:
       sequential: false

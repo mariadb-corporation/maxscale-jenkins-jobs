@@ -1,6 +1,6 @@
 - job:
     name: run_test_snapshot
-    description: 'This job perform integration testing of maxscale'
+    description: 'View: test. This job perform integration testing of maxscale'
     parameters:
         - !include: './maxscale_jobs/include/smoke.yaml'
         - !include: './maxscale_jobs/include/big.yaml'

@@ -1,6 +1,6 @@
 - job:
     name: destroy
-    description: 'This job destroys test setup'
+    description: 'View: axilary. This job destroys test setup'
     parameters:
       - !include: './maxscale_jobs/include/name.yaml'
       - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'

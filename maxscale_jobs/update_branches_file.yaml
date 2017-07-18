@@ -1,6 +1,6 @@
 - job:
     name: update_branches_file
-    description: 'This job adding a new line branch|test_set for given file.'
+    description: 'View: push_tests. This job adding a new line branch|test_set for given file.'
     parameters:
       - !include: './maxscale_jobs/include/branch_to_check.yaml'
       - !include: './maxscale_jobs/include/test_set.yaml'
