@@ -25,7 +25,7 @@
     properties:
       - throttle:
           option: project
-          max-per-node: 5
+          max-per-node: 1
           max-total: 25
           enabled: true
     builders:
