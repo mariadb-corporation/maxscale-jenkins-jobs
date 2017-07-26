@@ -51,13 +51,6 @@
           else
             echo "$injection_var=All jobs are valid" >> "$prop_file"
           fi
-
-          unused_configs=`jabba --analysis unused_configs --yaml-root maxscale_jobs/`
-          if [[ -z $(echo "$unused_configs"|grep "Abstract analysis result") ]]; then
-            echo "Unused configs found"
-            echo "$unused_configs" >> "$prop_file"
-          fi
-
       - inject:
           properties-file: failed_yaml_tests_property_file
       - shell: |
