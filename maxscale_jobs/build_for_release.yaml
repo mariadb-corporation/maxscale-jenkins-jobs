@@ -1,0 +1,56 @@
+- job:
+    name: build_for_release
+    description: 'Executes two build_all - debug and release builds'
+    parameters: 
+      - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/version_number.yaml'
+      - !include: './maxscale_jobs/include/old_target.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
+    properties:
+      - throttle:
+          option: project
+          max-per-node: 5
+          max-total: 25
+          enabled: true
+    builders:
+      - trigger-builds:
+          - project: 'build_all'
+            block: true
+            same-node: true
+            current-parameters: true
+            predefined-parameters: |
+              cmake_flags=-DBUILD_TESTS=Y -DCMAKE_BUILD_TYPE=Debug -DBUILD_MMMON=Y -DBUILD_CDC=Y
+              target=maxscale-${version_number}-debug
+              run_upgrade_test=yes
+              maxadmin_command=sudo maxadmin show services
+              cnf_file=maxscale.cnf.minimum
+              ci_url_suffix=mariadb-maxscale
+              ci_url=http://max-tst-01.mariadb.com/ci-repository/
+              run_upgrade_test=yes
+              repo_path=$HOME/repository
+              use_mariadbd=no
+              build_experimental=no
+              do_not_destroy_vm=no
+              remove_strip=yes
+      - trigger-builds:
+          - project: 'build_all'
+            block: true
+            same-node: true
+            current-parameters: true
+            predefined-parameters: |
+              cmake_flags=-DBUILD_TESTS=N -DBUILD_MMMON=Y -DBUILD_CDC=Y
+              target=maxscale-${version_number}-release
+              run_upgrade_test=yes
+              maxadmin_command=sudo maxadmin show services
+              cnf_file=maxscale.cnf.minimum
+              ci_url_suffix=mariadb-maxscale
+              ci_url=http://max-tst-01.mariadb.com/ci-repository/
+              run_upgrade_test=yes
+              repo_path=$HOME/repository
+              use_mariadbd=no
+              build_experimental=no
+              do_not_destroy_vm=no
+              remove_strip=yes
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+    concurrent: true
