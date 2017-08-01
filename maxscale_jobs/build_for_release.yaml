@@ -4,6 +4,7 @@
     parameters: 
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/version_number.yaml'
+      - !include: './maxscale_jobs/include/build_experimental.yaml'
       - !include: './maxscale_jobs/include/old_target.yaml'
       - !include: './maxscale_jobs/include/slave.yaml'
     properties:
@@ -29,7 +30,6 @@
               run_upgrade_test=yes
               repo_path=$HOME/repository
               use_mariadbd=no
-              build_experimental=no
               do_not_destroy_vm=no
               remove_strip=yes
       - trigger-builds:
@@ -48,7 +48,6 @@
               run_upgrade_test=yes
               repo_path=$HOME/repository
               use_mariadbd=no
-              build_experimental=no
               do_not_destroy_vm=no
               remove_strip=yes
     wrappers:
