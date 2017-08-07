@@ -1,0 +1,6 @@
+choice:
+  name: template
+  choices:
+      - '3_maxscale_master_slave'
+  description: 'Configuration template to bring up'
+
