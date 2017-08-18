@@ -1,6 +1,6 @@
 - job:
     name: build_for_release
-    description: 'Executes two build_all - debug and release builds'
+    description: 'View: build. Executes two build_all - debug and release builds'
     parameters: 
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/version_number.yaml'
@@ -10,8 +10,8 @@
     properties:
       - throttle:
           option: project
-          max-per-node: 5
-          max-total: 25
+          max-per-node: 1
+          max-total: 5
           enabled: true
     builders:
       - trigger-builds:
