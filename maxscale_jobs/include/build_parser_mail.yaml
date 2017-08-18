@@ -6,11 +6,6 @@ email-ext:
   body: !include-raw: "./maxscale_jobs/include/build_parser_email_body" 
   attach-build-log: false
   always: true
-  aborted: true
-  failure: true
-  still-failing: true
-  success: true
-  fixed: true
   send-to:
     - recipients
     - requester

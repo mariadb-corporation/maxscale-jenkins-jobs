@@ -6,11 +6,6 @@ email-ext:
   body: $DEFAULT_CONTENT
   attach-build-log: false
   always: true
-  aborted: true
-  failure: true
-  still-failing: true
-  success: true
-  fixed: true
   send-to:
     - recipients
     - requester
