@@ -31,6 +31,7 @@
         - !include: './maxscale_jobs/include/big.yaml'
         - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/logs_dir.yaml'
+        - !include: './maxscale_jobs/include/no_vm_revert.yaml'
         - !include: './maxscale_jobs/include/test_branch.yaml'
         - !include: './maxscale_jobs/include/slave.yaml'
     scm:

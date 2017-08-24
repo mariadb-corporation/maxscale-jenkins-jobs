@@ -1,0 +1,6 @@
+choice:
+  name: no_vm_revert
+  choices:
+      - 'no'
+      - 'yes'
+  description: "Do not revert VMs even if test failed"
