@@ -20,3 +20,4 @@ conditional-step:
             target=$JOB_NAME-$BUILD_ID
             name=$JOB_NAME-$BUILD_ID
             test_set=$test_set
+            test_branch=$branch_to_check

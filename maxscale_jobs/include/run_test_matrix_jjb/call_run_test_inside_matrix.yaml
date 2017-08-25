@@ -17,3 +17,4 @@ trigger-builds:
       ci_url_suffix=$ci_url_suffix
       logs_dir=$logs_dir
       slave_name=${NODE_NAME}
+      test_branch=$branch_to_check
