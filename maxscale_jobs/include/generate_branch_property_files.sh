@@ -1,5 +1,5 @@
 #branches_list_file="$HOME/run_test_branches.list"
-if [ ! -f ${branches_list_file} ]; then
+if [ ! -f "${branches_list_file}" ]; then
 	echo "Branch file ${branches_list_file} not found! Exiting."
 	exit 1
 fi
