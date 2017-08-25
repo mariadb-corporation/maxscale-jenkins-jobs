@@ -38,7 +38,7 @@
             fi
           done
 
-          if [ $res != 0 ]; then
+          if [ "$res" != "0" ]; then
             echo ""
             echo "Failed jobs:"
             echo -e $failed_list
@@ -57,8 +57,8 @@
           prop_file="failed_yaml_tests_property_file"
           injection_var="FAILED_YAML_TESTS_LIST"
 
-          if [[ -z $(cat "$prop_file" | grep "All jobs are valid") ]]; then
-          	exit 1
+          if [[ -z "$(cat "$prop_file" | grep "All jobs are valid")" ]]; then
+            exit 1
           fi
     publishers:
       - !include: './maxscale_jobs/include/mail_yaml.yaml'

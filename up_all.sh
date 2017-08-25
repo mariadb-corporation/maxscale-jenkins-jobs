@@ -22,7 +22,7 @@ failed_list=""
 for job in $jobs
 do
 	../jenkins_job_gitizer/scripts/ud_job.sh ../jenkins_job_gitizer/test_configs/mdbci_jenkins.ini update $job
-	if [ $? != 0 ]; then
+	if [ "$?" != "0" ]; then
 		echo "Loading of $job FAILED!"
 		failed_list="$failed_list \n $job"
 		res=1
@@ -32,7 +32,7 @@ done
 echo \'\' > maxscale_jobs/include/default_repo_user.yaml
 echo \'\' > maxscale_jobs/include/default_repo_password.yaml
 
-if [ $res != 0 ]; then
+if [ "$res" != "0" ]; then
 	echo ""
 	echo "Failed jobs:"
 	echo -e $failed_list
