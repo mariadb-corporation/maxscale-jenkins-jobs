@@ -6,7 +6,7 @@ shell: |
   else
           echo
           for coredump in $coredumps; do
-              echo "$coredump \\" >> $WORKSPACE/coredumps_$BUILD_ID
+              printf "$coredump \\\n" >> $WORKSPACE/coredumps_$BUILD_ID
           done
   fi
   cp $WORKSPACE/build_log_$BUILD_ID $HOME/LOGS/$JOB_NAME-$BUILD_ID/
