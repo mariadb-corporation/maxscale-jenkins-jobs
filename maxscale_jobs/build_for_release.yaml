@@ -20,8 +20,8 @@
             same-node: true
             current-parameters: true
             predefined-parameters: |
-              cmake_flags=-DBUILD_TESTS=Y -DCMAKE_BUILD_TYPE=Debug -DBUILD_MMMON=Y -DBUILD_CDC=Y
-              target=maxscale-${version_number}-debug
+              cmake_flags=-DBUILD_TESTS=N -DBUILD_MMMON=Y -DBUILD_CDC=Y
+              target=maxscale-${version_number}-release
               run_upgrade_test=yes
               maxadmin_command=sudo maxadmin show services
               cnf_file=maxscale.cnf.minimum
@@ -38,8 +38,8 @@
             same-node: true
             current-parameters: true
             predefined-parameters: |
-              cmake_flags=-DBUILD_TESTS=N -DBUILD_MMMON=Y -DBUILD_CDC=Y
-              target=maxscale-${version_number}-release
+              cmake_flags=-DBUILD_TESTS=Y -DCMAKE_BUILD_TYPE=Debug -DBUILD_MMMON=Y -DBUILD_CDC=Y
+              target=maxscale-${version_number}-debug
               run_upgrade_test=yes
               maxadmin_command=sudo maxadmin show services
               cnf_file=maxscale.cnf.minimum
