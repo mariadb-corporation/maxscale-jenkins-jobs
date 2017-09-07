@@ -9,7 +9,7 @@ do
 	branch_template=`echo "${branch_string}"`
 #	test_set=`echo "${branch_string}"| sed -e 's/^[^|]*|//g'`
 	# Iterate over all related branches
-	git ls-remote --heads ${repo} | grep ${branch_template} | sed 's?.*refs/heads/??' | while read branch;
+	git ls-remote --heads ${repo} | sed 's?.*refs/heads/??' | grep ${branch_template} | while read branch;
 	do
 	   	if [ "${branch}" == "${branch_template}" ] ; then
 			echo "scm_source=${branch}"	> ${property_files_dir}/${branch}
