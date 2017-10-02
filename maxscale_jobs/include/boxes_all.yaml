@@ -8,6 +8,7 @@
 - ubuntu_wily_aws
 - ubuntu_trusty_aws
 - ubuntu_precise_aws
+- ubuntu_yakkety_aws
 - ubuntu_trusty_docker
 - ubuntu_precise_vbox
 - ubuntu_trusty_vbox
