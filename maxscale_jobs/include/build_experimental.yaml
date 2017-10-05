@@ -1,6 +1,6 @@
 choice:
   name: build_experimental
   choices:
-      - 'no'
       - 'yes'
+      - 'no'
   description: "Build experimental module and development package"
