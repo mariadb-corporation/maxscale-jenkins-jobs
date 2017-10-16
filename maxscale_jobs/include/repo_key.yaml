@@ -1,0 +1,6 @@
+choice:
+  name: repo_key
+  choices:
+      - 'http://maxscale-jenkins.mariadb.com/ci-repository/MariaDBManager-GPG-KEY.public'
+      - 'http://max-tst-01.mariadb.com/ci-repository/MariaDBMaxscale-GPG-KEY.public'
+  description: "Path to the repository signature key"
