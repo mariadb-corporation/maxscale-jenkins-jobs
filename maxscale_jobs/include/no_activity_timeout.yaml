@@ -1,4 +1,4 @@
 timeout:
-  timeout: 3600
+  timeout: 60
   type: no-activity
   fail: true
