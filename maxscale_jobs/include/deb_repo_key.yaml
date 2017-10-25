@@ -1,0 +1,6 @@
+choice:
+  name: deb_repo_key
+  choices:
+      - '135659e928c12247'
+      - '70E4618A8167EE24'
+  description: "Path to the repository signature key"
