@@ -18,6 +18,7 @@
       - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
       - !include: './maxscale_jobs/include/repo_user.yaml'
       - !include: './maxscale_jobs/include/repo_password.yaml'
+      - !include: './maxscale_jobs/include/repo_key.yaml'
       - !include: './maxscale_jobs/include/smoke.yaml'
       - !include: './maxscale_jobs/include/big.yaml'
       - !include: './maxscale_jobs/include/backend_ssl.yaml'
