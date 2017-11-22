@@ -11,7 +11,6 @@
         - !include: './maxscale_jobs/include/backend_ssl.yaml'
         - !include: './maxscale_jobs/include/name.yaml'
         - !include: './maxscale_jobs/include/target.yaml'
-        - !include: './maxscale_jobs/include/repo_key.yaml'
         - !include: './maxscale_jobs/include/test_set.yaml'
         - !include: './maxscale_jobs/include/use_snapshots.yaml'
         - !include: './maxscale_jobs/include/ci_url.yaml'
