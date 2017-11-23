@@ -1,20 +1,15 @@
 #!/bin/bash
 
-# $1 - repo_user
-# $2 - repo_password
-# $3 - particular job (optional)
-
-echo \'$1\' > maxscale_jobs/include/default_repo_user.yaml
-echo \'$2\' > maxscale_jobs/include/default_repo_password.yaml
+# $1 - particular job (optional)
 
 ./create_build_and_test_alone.sh
 ./create_labels_jobs.sh
 
-if [ -z "$3" ]
+if [ -z "$1" ]
 then
         jobs=`ls maxscale_jobs/*.yaml -1`
 else
-        jobs="$3"
+        jobs="$1"
 fi
 res=0
 failed_list=""
@@ -28,9 +23,6 @@ do
 		res=1
 	fi
 done
-
-echo \'\' > maxscale_jobs/include/default_repo_user.yaml
-echo \'\' > maxscale_jobs/include/default_repo_password.yaml
 
 if [ "$res" != "0" ]; then
 	echo ""
