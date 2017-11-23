@@ -1,5 +1,0 @@
-string:
-  name: repo_user
-  default: !include: './maxscale_jobs/include/default_repo_user.yaml'
-  description: 'HTTP user name to access binary repository'
-  

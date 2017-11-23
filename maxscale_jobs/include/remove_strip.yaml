@@ -1,6 +1,0 @@
-choice:
-  name: remove_strip
-  choices:
-    - 'yes'
-    - 'no'
-  description: "Remove the strip binary (don't change this unless you know you need to)"

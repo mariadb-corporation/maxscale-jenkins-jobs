@@ -25,13 +25,10 @@
               run_upgrade_test=yes
               maxadmin_command=sudo maxadmin show services
               cnf_file=maxscale.cnf.minimum
-              ci_url_suffix=mariadb-maxscale
               ci_url=http://max-tst-01.mariadb.com/ci-repository/
               run_upgrade_test=yes
               repo_path=$HOME/repository
-              use_mariadbd=no
               do_not_destroy_vm=no
-              remove_strip=yes
       - trigger-builds:
           - project: 'build_all'
             block: true
@@ -43,13 +40,10 @@
               run_upgrade_test=yes
               maxadmin_command=sudo maxadmin show services
               cnf_file=maxscale.cnf.minimum
-              ci_url_suffix=mariadb-maxscale
               ci_url=http://max-tst-01.mariadb.com/ci-repository/
               run_upgrade_test=yes
               repo_path=$HOME/repository
-              use_mariadbd=no
               do_not_destroy_vm=no
-              remove_strip=yes
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
     concurrent: true
