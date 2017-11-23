@@ -11,9 +11,6 @@
         - !include: './maxscale_jobs/include/name.yaml'
         - !include: './maxscale_jobs/include/target.yaml'
         - !include: './maxscale_jobs/include/ci_url.yaml'
-        - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
-        - !include: './maxscale_jobs/include/repo_user.yaml'
-        - !include: './maxscale_jobs/include/repo_password.yaml'
         - choice:
             name: named_test
             choices:
