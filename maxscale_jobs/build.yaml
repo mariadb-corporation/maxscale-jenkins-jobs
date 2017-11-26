@@ -30,10 +30,10 @@
     builders:
       - shell: |
           if [ ! -d ./BUILD ] ; then
-            cp -r $HOME/maxscale-scripts/BUILD .
+            cp -r $HOME/maxscale-jenkins-jobs/maxscale-scripts/BUILD .
           fi
           if [ ! -d ./BUILD/mdbci ] ; then
-            cp -r $HOME/maxscale-scripts/BUILD/mdbci BUILD/
+            cp -r $HOME/maxscale-jenkins-jobs/maxscale-scripts/BUILD/mdbci BUILD/
           fi
           ./BUILD/mdbci/build.sh
       - !include: './maxscale_jobs/include/copy_logs/inject_build_info_env.yaml'
