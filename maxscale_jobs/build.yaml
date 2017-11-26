@@ -28,8 +28,14 @@
           branches:
             - ${scm_source}
     builders:
-      - shell: 
-          './BUILD/mdbci/build.sh'
+      - shell: |
+          if [ ! -d ./BUILD ] ; then
+            cp -r $HOME/maxscale-scripts/BUILD .
+          fi
+          if [ ! -d ./BUILD/mdbci ] ; then
+            cp -r $HOME/maxscale-scripts/BUILD/mdbci BUILD/
+          fi
+          ./BUILD/mdbci/build.sh
       - !include: './maxscale_jobs/include/copy_logs/inject_build_info_env.yaml'
     publishers:
       - !include: './maxscale_jobs/include/mail_build.yaml'
