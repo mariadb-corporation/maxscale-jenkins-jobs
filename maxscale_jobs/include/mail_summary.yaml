@@ -6,6 +6,7 @@ email-ext:
   body: $DEFAULT_CONTENT
   attach-build-log: false
   always: true
+  failure: false # Do not send extra emails on failure
   send-to:
     - recipients
     - requester
