@@ -14,7 +14,5 @@ trigger-builds:
       run_upgrade_test=$run_upgrade_test
       old_target=$old_target
       ci_url=$ci_url
-      cnf_file=$cnf_file
-      maxadmin_command=$maxadmin_command
       slave_name=$slave_name
 

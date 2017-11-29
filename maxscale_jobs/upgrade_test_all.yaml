@@ -15,8 +15,6 @@
         - !include: './maxscale_jobs/include/old_target.yaml'
         - !include: './maxscale_jobs/include/new_target.yaml'
         - !include: './maxscale_jobs/include/ci_url.yaml'
-        - !include: './maxscale_jobs/include/cnf_file.yaml'
-        - !include: './maxscale_jobs/include/maxadmin_command.yaml'
         - !include: './maxscale_jobs/include/slave.yaml'
     properties:
       - throttle:

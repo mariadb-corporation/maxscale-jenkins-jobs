@@ -23,8 +23,6 @@
               cmake_flags=-DBUILD_TESTS=N -DBUILD_MMMON=Y -DBUILD_CDC=Y
               target=maxscale-${version_number}-release
               run_upgrade_test=yes
-              maxadmin_command=sudo maxadmin show services
-              cnf_file=maxscale.cnf.minimum
               ci_url=http://max-tst-01.mariadb.com/ci-repository/
               run_upgrade_test=yes
               repo_path=$HOME/repository
@@ -38,8 +36,6 @@
               cmake_flags=-DBUILD_TESTS=Y -DCMAKE_BUILD_TYPE=Debug -DBUILD_MMMON=Y -DBUILD_CDC=Y
               target=maxscale-${version_number}-debug
               run_upgrade_test=yes
-              maxadmin_command=sudo maxadmin show services
-              cnf_file=maxscale.cnf.minimum
               ci_url=http://max-tst-01.mariadb.com/ci-repository/
               run_upgrade_test=yes
               repo_path=$HOME/repository
