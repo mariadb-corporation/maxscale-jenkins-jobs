@@ -5,7 +5,7 @@
         - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
         - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
         - !include: './maxscale_jobs/include/old_target.yaml'
-        - !include: './maxscale_jobs/include/new_target.yaml'
+        - !include: './maxscale_jobs/include/target.yaml'
         - !include: './maxscale_jobs/include/ci_url.yaml'
         - !include: './maxscale_jobs/include/slave.yaml'
     properties:
