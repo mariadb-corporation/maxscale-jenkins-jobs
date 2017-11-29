@@ -14,7 +14,7 @@ export old_target=${old_target:-"2.1.9"}
 export old_target=`echo $old_target | sed "s/?//g"`
 
 provider=`${mdbci_dir}/mdbci show provider $box --silent 2> /dev/null`
-name=$box-${JOB_NAME}-${BUILD_NUMBER}_upgradetest
+name=${JOB_NAME}-${BUILD_NUMBER}_upgradetest
 name=`echo $name | sed "s|/|-|g"`
 
 
