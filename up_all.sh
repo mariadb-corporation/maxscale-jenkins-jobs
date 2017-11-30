@@ -30,4 +30,11 @@ if [ "$res" != "0" ]; then
 	echo -e $failed_list
 fi
 
+ls maxscale_jobs/*.yaml -1 | sed "s|maxscale_jobs/||" | sed "s|\.yaml||" | sort > jobs_from_yamls
+
+./list_jobs.sh
+
+echo "Jobs in Jenkins that are not loaded from yamls:"
+diff --changed-group-format='%<%>' --unchanged-group-format='' jobs_from_jenkins jobs_from_yamls
+
 exit $res
