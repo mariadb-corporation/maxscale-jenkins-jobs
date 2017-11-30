@@ -8,6 +8,7 @@ email-ext:
     $FAILED_YAML_TESTS_LIST
   attach-build-log: false
   always: true
+  failure: false
   send-to:
     - recipients
     - requester
