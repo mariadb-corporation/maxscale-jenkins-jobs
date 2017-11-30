@@ -13,6 +13,7 @@ else
 fi
 res=0
 failed_list=""
+job_name_list=""
 
 for job in $jobs
 do
@@ -22,6 +23,8 @@ do
 		failed_list="$failed_list \n $job"
 		res=1
 	fi
+        job_name=`cat $job | grep "name: " | sed "s/name: //" | tr -d " "`
+	job_name_list="${job_name_list} \n ${job_name}"
 done
 
 if [ "$res" != "0" ]; then
@@ -30,7 +33,8 @@ if [ "$res" != "0" ]; then
 	echo -e $failed_list
 fi
 
-ls maxscale_jobs/*.yaml -1 | sed "s|maxscale_jobs/||" | sed "s|\.yaml||" | sort > jobs_from_yamls
+#ls maxscale_jobs/*.yaml -1 | sed "s|maxscale_jobs/||" | sed "s|\.yaml||" | sort > jobs_from_yamls
+echo -e ${job_name_list} > jobs_from_yamls
 
 ./list_jobs.sh
 
