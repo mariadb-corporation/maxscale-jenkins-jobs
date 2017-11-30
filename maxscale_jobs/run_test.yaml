@@ -14,9 +14,6 @@
         - !include: './maxscale_jobs/include/test_set.yaml'
         - !include: './maxscale_jobs/include/use_snapshots.yaml'
         - !include: './maxscale_jobs/include/ci_url.yaml'
-        - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
-        - !include: './maxscale_jobs/include/repo_user.yaml'
-        - !include: './maxscale_jobs/include/repo_password.yaml'
         - !include: './maxscale_jobs/include/logs_dir.yaml'
         - !include: './maxscale_jobs/include/no_vm_revert.yaml'
         - string:

@@ -6,14 +6,10 @@
       - !include: './maxscale_jobs/include/debug_env_name.yaml'
       - !include: './maxscale_jobs/include/source.yaml'
       - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
-      - !include: './maxscale_jobs/include/remove_strip.yaml'
       - !include: './maxscale_jobs/include/cmake_flags.yaml'
       - !include: './maxscale_jobs/include/products_incl.yaml'
       - !include: './maxscale_jobs/include/versions_incl.yaml'
       - !include: './maxscale_jobs/include/ci_url.yaml'
-      - !include: './maxscale_jobs/include/ci_url_suffix.yaml'
-      - !include: './maxscale_jobs/include/repo_user.yaml'
-      - !include: './maxscale_jobs/include/repo_password.yaml'
       - !include: './maxscale_jobs/include/slave.yaml'
     scm:
       - git:

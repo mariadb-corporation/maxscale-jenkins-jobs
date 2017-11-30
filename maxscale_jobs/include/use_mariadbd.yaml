@@ -1,6 +1,0 @@
-choice:
-  name: use_mariadbd
-  choices:
-      - 'no'
-      - 'yes'
-  description: "Install libmariadbd before build"
