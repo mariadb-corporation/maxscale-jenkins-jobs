@@ -23,7 +23,7 @@ do
 		failed_list="$failed_list \n $job"
 		res=1
 	fi
-        job_name=`cat $job | grep "name: " | sed "s/name: //" | tr -d " "`
+        job_name=`cat $job | grep "^    name: " | sed "s/name: //" | tr -d " "`
 	job_name_list="${job_name_list}\n${job_name}"
 done
 
