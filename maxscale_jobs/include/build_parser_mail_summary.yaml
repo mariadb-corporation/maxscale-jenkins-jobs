@@ -3,9 +3,10 @@ email-ext:
   reply-to: $DEFAULT_REPLYTO
   content-type: default
   subject: $DEFAULT_SUBJECT
-  body: !include-raw: "./maxscale_jobs/include/build_parser_email_body" 
+  body: !include-raw: "./maxscale_jobs/include/build_parser_email_body"
   attach-build-log: false
   always: true
+  failure: false
   send-to:
     - recipients
     - requester
