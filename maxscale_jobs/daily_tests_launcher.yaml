@@ -1,5 +1,5 @@
 - job:
-    name: daily_maxscale_bsl_branch_run_test 
+    name: daily_tests_launcher
     description: 'View: push_tests. This job perform daily run of run_test on a given branch set stored at $HOME/run_test_branches.list as pairs "branch_name|test_set" seprated by new line symbol.'
     node: !include: './maxscale_jobs/include/slave_for_daily_tests.yaml'
     parameters:

@@ -6,8 +6,8 @@ This repo contains yaml description of the jenkins jobs used in Maxscale contini
 
 ### Jobs that use branches lists
 
-* **maxscale_jobs/monitoring_of_particular_branch_set_in_maxscale-bsl.yaml** - on each push to maxscale repository check that branch is from on_push_maxscale_branches.list file and if it is true, executes <kbd>build</kbd> and <kbd>run_test_snapshot</kbd> with test_set value from on_push_maxscale_branches.list.
-* **maxscale_jobs/daily_maxscale_bsl_branch_run_test.yaml** - daily perform <kbd>run_test</kbd> job for each branch and test_set stored in run_test_branches.list with default run_test params.
+* **maxscale_jobs/pushes_monitoring.yaml** - on each push to maxscale repository check that branch is from on_push_maxscale_branches.list file and if it is true, executes <kbd>build</kbd> and <kbd>run_test_snapshot</kbd> with test_set value from on_push_maxscale_branches.list.
+* **maxscale_jobs/daily_test_launcher.yaml** - daily perform <kbd>run_test</kbd> job for each branch and test_set stored in run_test_branches.list with default run_test params.
 
 ### Jobs for editing branches lists
 

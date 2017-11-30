@@ -4,7 +4,7 @@ shell: |
   do
     branch_pattern=`echo $line | sed -e 's/|[^|]*$//g'`
     test_set=`echo $line | sed -e 's/^[^|]*|//g'`
-    if echo $GIT_BRANCH | grep -q $branch_pattern 
+    if echo $GIT_BRANCH | sed -e 's|origin/||g' | grep -q $branch_pattern 
     then
       branch_to_check=`echo $GIT_BRANCH | sed -e 's|origin/||g'`
       echo "$GIT_BRANCH matches $branch_pattern!"

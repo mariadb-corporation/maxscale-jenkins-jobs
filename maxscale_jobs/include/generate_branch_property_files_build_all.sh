@@ -15,7 +15,7 @@ do
 			echo "scm_source=${branch}"	> ${property_files_dir}/${branch}
 		        echo "target=${branch}" >> ${property_files_dir}/${branch}
 #			echo "test_set=${test_set}" >>${property_files_dir}/${branch}
-#			echo "name=daily_maxscale_bsl_branch_run_test-$BUILD_ID-${branch}" >> ${property_files_dir}/${branch} 
+#			echo "name=daily_test-$BUILD_ID-${branch}" >> ${property_files_dir}/${branch} 
 		fi
 	done
 done
