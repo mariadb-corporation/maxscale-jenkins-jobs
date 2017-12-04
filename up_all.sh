@@ -3,7 +3,7 @@
 # $1 - particular job (optional)
 
 ./create_build_and_test_alone.sh
-./create_labels_jobs.sh
+#./create_labels_jobs.sh
 
 if [ -z "$1" ]
 then
