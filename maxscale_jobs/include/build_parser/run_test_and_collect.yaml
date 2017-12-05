@@ -1,4 +1,4 @@
-shell:
+shell: |
   if [ ! -d ./maxscale-system-test/mdbci ] ; then
      mkdir default-maxscale-branch
      cd default-maxscale-branch
