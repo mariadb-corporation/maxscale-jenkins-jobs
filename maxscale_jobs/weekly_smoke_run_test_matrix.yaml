@@ -10,6 +10,7 @@
             predefined-parameters: |
               target=weekly_matrix-$BUILD_ID
               slave_name=${NODE_NAME}
+              scm_source='2.2'
             block: true
           - project: 'run_test_matrix'
             predefined-parameters: |
@@ -18,6 +19,7 @@
               target=weekly_matrix-$BUILD_ID
               test_set='-L LIGHT'
               slave_name=${NODE_NAME}
+              test_branch='2.2'
             block: true
     publishers:
       - !include: './maxscale_jobs/include/mail_summary.yaml'
