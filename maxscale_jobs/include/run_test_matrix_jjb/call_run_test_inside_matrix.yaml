@@ -11,10 +11,7 @@ trigger-builds:
       target=$target
       test_set=$test_set
       ci_url=$ci_url
-      repo_user=$repo_user
-      repo_password=$repo_password
       big=$big
-      ci_url_suffix=$ci_url_suffix
       logs_dir=$logs_dir
       slave_name=${NODE_NAME}
-      test_branch=$branch_to_check
+      test_branch=$test_branch
