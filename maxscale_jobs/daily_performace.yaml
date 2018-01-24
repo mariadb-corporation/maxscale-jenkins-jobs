@@ -13,6 +13,8 @@
               name=daily_performace-$BUILD_ID
               target=daily_performace-$BUILD_ID 
               box=centos_7_libvirt
+              scm_source=2.2
+              test_branch=2.2
             same-node: true
     publishers:
       - !include: './maxscale_jobs/include/mail_summary.yaml'
