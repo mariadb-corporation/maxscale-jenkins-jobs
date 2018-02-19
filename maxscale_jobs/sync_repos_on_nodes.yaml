@@ -1,13 +1,12 @@
 - job:
     name: sync_repositories_on_nodes 
-    description: 'This job updates repositories on nodes to TAG/BRANCH/COMMIT'
+    description: 'View: axilary. This job updates repositories on nodes'
     project-type: matrix
     execution-strategy:
       sequential: false
     axes:
       - !include: './maxscale_jobs/include/all_nodes_axes.yaml'
     parameters:
-      - !include: './maxscale_jobs/include/sync_repositories_on_nodes/value.yaml'
       - !include: './maxscale_jobs/include/sync_repositories_on_nodes/source.yaml'
       - !include: './maxscale_jobs/include/sync_repositories_on_nodes/path_to_repositories.yaml'
     builders:
