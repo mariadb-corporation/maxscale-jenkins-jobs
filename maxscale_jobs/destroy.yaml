@@ -16,16 +16,5 @@
             exit 1
           fi
       - shell: |
-          if [ -d "$MDBCI_VM_PATH/$name" ]; then
-            cd $MDBCI_VM_PATH/$name
-            vagrant destroy -f
-            if [ "$?" -eq "1" ]; then
-              ../scripts/clean_vms.sh ${name}
-            fi
-            cd ..
-            rm -rf "$MDBCI_VM_PATH/$name"
-            rm -rf "$MDBCI_VM_PATH/$name"_network_config*
-            rm -rf "$MDBCI_VM_PATH/$name".json
-          else
-            echo "Directory $MDBCI_VM_PATH/$name does not exist. Probably this job was called before $name configuration had created."
-          fi 
+          $HOME/mdbci/mdbci destroy $name
+
