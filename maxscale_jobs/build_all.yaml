@@ -23,6 +23,8 @@
       - !include: './maxscale_jobs/include/slave.yaml'
     properties:
       - throttle:
+          max-per-node: 1
+          max-total: 5
           matrix-configs: true
           matrix-builds: false
           option: category
