@@ -6,4 +6,4 @@ shell: |
      cd ..
      cp -r default-maxscale-branch/MaxScale/maxscale-system-test/mdbci maxscale-system-test/
   fi
-  'maxscale-system-test/mdbci/run_test.sh | tee $WORKSPACE/build_log_$BUILD_ID; echo ${PIPESTATUS[0]} > result_$BUILD_ID'
+  maxscale-system-test/mdbci/run_test.sh | tee $WORKSPACE/build_log_$BUILD_ID; echo ${PIPESTATUS[0]} > result_$BUILD_ID
