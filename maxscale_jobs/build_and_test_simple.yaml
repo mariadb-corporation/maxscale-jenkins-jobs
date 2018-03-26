@@ -22,7 +22,7 @@
             predefined-parameters: |
               box=centos_7_libvirt
               product=mariadb
-              version=10.0
+              version=10.2
               try_already_running=yes
       - trigger-builds:
           - project: 'run_test_snapshot'
@@ -32,7 +32,7 @@
             predefined-parameters: |
               box=centos_7_libvirt
               product=mariadb
-              version=10.0
+              version=10.2
               test_branch=$scm_source
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'

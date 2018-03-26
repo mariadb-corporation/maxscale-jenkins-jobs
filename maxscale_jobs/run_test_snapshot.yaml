@@ -17,6 +17,7 @@
         - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
         - !include: './maxscale_jobs/include/products_incl.yaml'
         - !include: './maxscale_jobs/include/versions_incl.yaml'
+        - !include: './maxscale_jobs/include/templates.yaml'
         - !include: './maxscale_jobs/include/slave.yaml'
     properties:
       - throttle:

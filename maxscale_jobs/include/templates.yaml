@@ -1,6 +1,8 @@
 choice:
   name: template
   choices:
-      - '3_maxscale_master_slave'
+      - 'default'
+      - 'nogalera'
+      - 'twomaxscales'
   description: 'Configuration template to bring up'
 

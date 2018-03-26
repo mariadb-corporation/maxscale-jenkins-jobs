@@ -16,6 +16,7 @@
         - !include: './maxscale_jobs/include/ci_url.yaml'
         - !include: './maxscale_jobs/include/logs_dir.yaml'
         - !include: './maxscale_jobs/include/no_vm_revert.yaml'
+        - !include: './maxscale_jobs/include/templates.yaml'
         - string:
             name: config_to_clone
             description: !include: './maxscale_jobs/include/config_to_clone.yaml'
