@@ -12,6 +12,6 @@
           enabled: true
     builders:
       - shell: |
-        cd ~/maxscale-performance-test
-        ./bin/performance_test -v --server-config=~/vms/performance-test_network_config --remote-test-app tests/run_sysbench.sh --db-server-2-config slave-config.sql.erb --db-server-3-config slave-config.sql.erb --db-server-4-config slave-config.sql.erb --mariadb-version 10.2 --maxscale-config base.cnf.erb --maxscale-version maxscale-2.2.4-release --keep-servers true
+          cd ~/maxscale-performance-test
+          ./bin/performance_test -v --server-config=~/vms/performance-test_network_config --remote-test-app tests/run_sysbench.sh --db-server-2-config slave-config.sql.erb --db-server-3-config slave-config.sql.erb --db-server-4-config slave-config.sql.erb --mariadb-version 10.2 --maxscale-config base.cnf.erb --maxscale-version maxscale-2.2.4-release --keep-servers true
     concurrent: true
