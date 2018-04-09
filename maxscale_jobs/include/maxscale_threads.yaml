@@ -1,0 +1,4 @@
+string:
+  name: maxscale_threads
+  default: !include: './maxscale_jobs/include/default_maxscale_threads.yaml'
+  description: 'The value of [threads] parameter in the maxscale.cnf'

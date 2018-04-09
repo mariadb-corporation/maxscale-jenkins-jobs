@@ -4,6 +4,8 @@
     parameters:
         - !include: './maxscale_jobs/include/versions_incl.yaml'
         - !include: './maxscale_jobs/include/target.yaml'
+        - !include: './maxscale_jobs/include/maxscale_threads.yaml'
+        - !include: './maxscale_jobs/include/sysbench_threads.yaml'
     properties:
       - throttle:
           option: project
