@@ -1,0 +1,4 @@
+string:
+  name: cmake_flags
+  default: !include: './maxscale_jobs/include/default_cmake_release.yaml'
+  description: 'Command line flags given to CMake when MaxScale is being configured'
