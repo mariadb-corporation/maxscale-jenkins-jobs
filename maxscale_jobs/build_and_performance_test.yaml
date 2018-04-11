@@ -27,6 +27,7 @@
             steps {
               script {
                 def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'box', value: 'ubuntu_xenial_libvirt')]
                 build job: 'build', parameters: myparams, block: true
               }   
             }
