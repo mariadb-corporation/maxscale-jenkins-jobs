@@ -23,26 +23,24 @@
       pipeline {
         agent any          
         stages {
-          stage('Build and performance test') {
-            stage('Build') {
-              steps {
-                script {
-                  def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
-                  build job: 'build', parameters: myparams, block: true
-                }   
-              }
+          stage('Build') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                build job: 'build', parameters: myparams, block: true
+              }   
             }
-            
-            stage('Performance Test') {
-              steps {
-                script {
-                  def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
-                  myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
-                  build job: 'performance_test_demo', parameters: myparams, block: true
-                }   
-              }
-            }                
           }
+           
+          stage('Performance Test') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                build job: 'performance_test_demo', parameters: myparams, block: true
+              }   
+            }
+          }                
         }
       }
     wrappers:
