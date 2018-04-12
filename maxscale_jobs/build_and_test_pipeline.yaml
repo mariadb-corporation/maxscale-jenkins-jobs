@@ -26,32 +26,26 @@
           enabled: true
     dsl: |
       pipeline {
-        agent any          
-                  
-        stages {
-          stage('Build and test') {
-            parallel {                
+          agent any
+          stages {
               stage('Build') {
-                steps {
-                  script {
-                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
-                    build job: 'build', parameters: myparams, block: true
-                  }   
-                }
+                  steps {
+                      script {
+                          def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                          build job: 'build', parameters: myparams, block: true
+                      }   
+                  }
               }
-              
               stage('Test') {
-                steps {
-                  script {
-                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
-                    myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
-                    build job: 'run_test', parameters: myparams, block: true
-                  }   
-                }
-              }                
-            }          
+                  steps {
+                      script {
+                          def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                          myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                          build job: 'run_test', parameters: myparams, block: true
+                      }   
+                  }
+              }          
           }
-        }
       }
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
