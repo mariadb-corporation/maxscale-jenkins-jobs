@@ -1,5 +1,5 @@
 - job:
-    name: performace_test_demo
+    name: performance_test_demo
     description: 'View: test. This job id a demo of performance test'
     parameters:
         - !include: './maxscale_jobs/include/versions_incl.yaml'

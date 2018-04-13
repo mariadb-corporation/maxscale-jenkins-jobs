@@ -1,7 +1,7 @@
 - job:
-    name: build_and_simple_test
+    name: build_and_simple_test_pipeline
     project-type: pipeline
-    description: 'View: push_tests. This job builds for CentOS and Ubuntu and run functional and performace tests'
+    description: 'View: test. This job builds for CentOS and Ubuntu and run functional and performace tests'
     node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
       - !include: './maxscale_jobs/include/source.yaml'
@@ -70,7 +70,7 @@
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
                     myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
-                    build job: 'performace_test_demo', parameters: myparams, block: true
+                    build job: 'performance_test_demo', parameters: myparams, block: true
                   }
                 }
               }
