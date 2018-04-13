@@ -24,11 +24,11 @@
             }
           }
           stage('build') {
-            when {
-                expression {  fileExists 'branch_match' }
-            }
             parallel {
               stage {
+                when {
+                  expression {  fileExists 'branch_match' }
+                }
                 steps('build CentOS') {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
@@ -43,6 +43,9 @@
                 }
               }
               stage('build Ubuntu') {
+                when {
+                  expression {  fileExists 'branch_match' }
+                }
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
@@ -64,6 +67,9 @@
             }
             parallel {
               stage('run functional tests') {
+                when {
+                  expression {  fileExists 'branch_match' }
+                }
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
@@ -76,6 +82,9 @@
                 }
               }
               stage('run performance tests') {
+                when {
+                  expression {  fileExists 'branch_match' }
+                }
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
