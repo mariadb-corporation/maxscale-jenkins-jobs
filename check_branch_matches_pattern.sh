@@ -1,4 +1,4 @@
-#!/bin/bach/
+#!/bin/bash/
   echo "Checking $GIT_BRANCH"
   while read line
   do
