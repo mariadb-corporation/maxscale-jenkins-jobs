@@ -9,7 +9,6 @@
       - !include: './maxscale_jobs/include/build_experimental.yaml'
       - !include: './maxscale_jobs/include/products_incl.yaml'
       - !include: './maxscale_jobs/include/versions_incl.yaml'
-      - !include: './maxscale_jobs/include/cmake_flags.yaml'
       - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
       - !include: './maxscale_jobs/include/test_set.yaml'
       - !include: './maxscale_jobs/include/ci_url.yaml'
@@ -33,7 +32,6 @@
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
                     myparams = myparams + [string(name: 'box', value: 'ubuntu_xenial_aws')]
                     myparams = myparams + [string(name: 'try_already_running', value: 'yes')]
-                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
                     myparams = myparams + [string(name: 'cmake_flags', value: "-DBUILD_TESTS=N -DFAKE_CODE=N -DBUILD_MMMON=Y -DBUILD_AVRO=Y -DBUILD_CDC=Y")]
                     build job: 'build', parameters: myparams, block: true
                   }
@@ -45,7 +43,7 @@
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
                     myparams = myparams + [string(name: 'box', value: 'centos_7_libvirt')]
                     myparams = myparams + [string(name: 'try_already_running', value: 'yes')]
-                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    myparams = myparams + [string(name: 'cmake_flags', value: "-DBUILD_TESTS=Y -DCMAKE_BUILD_TYPE=Debug -DFAKE_CODE=Y -DBUILD_MMMON=Y -DBUILD_AVRO=Y -DBUILD_CDC=Y")]
                     build job: 'build', parameters: myparams, block: true
                   }
                 }
@@ -58,9 +56,7 @@
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
-                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
-                    myparams = myparams + [string(name: 'test_set', value: "${test_set}")]
-                    myparams = myparams + [string(name: 'test_branch', value: "${branch_to_check}")]
+                    myparams = myparams + [string(name: 'test_branch', value: "${source}")]
                     build job: 'run_test_snapshot', parameters: myparams, block: true
                   }
                 }
@@ -69,7 +65,6 @@
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
-                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
                     build job: 'performance_test_demo', parameters: myparams, block: true
                   }
                 }
