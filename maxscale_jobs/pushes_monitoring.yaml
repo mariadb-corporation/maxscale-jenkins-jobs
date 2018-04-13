@@ -34,8 +34,8 @@
           }
           stage('build') {
             parallel {
-              stage {
-                steps('build CentOS') {
+              stage('build CentOS') {
+                steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
                     load "$WORKSPACE/env_vars_$BUILD_ID"
@@ -65,9 +65,6 @@
             }
           }
           stage('run test') {
-            when {
-                expression {  fileExists 'branch_match' }
-            }
             parallel {
               stage('run functional tests') {
                 steps {
