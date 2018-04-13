@@ -22,13 +22,19 @@
             steps {
               sh '$HOME/maxscale-jenkins-jobs/check_branch_matches_pattern.sh'
             }
+            steps {
+              if (fileExists('file')) {
+                echo 'Running tests'
+              } else {
+                echo 'Exiting'
+                currentBuild.result = 'SUCCESS'
+                return
+              }
+            }
           }
           stage('build') {
             parallel {
               stage {
-                when {
-                  expression {  fileExists 'branch_match' }
-                }
                 steps('build CentOS') {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
@@ -43,9 +49,6 @@
                 }
               }
               stage('build Ubuntu') {
-                when {
-                  expression {  fileExists 'branch_match' }
-                }
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
@@ -67,9 +70,6 @@
             }
             parallel {
               stage('run functional tests') {
-                when {
-                  expression {  fileExists 'branch_match' }
-                }
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
@@ -82,9 +82,6 @@
                 }
               }
               stage('run performance tests') {
-                when {
-                  expression {  fileExists 'branch_match' }
-                }
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
