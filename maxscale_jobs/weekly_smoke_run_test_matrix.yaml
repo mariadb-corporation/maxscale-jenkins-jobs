@@ -1,9 +1,9 @@
 - job:
     name: weekly_smoke_run_test_matrix
-    description: 'View: regular_test. Weekly build (at ~3 am Saturday) of run_test_matrix with smoke=yes and test_set -L LIGHT'
+    description: 'View: regular_test. Monthly build (at ~3am 2nd) of run_test_matrix with smoke=yes and test_set -L LIGHT'
     node: !include: './maxscale_jobs/include/slave_for_weekly_matrix.yaml'
     triggers:
-      - timed: "H 3 * * 6"
+      - timed: "0 3 2 * *"
     builders:
       - trigger-builds:
           - project: 'build_regular'

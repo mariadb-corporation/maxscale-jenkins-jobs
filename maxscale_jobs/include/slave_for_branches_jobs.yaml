@@ -2,7 +2,7 @@ node:
   name: slave_for_branches_jobs
   description: "Select slave"
   default-slaves:
-    - maxtst2
+    - master
   allowed-slaves:
     - master
     - maxtst2    
