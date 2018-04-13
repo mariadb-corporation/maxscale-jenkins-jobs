@@ -1,0 +1,82 @@
+- job:
+    name: build_and_simple_test
+    project-type: pipeline
+    description: 'View: push_tests. This job builds for CentOS and Ubuntu and run functional and performace tests'
+    node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
+    parameters:
+      - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/target.yaml'
+      - !include: './maxscale_jobs/include/build_experimental.yaml'
+      - !include: './maxscale_jobs/include/products_incl.yaml'
+      - !include: './maxscale_jobs/include/versions_incl.yaml'
+      - !include: './maxscale_jobs/include/cmake_flags.yaml'
+      - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+      - !include: './maxscale_jobs/include/test_set.yaml'
+      - !include: './maxscale_jobs/include/ci_url.yaml'
+      - !include: './maxscale_jobs/include/backend_ssl.yaml'
+      - !include: './maxscale_jobs/include/maxscale_threads.yaml'
+      - !include: './maxscale_jobs/include/sysbench_threads.yaml'
+    scm:
+      - git:
+          url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
+          branches:
+            - origin/*
+    dsl: |
+      pipeline {
+        agent any
+        stages {
+          stage('build') {
+            parallel {
+              stage('build CentOS') {
+                steps {
+                  script {
+                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                    myparams = myparams + [string(name: 'box', value: 'ubuntu_xenial_aws')]
+                    myparams = myparams + [string(name: 'try_already_running', value: 'yes')]
+                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    myparams = myparams + [string(name: 'cmake_flags', value: "-DBUILD_TESTS=N -DFAKE_CODE=N -DBUILD_MMMON=Y -DBUILD_AVRO=Y -DBUILD_CDC=Y")]
+                    build job: 'build', parameters: myparams, block: true
+                  }
+                }
+              }
+              stage('build Ubuntu') {
+                steps {
+                  script {
+                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                    myparams = myparams + [string(name: 'box', value: 'centos_7_libvirt')]
+                    myparams = myparams + [string(name: 'try_already_running', value: 'yes')]
+                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    build job: 'build', parameters: myparams, block: true
+                  }
+                }
+              }
+            }
+          }
+          stage('run test') {
+            parallel {
+              stage('run functional tests') {
+                steps {
+                  script {
+                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    myparams = myparams + [string(name: 'test_set', value: "${test_set}")]
+                    myparams = myparams + [string(name: 'test_branch', value: "${branch_to_check}")]
+                    build job: 'run_test_snapshot', parameters: myparams, block: true
+                  }
+                }
+              }
+              stage('run performance tests') {
+                steps {
+                  script {
+                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    build job: 'performace_test_demo', parameters: myparams, block: true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'

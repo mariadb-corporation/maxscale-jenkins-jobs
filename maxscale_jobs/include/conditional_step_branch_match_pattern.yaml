@@ -5,19 +5,13 @@ conditional-step:
     - inject:
         properties-file: $WORKSPACE/env_vars_$BUILD_ID
     - trigger-builds:
-        - project: build
+        - project: build_and_simple_test_pipeline
           block: true
           same-node: true
           predefined-parameters: |
             target=$JOB_NAME-$BUILD_ID
             scm_source=$branch_to_check
             try_already_running=yes
-    - trigger-builds:
-        - project: run_test_snapshot
-          block: true
-          same-node: true
-          predefined-parameters: |
-            target=$JOB_NAME-$BUILD_ID
             name=$JOB_NAME-$BUILD_ID
             test_set=$test_set
             test_branch=$branch_to_check
