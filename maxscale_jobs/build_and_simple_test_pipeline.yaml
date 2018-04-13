@@ -15,6 +15,7 @@
       - !include: './maxscale_jobs/include/backend_ssl.yaml'
       - !include: './maxscale_jobs/include/maxscale_threads.yaml'
       - !include: './maxscale_jobs/include/sysbench_threads.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
     scm:
       - git:
           url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
