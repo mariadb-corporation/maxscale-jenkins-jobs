@@ -1,5 +1,6 @@
 - job:
     name: pushes_monitoring
+    project-type: pipeline
     description: 'View: push_tests. This job checks "branches_list" file and executes run_test_snapshot in case of first match.'
     node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
@@ -13,8 +14,82 @@
       - pollscm:
           cron: "@hourly"
           ignore-post-commit-hooks: True
-    builders:
-        - !include: "./maxscale_jobs/include/check_branch_matches_pattern.yaml"
-        - !include: "./maxscale_jobs/include/conditional_step_branch_match_pattern.yaml"
+    dsl: |
+      pipeline {
+        agent any          
+        stages {
+          stage('Check branch') {
+            steps {
+              sh '$HOME/maxscale-jenkins-jobs/check_branch_matches_pattern.sh'
+            }
+          }
+          stage('build') {
+            when {
+                expression {  fileExists 'branch_match' }
+            }
+            parallel {
+              stage {
+                steps('build CentOS') {
+                  script {
+                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                    load "$WORKSPACE/env_vars_$BUILD_ID"
+                    myparams = myparams + [string(name: 'box', value: 'ubuntu_xenial_aws')]
+                    myparams = myparams + [string(name: 'try_already_running', value: 'yes')]
+                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    myparams = myparams + [string(name: 'test_set', value: "${test_set}")]
+                    myparams = myparams + [string(name: 'target', value: "${branch_to_check}_${BUILD_ID}")]
+                    build job: 'build', parameters: myparams, block: true
+                  }
+                }
+              }
+              stage('build Ubuntu') {
+                steps {
+                  script {
+                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                    load "$WORKSPACE/env_vars_$BUILD_ID"
+                    myparams = myparams + [string(name: 'box', value: 'centos_7_libvirt')]
+                    myparams = myparams + [string(name: 'try_already_running', value: 'yes')]
+                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    myparams = myparams + [string(name: 'test_set', value: "${test_set}")]
+                    myparams = myparams + [string(name: 'target', value: "${branch_to_check}_${BUILD_ID}")]
+                    build job: 'build', parameters: myparams, block: true
+                  }
+                }
+              }
+            }
+          }
+          stage('run test') {
+            when {
+                expression {  fileExists 'branch_match' }
+            }
+            parallel {
+              stage('run functional tests') {
+                steps {
+                  script {
+                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                    load "$WORKSPACE/env_vars_$BUILD_ID"
+                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    myparams = myparams + [string(name: 'test_set', value: "${test_set}")]
+                    myparams = myparams + [string(name: 'target', value: "${branch_to_check}_${BUILD_ID}")]
+                    build job: 'run_test_snapshot', parameters: myparams, block: true
+                  }
+                }
+              }
+              stage('run performance tests') {
+                steps {
+                  script {
+                    def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                    load "$WORKSPACE/env_vars_$BUILD_ID"
+                    myparams = myparams + [string(name: 'source', value: "${branch_to_check}")]
+                    myparams = myparams + [string(name: 'test_set', value: "${test_set}")]
+                    myparams = myparams + [string(name: 'target', value: "${branch_to_check}_${BUILD_ID}")]
+                    build job: 'performace_test_demo', parameters: myparams, block: true
+                  }
+                }
+              }
+            }
+          }
+        }   
+      }
     wrappers:
       - !include: './maxscale_jobs/include/workspace-cleanup-total.yaml'
