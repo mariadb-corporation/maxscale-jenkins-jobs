@@ -15,4 +15,3 @@ conditional-step:
             name=$JOB_NAME-$BUILD_ID
             test_set=$test_set
             test_branch=$branch_to_check
-            slave_name=$slave_name

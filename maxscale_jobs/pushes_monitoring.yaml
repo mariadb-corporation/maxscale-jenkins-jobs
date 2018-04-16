@@ -4,7 +4,6 @@
     node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
     parameters:
       - !include: './maxscale_jobs/include/on_push_maxscale_branches_file.yaml'
-      - !include: './maxscale_jobs/include/slave.yaml'
     scm:
       - git:
           url: !include: './maxscale_jobs/include/maxscale_repo.yaml'
