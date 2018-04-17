@@ -42,6 +42,7 @@
       - !include: './maxscale_jobs/include/build_parser/create_env_coredumps.yaml'
       - !include: './maxscale_jobs/include/build_parser/inject_coredumps_var.yaml'
       - !include: './maxscale_jobs/include/build_parser/write_build_results.yaml'
+      - !include: './maxscale_jobs/include/build_parser/publish_report_portal.yaml'
     publishers:
       - !include: './maxscale_jobs/include/build_parser_mail_subject_with_name.yaml'
       - !include: './maxscale_jobs/include/call_cleanup.yaml'
