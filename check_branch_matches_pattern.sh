@@ -1,0 +1,17 @@
+#!/bin/bash
+  echo "Checking $GIT_BRANCH"
+  while read line
+  do
+    branch_pattern=`echo $line | sed -e 's/|[^|]*$//g'`
+    test_set=`echo $line | sed -e 's/^[^|]*|//g'`
+    if echo $GIT_BRANCH | sed -e 's|origin/||g' | grep -q $branch_pattern 
+    then
+      branch_to_check=`echo $GIT_BRANCH | sed -e 's|origin/||g'`
+      echo "$GIT_BRANCH matches $branch_pattern!"
+      echo "test_set=$test_set" > $WORKSPACE/env_vars_$BUILD_ID
+      echo "branch_to_check=$branch_to_check" >> $WORKSPACE/env_vars_$BUILD_ID
+      touch branch_match
+      exit 0
+    fi
+  done < $branches_list_file
+  echo "$GIT_BRANCH does not match any patterns from $branches_list_file!"

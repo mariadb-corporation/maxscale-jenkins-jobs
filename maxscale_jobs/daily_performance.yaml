@@ -1,0 +1,110 @@
+- job:
+    name: daily_performance
+    project-type: pipeline
+    description: 'View: regular_test. This job build and run performance test for several configs.'
+    parameters: 
+      - !include: './maxscale_jobs/include/versions_incl.yaml'
+      - !include: './maxscale_jobs/include/perf_source.yaml'
+      - !include: './maxscale_jobs/include/perf_target.yaml'
+      - !include: './maxscale_jobs/include/build_experimental.yaml'
+      - !include: './maxscale_jobs/include/cmake_flags_release.yaml'
+      - !include: './maxscale_jobs/include/try_already_running.yaml'
+      - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
+    properties:
+      - throttle:
+          option: project
+          max-per-node: 1
+          max-total: 5
+          enabled: true
+    dsl: |
+      pipeline {
+        agent any          
+        stages {
+          stage('Build') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'box', value: 'ubuntu_xenial_aws')]
+                myparams = myparams + [string(name: 'cmake_flags', value: "-DBUILD_TESTS=N -DFAKE_CODE=N -DBUILD_MMMON=Y -DBUILD_AVRO=Y -DBUILD_CDC=Y")]
+                build job: 'build', parameters: myparams, block: true
+              }   
+            }
+          }
+           
+          stage('Performance Test 4/64') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                myparams = myparams + [string(name: 'maxscale_threads', value: '4')]
+                myparams = myparams + [string(name: 'sysbench_threads', value: '64')]
+                build job: 'performance_test_demo', parameters: myparams, block: true
+              }   
+            }
+          }                
+
+          stage('Performance Test 4/128') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                myparams = myparams + [string(name: 'maxscale_threads', value: '4')]
+                myparams = myparams + [string(name: 'sysbench_threads', value: '128')]
+                build job: 'performance_test_demo', parameters: myparams, block: true
+              }   
+            }
+          }                
+
+          stage('Performance Test 8/64') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                myparams = myparams + [string(name: 'maxscale_threads', value: '8')]
+                myparams = myparams + [string(name: 'sysbench_threads', value: '64')]
+                build job: 'performance_test_demo', parameters: myparams, block: true
+              }   
+            }
+          }                
+
+          stage('Performance Test 8/128') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                myparams = myparams + [string(name: 'maxscale_threads', value: '8')]
+                myparams = myparams + [string(name: 'sysbench_threads', value: '128')]
+                build job: 'performance_test_demo', parameters: myparams, block: true
+              }   
+            }
+          }                
+          stage('Performance Test 16/64') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                myparams = myparams + [string(name: 'maxscale_threads', value: '16')]
+                myparams = myparams + [string(name: 'sysbench_threads', value: '64')]
+                build job: 'performance_test_demo', parameters: myparams, block: true
+              }   
+            }
+          }                
+
+          stage('Performance Test 16/128') {
+            steps {
+              script {
+                def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                myparams = myparams + [string(name: 'maxscale_threads', value: '16')]
+                myparams = myparams + [string(name: 'sysbench_threads', value: '128')]
+                build job: 'performance_test_demo', parameters: myparams, block: true
+              }   
+            }
+          }                
+
+
+        }
+      }
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'

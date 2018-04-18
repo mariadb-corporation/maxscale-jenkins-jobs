@@ -1,0 +1,4 @@
+string:
+  name: sysbench_threads
+  default: !include: './maxscale_jobs/include/default_sysbench_threads.yaml'
+  description: 'The value of sysbench --num_threads parameter'
