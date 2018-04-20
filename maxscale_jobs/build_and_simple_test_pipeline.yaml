@@ -68,7 +68,7 @@
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
                     myparams = myparams + [string(name: 'target', value: "${target}-perf")]
-                    build job: 'performance_test_demo', parameters: myparams, block: true
+                    build job: 'performance_test', parameters: myparams, block: true
                   }
                 }
               }

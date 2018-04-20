@@ -2,6 +2,7 @@
     name: daily_performance
     project-type: pipeline
     description: 'View: regular_test. This job build and run performance test for several configs.'
+    node: !include: './maxscale_jobs/include/slave_for_daily_performance_test.yaml'
     parameters: 
       - !include: './maxscale_jobs/include/versions_incl.yaml'
       - !include: './maxscale_jobs/include/perf_source.yaml'
@@ -11,6 +12,8 @@
       - !include: './maxscale_jobs/include/try_already_running.yaml'
       - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
       - !include: './maxscale_jobs/include/slave.yaml'
+    triggers:
+      - timed: "H 1 * * *"
     properties:
       - throttle:
           option: project
@@ -39,7 +42,7 @@
                 myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
                 myparams = myparams + [string(name: 'maxscale_threads', value: '4')]
                 myparams = myparams + [string(name: 'sysbench_threads', value: '64')]
-                build job: 'performance_test_demo', parameters: myparams, block: true
+                build job: 'performance_test', parameters: myparams, block: true
               }   
             }
           }                
@@ -51,7 +54,7 @@
                 myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
                 myparams = myparams + [string(name: 'maxscale_threads', value: '4')]
                 myparams = myparams + [string(name: 'sysbench_threads', value: '128')]
-                build job: 'performance_test_demo', parameters: myparams, block: true
+                build job: 'performance_test', parameters: myparams, block: true
               }   
             }
           }                
@@ -63,7 +66,7 @@
                 myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
                 myparams = myparams + [string(name: 'maxscale_threads', value: '8')]
                 myparams = myparams + [string(name: 'sysbench_threads', value: '64')]
-                build job: 'performance_test_demo', parameters: myparams, block: true
+                build job: 'performance_test', parameters: myparams, block: true
               }   
             }
           }                
@@ -75,7 +78,7 @@
                 myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
                 myparams = myparams + [string(name: 'maxscale_threads', value: '8')]
                 myparams = myparams + [string(name: 'sysbench_threads', value: '128')]
-                build job: 'performance_test_demo', parameters: myparams, block: true
+                build job: 'performance_test', parameters: myparams, block: true
               }   
             }
           }                
@@ -86,7 +89,7 @@
                 myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
                 myparams = myparams + [string(name: 'maxscale_threads', value: '16')]
                 myparams = myparams + [string(name: 'sysbench_threads', value: '64')]
-                build job: 'performance_test_demo', parameters: myparams, block: true
+                build job: 'performance_test', parameters: myparams, block: true
               }   
             }
           }                
@@ -98,7 +101,7 @@
                 myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
                 myparams = myparams + [string(name: 'maxscale_threads', value: '16')]
                 myparams = myparams + [string(name: 'sysbench_threads', value: '128')]
-                build job: 'performance_test_demo', parameters: myparams, block: true
+                build job: 'performance_test', parameters: myparams, block: true
               }   
             }
           }                
