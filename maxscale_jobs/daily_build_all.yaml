@@ -6,7 +6,7 @@
       - !include: './maxscale_jobs/include/build_all_branches.yaml'
       - !include: './maxscale_jobs/include/repo.yaml'
     triggers:
-      - timed: "H 1 * * *"
+      - timed: "H 2 * * *"
     builders:
       - shell:
           !include-raw: './maxscale_jobs/include/generate_branch_property_files_build_all.sh' 
