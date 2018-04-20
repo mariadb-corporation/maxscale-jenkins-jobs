@@ -1,40 +1,21 @@
 - job:
     name: performance_test
-    description: 'This job execute performance test on parametrized maxscale instance.'
+    description: 'View: test. This job id a demo of performance test'
     parameters:
-        - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
-        - !include: './maxscale_jobs/include/products_incl.yaml'
         - !include: './maxscale_jobs/include/versions_incl.yaml'
-        - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
-        - !include: './maxscale_jobs/include/smoke.yaml'
-        - !include: './maxscale_jobs/include/name.yaml'
         - !include: './maxscale_jobs/include/target.yaml'
-        - !include: './maxscale_jobs/include/ci_url.yaml'
-        - !include: './maxscale_jobs/include/performance_named_test.yaml'
-        - !include: './maxscale_jobs/include/backend_ssl.yaml'
-        - !include: './maxscale_jobs/include/sysbench_params.yaml'
-        - !include: './maxscale_jobs/include/machines_count.yaml'
-        - !include: './maxscale_jobs/include/logs_dir.yaml'
-        - !include: './maxscale_jobs/include/test_branch.yaml'
-        - !include: './maxscale_jobs/include/slave_perf.yaml'
-    scm:
-        - git:
-            # TODO parametrize this url
-            url: https://github.com/mariadb-corporation/maxscale.git
-            branches:
-                - $test_branch
+        - !include: './maxscale_jobs/include/maxscale_threads.yaml'
+        - !include: './maxscale_jobs/include/sysbench_threads.yaml'
+    properties:
+      - throttle:
+          option: project
+          max-per-node: 1
+          max-total: 25
+          enabled: true
     builders:
         - !include: './maxscale_jobs/include/performance_test_parser/create_env_vars.yaml'
         - !include: './maxscale_jobs/include/performance_test_parser/inject_initial_env.yaml'
         - !include: './maxscale_jobs/include/performance_test_parser/run_test_and_collect.yaml'
         - !include: './maxscale_jobs/include/performance_test_parser/parse_benchmark_log.yaml'
         - !include: './maxscale_jobs/include/performance_test_parser/write_benchmark_results.yaml'
-        - !include: './maxscale_jobs/include/performance_test_parser/inject_benchmark_results.yaml'
-    publishers:
-      - !include: './maxscale_jobs/include/performance_test_parser/mail.yaml'
-      - !include: './maxscale_jobs/include/call_cleanup.yaml'
-    wrappers:
-      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
-      - !include: './maxscale_jobs/include/timeout.yaml'
     concurrent: true
-
