@@ -29,17 +29,33 @@
           max-per-node: 1
           max-total: 25
           enabled: true
-    scm:
-        - git:
-            # TODO parametrize this url
-            url: https://github.com/mariadb-corporation/maxscale.git
-            branches:
-                - $test_branch
     dsl: |
         pipeline {
             agent any
             
+            //timeout(time: 3600, unit: 'SECONDS') {
+            
             stages {
+                stage('Delete workspace before build starts') {
+                    steps {
+                        deleteDir()
+                    }
+                }
+                stage('SCM') {
+                    steps {
+                        checkout changelog: false,
+                            poll: false,
+                            scm: [
+                                $class: 'GitSCM',
+                                branches: [[name: env.test_branch]],
+                                doGenerateSubmoduleConfigurations: false,
+                                extensions: [[$class: 'WipeWorkspace']],
+                                submoduleCfg: [],
+                                userRemoteConfigs: [[url: 'https://github.com/mariadb-corporation/maxscale.git']]
+                            ]
+                    }
+                }
+                
                 stage('Create env vars') {
                     steps {
                         script {
@@ -58,7 +74,7 @@
                             cd default-maxscale-branch
                             git clone https://github.com/mariadb-corporation/MaxScale.git
                             cd ..
-                            cp -r default-maxscale-branch/MaxScale/maxscale-system-test/mdbci maxscale-system-test/
+                            cp -r default-maxscale-branch/MaxScale/maxscale-system-test/mdbci maxscale-system-test
                         fi
                         export no_vm_revert="no"
                         maxscale-system-test/mdbci/run_test.sh | tee $WORKSPACE/build_log_$BUILD_ID; echo ${PIPESTATUS[0]} > result_$BUILD_ID'''
@@ -109,22 +125,34 @@
                     }
                 }
             }
+            
             post {
                 always {
-                    emailext body: '''${env.DEFAULT_CONTENT}
-                    Rebuild here: ${env.BUILD_URL}/rebuild
-                    
-                    ${env.DB_WRITE_ERROR}
-                    
-                    Result: ${env.BUILD_LOG_PARSING_RESULT}
-                    
-                    Coredumps: ${env.COREDUMPS}
-                    
-                    Logs(ctest logs) for each test: http://max-tst-01.mariadb.com/LOGS/${env.JOB_NAME}-${env.BUILD_ID}/LOGS/''', replyTo: "${env.DEFAULT_REPLYTO}", subject: "${env.DEFAULT_SUBJECT} (${env.name})", to: 'mdbci-maxscale@googlegroups.com'
+                    emailext body: "${env.DEFAULT_CONTENT}\n" +
+                        "Rebuild here: ${env.BUILD_URL}/rebuild\n\n" +
+                        "${env.DB_WRITE_ERROR}\n\n" +
+                        "Result: ${env.BUILD_LOG_PARSING_RESULT}\n\n" +
+                        "Coredumps: ${env.COREDUMPS}\n\n" +
+                        "Logs(ctest logs) for each test: http://max-tst-01.mariadb.com/LOGS/${env.JOB_NAME}-${env.BUILD_ID}/LOGS/",
+                        replyTo: "${env.DEFAULT_REPLYTO}",
+                        subject: "${env.DEFAULT_SUBJECT} (${env.name})",
+                        to: 'mdbci-maxscale@googlegroups.com'
+                }
+                unstable {
+                    call_cleanup() 
+                }
+                failure {
+                    call_cleanup() 
                 }
             }
-        }        
-    wrappers:
-      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
-      - !include: './maxscale_jobs/include/timeout.yaml'
+        }
+        
+        @NonCPS
+        def call_cleanup() {
+            build job: 'cleanup', parameters: [
+                string(name: 'build_full_name', value: "${env.JOB_NAME}-${env.BUILD_NUMBER}"),
+                string(name: 'name', value: env.name),
+                string(name: 'do_not_destroy_vm', value: env.do_not_destroy_vm)
+            ]
+        }
     concurrent: true
