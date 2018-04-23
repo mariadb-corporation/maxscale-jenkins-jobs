@@ -31,7 +31,7 @@
                 steps {
                   script {
                     def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
-                    myparams = myparams + [string(name: 'box', value: 'ubuntu_xenial_aws')]
+                    myparams = myparams + [string(name: 'box', value: 'ubuntu_xenial_libvirt')]
                     myparams = myparams + [string(name: 'try_already_running', value: 'yes')]
                     myparams = myparams + [string(name: 'target', value: "${target}-perf")]
                     myparams = myparams + [string(name: 'cmake_flags', value: "-DBUILD_TESTS=N -DFAKE_CODE=N -DBUILD_MMMON=Y -DBUILD_AVRO=Y -DBUILD_CDC=Y")]
