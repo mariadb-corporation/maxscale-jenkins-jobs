@@ -69,7 +69,7 @@
                 }
                 stage('Run test and collect') {
                     steps {
-                        timeout(time: 3600, unit: 'SECONDS') {
+                        //timeout(time: 3600, unit: 'SECONDS') {
                             sh '''if [ ! -d ./maxscale-system-test/mdbci ] ; then
                                 mkdir default-maxscale-branch
                                 cd default-maxscale-branch
@@ -79,7 +79,7 @@
                             fi
                             export no_vm_revert="no"
                             maxscale-system-test/mdbci/run_test.sh | tee $WORKSPACE/build_log_$BUILD_ID; echo ${PIPESTATUS[0]} > result_$BUILD_ID'''
-                        }
+                        //}
                     }
                 }
                 stage('Parse build log') {
