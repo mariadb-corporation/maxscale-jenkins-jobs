@@ -1,6 +1,7 @@
 - centos_7_libvirt
 - centos_6_libvirt
 - centos_5_libvirt
+- ubuntu_bionic_libvirt
 - ubuntu_wily_libvirt
 - ubuntu_trusty_libvirt
 - ubuntu_precise_libvirt
