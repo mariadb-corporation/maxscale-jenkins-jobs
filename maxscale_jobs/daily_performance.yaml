@@ -3,6 +3,7 @@
     project-type: pipeline
     description: 'View: regular_test. This job build and run performance test for several configs.'
     node: !include: './maxscale_jobs/include/slave_for_daily_performance_test.yaml'
+    disabled: true
     parameters: 
       - !include: './maxscale_jobs/include/versions_incl.yaml'
       - !include: './maxscale_jobs/include/perf_source.yaml'

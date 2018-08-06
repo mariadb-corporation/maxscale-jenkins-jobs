@@ -2,6 +2,7 @@
     name: weekly_no_smoke_run_test
     description: 'View: regular_test. Montly build (at ~2 am 1st) of run_test with smoke=no'
     node: !include: './maxscale_jobs/include/slave_for_weekly_tests.yaml'
+    disabled: true
     triggers:
       - timed: "0 2 1 * *"
     builders:

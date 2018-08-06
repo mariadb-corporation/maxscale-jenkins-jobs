@@ -2,6 +2,7 @@
     name: daily_tests_launcher
     description: 'View: push_tests. This job perform daily run of run_test on a given branch set stored at $HOME/run_test_branches.list as pairs "branch_name|test_set" seprated by new line symbol.'
     node: !include: './maxscale_jobs/include/slave_for_daily_tests.yaml'
+    disabled: true
     parameters:
       - !include: './maxscale_jobs/include/run_test_branches.yaml'
       - !include: './maxscale_jobs/include/repo.yaml'

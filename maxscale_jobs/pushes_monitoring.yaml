@@ -2,6 +2,7 @@
     name: pushes_monitoring
     description: 'View: push_tests. This job checks "branches_list" file and executes run_test_snapshot in case of first match.'
     node: !include: './maxscale_jobs/include/slave_for_push_monitoring.yaml'
+    disabled: true
     parameters:
       - !include: './maxscale_jobs/include/on_push_maxscale_branches_file.yaml'
     scm:

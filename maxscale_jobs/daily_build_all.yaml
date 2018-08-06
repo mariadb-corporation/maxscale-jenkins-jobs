@@ -2,6 +2,7 @@
     name: daily_build_all
     description: 'View: regular_test. Run build all daily for given branches.'
     node: !include: './maxscale_jobs/include/slave_for_daily_build_all.yaml'
+    disabled: true
     parameters:
       - !include: './maxscale_jobs/include/build_all_branches.yaml'
       - !include: './maxscale_jobs/include/repo.yaml'
