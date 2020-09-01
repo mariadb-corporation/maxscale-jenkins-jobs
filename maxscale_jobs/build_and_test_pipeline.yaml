@@ -1,0 +1,52 @@
+- job:
+    name: build_and_test_pipeline
+    description: 'View: build. This job builds Maxscale and runs tests'
+    project-type: pipeline
+    parameters: 
+      - !include: './maxscale_jobs/include/name.yaml'
+      - !include: './maxscale_jobs/include/source.yaml'
+      - !include: './maxscale_jobs/include/target.yaml'
+      - !include: './maxscale_jobs/include/build_experimental.yaml'
+      - !include: './maxscale_jobs/include/boxes_all_incl.yaml'
+      - !include: './maxscale_jobs/include/products_incl.yaml'
+      - !include: './maxscale_jobs/include/versions_incl.yaml'
+      - !include: './maxscale_jobs/include/cmake_flags.yaml'
+      - !include: './maxscale_jobs/include/do_not_destroy_vm.yaml'
+      - !include: './maxscale_jobs/include/test_set.yaml'
+      - !include: './maxscale_jobs/include/ci_url.yaml'
+      - !include: './maxscale_jobs/include/smoke.yaml'
+      - !include: './maxscale_jobs/include/big.yaml'
+      - !include: './maxscale_jobs/include/backend_ssl.yaml'
+      - !include: './maxscale_jobs/include/slave.yaml'
+    properties:
+      - throttle:
+          option: project
+          max-per-node: 5
+          max-total: 25
+          enabled: true
+    dsl: |
+      pipeline {
+          agent any
+          stages {
+              stage('Build') {
+                  steps {
+                      script {
+                          def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                          build job: 'build', parameters: myparams, block: true
+                      }   
+                  }
+              }
+              stage('Test') {
+                  steps {
+                      script {
+                          def myparams = currentBuild.rawBuild.getAction(ParametersAction).getParameters()
+                          myparams = myparams + [string(name: 'test_branch', value: params.scm_source)]
+                          build job: 'run_test', parameters: myparams, block: true
+                      }   
+                  }
+              }          
+          }
+      }
+    wrappers:
+      - !include: './maxscale_jobs/include/workspace-cleanup.yaml'
+    concurrent: true
